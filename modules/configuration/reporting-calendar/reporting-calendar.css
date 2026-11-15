@@ -1266,3 +1266,216 @@
     width: 100%;
   }
 }
+
+/* Keep calendar dialogs consistent with the Manage Users form and profile dialogs. */
+#reportingCalendarApp input,
+#reportingCalendarApp select,
+#reportingCalendarApp textarea {
+  font: inherit;
+}
+#reportingCalendarApp .page-actions {
+  align-items: center;
+  flex-wrap: wrap;
+}
+#reportingCalendarApp .page-actions .primary,
+#reportingCalendarApp .page-actions .filter-btn {
+  height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+#reportingCalendarApp .page-actions .primary {
+  white-space: nowrap;
+}
+#reportingCalendarApp .action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+#reportingCalendarApp .action-buttons .view-btn,
+#reportingCalendarApp .action-buttons .edit-btn {
+  height: 33px;
+  min-width: 58px;
+  padding: 0 11px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+#reportingCalendarApp .action-buttons .edit-btn {
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
+  background: var(--surface-alt);
+  color: var(--primary);
+}
+#reportingCalendarApp .modal-overlay.show,
+#reportingCalendarApp .notification-overlay.show {
+  padding: 20px;
+  overflow-y: auto;
+}
+#reportingCalendarApp .modal {
+  width: min(770px, 100%);
+  max-height: calc(100dvh - 40px);
+  padding: 25px;
+  border-radius: 20px;
+}
+#reportingCalendarApp .day-modal {
+  width: min(640px, 100%);
+}
+#reportingCalendarApp .report-summary {
+  width: min(770px, 100%);
+}
+#reportingCalendarApp .request-form {
+  width: min(860px, 100%);
+  padding: 25px;
+}
+#reportingCalendarApp .request-form .report-head {
+  margin-bottom: 20px;
+}
+#reportingCalendarApp .request-form .report-head p {
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+#reportingCalendarApp .request-form .report-head button,
+#reportingCalendarApp .notification-popup .panel-head button {
+  flex: 0 0 34px;
+}
+#reportingCalendarApp .request-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 17px;
+}
+#reportingCalendarApp .request-form-grid label,
+#reportingCalendarApp .filter-panel label {
+  display: block;
+  margin: 14px 0;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+#reportingCalendarApp .request-form-grid .full {
+  grid-column: 1 / -1;
+}
+#reportingCalendarApp .request-form-grid input,
+#reportingCalendarApp .request-form-grid select,
+#reportingCalendarApp .request-form-grid textarea,
+#reportingCalendarApp .filter-panel input,
+#reportingCalendarApp .filter-panel select {
+  display: block;
+  width: 100%;
+  min-height: 43px;
+  margin-top: 7px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+}
+#reportingCalendarApp .request-form-grid textarea {
+  min-height: 82px;
+  resize: vertical;
+}
+#reportingCalendarApp .request-form-grid input[readonly] {
+  background: var(--surface-alt);
+  color: var(--muted);
+}
+#reportingCalendarApp .required-marker {
+  color: var(--danger);
+}
+#reportingCalendarApp .form-error {
+  margin-top: 10px;
+  color: var(--danger);
+  font-size: 12px;
+}
+#reportingCalendarApp .request-form .modal-actions,
+#reportingCalendarApp .modal .modal-actions {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+#reportingCalendarApp .modal-actions .primary,
+#reportingCalendarApp .modal-actions .secondary {
+  min-height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+#reportingCalendarApp .modal-actions .secondary {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+}
+#reportingCalendarApp .request-extra-meta:empty {
+  display: none;
+}
+#reportingCalendarApp .request-extra-meta:not(:empty) {
+  margin-top: 12px;
+}
+#reportingCalendarApp .request-extra-meta strong {
+  overflow-wrap: anywhere;
+}
+#reportingCalendarApp .notification-overlay.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#reportingCalendarApp .notification-popup {
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+}
+#reportingCalendarApp .filter-panel {
+  max-height: calc(100dvh - 105px);
+  overflow: auto;
+}
+#reportingCalendarApp .calendar-card {
+  overflow-x: auto;
+}
+#reportingCalendarApp .weekdays,
+#reportingCalendarApp .calendar-grid {
+  min-width: 720px;
+}
+@media (max-width: 700px) {
+  #reportingCalendarApp .page-header {
+    flex-direction: column;
+  }
+  #reportingCalendarApp .page-actions {
+    width: 100%;
+    display: flex;
+  }
+  #reportingCalendarApp .request-form-grid {
+    grid-template-columns: 1fr;
+  }
+  #reportingCalendarApp .request-form-grid .full {
+    grid-column: auto;
+  }
+  #reportingCalendarApp .modal-overlay.show,
+  #reportingCalendarApp .notification-overlay.show {
+    align-items: flex-end;
+    padding: 8px;
+  }
+  #reportingCalendarApp .modal,
+  #reportingCalendarApp .request-form {
+    width: 100%;
+    max-height: calc(100dvh - 16px);
+    padding: 19px;
+    border-radius: 20px 20px 10px 10px;
+  }
+  #reportingCalendarApp .report-summary {
+    padding: 0;
+  }
+  #reportingCalendarApp .report-summary > .report-head,
+  #reportingCalendarApp .report-summary > .report-meta,
+  #reportingCalendarApp .report-summary > .workflow,
+  #reportingCalendarApp .report-summary > .modal-actions {
+    margin-left: 19px;
+    margin-right: 19px;
+  }
+  #reportingCalendarApp .report-summary > .report-head {
+    margin-top: 19px;
+  }
+  #reportingCalendarApp .report-summary > .modal-actions {
+    margin-bottom: 19px;
+  }
+  #reportingCalendarApp .notification-popup {
+    width: 100%;
+    padding: 19px;
+  }
+}

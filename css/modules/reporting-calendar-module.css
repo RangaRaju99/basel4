@@ -1,0 +1,1268 @@
+/* =========================================
+   REPORTING READINESS
+========================================= */
+
+.rrd-page {
+  width: 100%;
+  color: var(--text-primary, #1f2937);
+}
+
+.rrd-header {
+  margin-bottom: 23px;
+}
+
+.rrd-header h2 {
+  margin: 0 0 7px;
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--text-primary, #1f2937);
+}
+
+.rrd-header p,
+.rrd-section-heading p {
+  margin: 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 13px;
+}
+
+/* Summary cards */
+
+.rrd-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.rrd-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 19px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 11px;
+}
+
+.rrd-summary-label {
+  color: var(--text-secondary, #667085);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.rrd-summary-card strong {
+  color: var(--text-primary, #1f2937);
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.rrd-summary-note {
+  color: var(--text-secondary, #8a929e);
+  font-size: 11px;
+}
+
+/* Sections */
+
+.rrd-section {
+  padding: 20px;
+  margin-bottom: 22px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+}
+
+.rrd-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+}
+
+.rrd-section-heading h3 {
+  margin: 0 0 6px;
+  color: var(--text-primary, #1f2937);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.rrd-count {
+  padding: 6px 11px;
+  border-radius: 20px;
+  background: #eaf3ee;
+  color: #26734d;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rrd-blocked-count {
+  background: #fff4df;
+  color: #9a6700;
+}
+
+/* Tables */
+
+.rrd-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.rrd-table {
+  width: 100%;
+  min-width: 600px;
+  border-collapse: collapse;
+}
+
+.rrd-table th {
+  padding: 13px 14px;
+  text-align: left;
+  background: var(--table-header-bg, #f7f9f8);
+  color: var(--text-secondary, #667085);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rrd-table td {
+  padding: 15px 14px;
+  color: var(--text-primary, #344054);
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-color, #edf0ee);
+}
+
+.rrd-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rrd-table tbody tr:hover {
+  background: var(--table-hover-bg, #fafcfb);
+}
+
+.rrd-feed-name {
+  font-weight: 600;
+}
+
+.rrd-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.rrd-status-ready {
+  background: #e7f5ec;
+  color: #218653;
+}
+
+.rrd-status-blocked {
+  background: #fff4df;
+  color: #9a6700;
+}
+
+.rrd-status-sent {
+  background: #eaf0ff;
+  color: #3457a5;
+}
+
+.rrd-send-btn {
+  padding: 8px 13px;
+  border: 1px solid #27734e;
+  border-radius: 6px;
+  background: #27734e;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.rrd-send-btn:hover {
+  background: #1d5c3d;
+}
+
+.rrd-send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rrd-empty {
+  padding: 25px !important;
+  text-align: center;
+  color: var(--text-secondary, #6b7280) !important;
+}
+
+/* Confirmation modal */
+
+.rrd-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.48);
+}
+
+.rrd-modal.rrd-modal-open {
+  display: flex;
+}
+
+.rrd-modal-content {
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: var(--card-bg, #ffffff);
+  border-radius: 13px;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.2);
+}
+
+.rrd-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px 22px;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rrd-modal-header h3 {
+  margin: 0 0 5px;
+  color: var(--text-primary, #1f2937);
+  font-size: 17px;
+}
+
+.rrd-modal-header p {
+  margin: 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 12px;
+}
+
+.rrd-close {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary, #667085);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.rrd-modal-body {
+  padding: 22px;
+}
+
+.rrd-confirm-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 14px;
+  background: var(--table-header-bg, #f7f9f8);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 9px;
+}
+
+.rrd-detail-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  font-size: 12px;
+}
+
+.rrd-detail-row:first-child {
+  padding-top: 0;
+}
+
+.rrd-detail-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.rrd-detail-label {
+  color: var(--text-secondary, #667085);
+}
+
+.rrd-detail-value {
+  color: var(--text-primary, #1f2937);
+  font-weight: 600;
+  text-align: right;
+}
+
+.rrd-confirm-note {
+  margin: 15px 0 0;
+  color: var(--text-secondary, #667085);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rrd-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 15px 22px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rrd-secondary-btn,
+.rrd-primary-btn {
+  padding: 9px 16px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rrd-secondary-btn {
+  border: 1px solid var(--border-color, #d0d5dd);
+  background: var(--card-bg, #ffffff);
+  color: var(--text-primary, #344054);
+}
+
+.rrd-primary-btn {
+  border: 1px solid #27734e;
+  background: #27734e;
+  color: #ffffff;
+}
+
+.rrd-primary-btn:hover {
+  background: #1d5c3d;
+}
+
+.rrd-primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Toast */
+
+.rrd-toast {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 11000;
+  max-width: calc(100vw - 40px);
+  padding: 12px 18px;
+  border-radius: 8px;
+  background: #1f2937;
+  color: #ffffff;
+  font-size: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+}
+
+.rrd-toast.rrd-toast-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .rrd-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .rrd-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rrd-section {
+    padding: 14px;
+  }
+
+  .rrd-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .rrd-modal {
+    padding: 12px;
+  }
+
+  .rrd-modal-footer {
+    flex-wrap: wrap;
+  }
+}
+
+#reportingCalendarApp,
+#reportingCalendarApp * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#reportingCalendarApp {
+  --p: var(--primary);
+  --ph: var(--primary-hover);
+  --soft: var(--surface-alt);
+  --border: var(--line);
+  --red: var(--danger);
+  --amber: var(--warning);
+  --blue: var(--primary);
+}
+#reportingCalendarApp {
+  font-family: Poppins, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: normal;
+}
+#reportingCalendarApp button,
+#reportingCalendarApp input,
+#reportingCalendarApp select {
+  font: inherit;
+}
+#reportingCalendarApp button {
+  cursor: pointer;
+}
+#reportingCalendarApp a {
+  text-decoration: none;
+  color: inherit;
+}
+#reportingCalendarApp .topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+#reportingCalendarApp .topbar-left,
+#reportingCalendarApp .topbar-right,
+#reportingCalendarApp .brand {
+  display: flex;
+  align-items: center;
+}
+#reportingCalendarApp .topbar-left {
+  gap: 15px;
+}
+#reportingCalendarApp .topbar-right {
+  gap: 15px;
+}
+#reportingCalendarApp .hamburger,
+#reportingCalendarApp .icon-button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--p);
+  font-size: 22px;
+}
+#reportingCalendarApp .hamburger:hover,
+#reportingCalendarApp .icon-button:hover {
+  background: var(--soft);
+}
+#reportingCalendarApp .logo,
+#reportingCalendarApp .report-mark {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, var(--p), var(--ph));
+  color: var(--card);
+  font-weight: 700;
+}
+#reportingCalendarApp .brand-name {
+  margin-left: 10px;
+  color: var(--p);
+  font-size: 20px;
+  font-weight: 700;
+}
+#reportingCalendarApp .profile-wrapper {
+  position: relative;
+}
+#reportingCalendarApp .profile-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid var(--success);
+}
+#reportingCalendarApp .profile-dropdown {
+  display: none;
+  position: absolute;
+  top: 56px;
+  right: 0;
+  width: 210px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(41, 35, 45, 0.12);
+}
+#reportingCalendarApp .profile-dropdown.show {
+  display: block;
+}
+#reportingCalendarApp .profile-dropdown a {
+  display: block;
+  padding: 13px 16px;
+}
+#reportingCalendarApp .profile-dropdown a:hover {
+  background: var(--soft);
+}
+#reportingCalendarApp .sidebar {
+  position: fixed;
+  top: var(--top);
+  left: calc(-1 * var(--side));
+  width: var(--side);
+  height: calc(100vh - var(--top));
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  overflow: auto;
+  transition: 0.3s;
+  z-index: 950;
+}
+#reportingCalendarApp .sidebar.open {
+  left: 0;
+}
+#reportingCalendarApp .menu-item {
+  border-bottom: 1px solid var(--line);
+}
+#reportingCalendarApp .menu-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  cursor: pointer;
+}
+#reportingCalendarApp .menu-header:hover,
+#reportingCalendarApp .menu-header.active-section {
+  background: var(--surface);
+  color: var(--p);
+}
+#reportingCalendarApp .arrow {
+  font-size: 11px;
+  color: var(--p);
+}
+#reportingCalendarApp .submenu {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+  transition: 0.3s;
+}
+#reportingCalendarApp .submenu.active {
+  max-height: 300px;
+}
+#reportingCalendarApp .submenu a {
+  position: relative;
+  display: block;
+  padding: 11px 20px 11px 40px;
+  color: var(--muted);
+}
+#reportingCalendarApp .submenu a:hover,
+#reportingCalendarApp .active-link {
+  background: var(--soft);
+  color: var(--p);
+}
+#reportingCalendarApp .active-link:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--p);
+}
+#reportingCalendarApp .main-content {
+  margin-top: var(--top);
+  padding: 30px;
+  transition: 0.3s;
+}
+#reportingCalendarApp .main-content.shifted {
+  margin-left: var(--side);
+}
+#reportingCalendarApp .content-card {
+  min-height: calc(100vh - 140px);
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(48, 34, 56, 0.08);
+}
+#reportingCalendarApp .page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+#reportingCalendarApp .page-title {
+  color: var(--p);
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+#reportingCalendarApp .page-subtitle {
+  color: var(--muted);
+}
+#reportingCalendarApp .page-actions {
+  display: flex;
+  gap: 10px;
+}
+#reportingCalendarApp .view-toggle {
+  display: flex;
+  padding: 4px;
+  border-radius: 11px;
+  background: var(--surface-alt);
+}
+#reportingCalendarApp .view-toggle button {
+  height: 34px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 12px;
+}
+#reportingCalendarApp .view-toggle button.active {
+  background: var(--card);
+  color: var(--p);
+  box-shadow: 0 2px 8px rgba(41, 35, 45, 0.06);
+}
+#reportingCalendarApp .filter-btn,
+#reportingCalendarApp .primary,
+#reportingCalendarApp .secondary {
+  height: 42px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+#reportingCalendarApp .filter-btn,
+#reportingCalendarApp .secondary {
+  border: 1px solid var(--line);
+  background: var(--card);
+}
+#reportingCalendarApp .primary {
+  border: 1px solid var(--p);
+  background: var(--p);
+  color: var(--card);
+}
+#reportingCalendarApp .kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 22px;
+}
+#reportingCalendarApp .kpi-grid article {
+  position: relative;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+  overflow: hidden;
+}
+#reportingCalendarApp .kpi-grid article:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--success);
+}
+#reportingCalendarApp .kpi-grid .danger:before {
+  background: var(--red);
+}
+#reportingCalendarApp .kpi-grid span,
+#reportingCalendarApp .kpi-grid small {
+  display: block;
+  color: var(--muted);
+}
+#reportingCalendarApp .kpi-grid span {
+  font-size: 12px;
+  font-weight: 700;
+}
+#reportingCalendarApp .kpi-grid strong {
+  display: block;
+  color: var(--p);
+  font-size: 28px;
+  margin-top: 3px;
+}
+#reportingCalendarApp .kpi-grid small {
+  font-size: 10.5px;
+}
+#reportingCalendarApp .kpi-grid .danger strong {
+  color: var(--red);
+}
+#reportingCalendarApp .calendar-card,
+#reportingCalendarApp .list-view {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  overflow: hidden;
+}
+#reportingCalendarApp .calendar-toolbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--line);
+}
+#reportingCalendarApp .calendar-nav {
+  display: flex;
+  gap: 7px;
+}
+#reportingCalendarApp .calendar-nav button {
+  height: 34px;
+  min-width: 34px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--p);
+  font-weight: 600;
+}
+#reportingCalendarApp .calendar-toolbar h2 {
+  color: var(--p);
+  font-size: 19px;
+}
+#reportingCalendarApp .legend {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#reportingCalendarApp .legend span {
+  position: relative;
+  padding-left: 12px;
+  font-size: 9.5px;
+  color: var(--muted);
+}
+#reportingCalendarApp .legend span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+}
+#reportingCalendarApp .legend .draft:before {
+  background: var(--blue);
+}
+#reportingCalendarApp .legend .review:before {
+  background: var(--amber);
+}
+#reportingCalendarApp .legend .approved:before {
+  background: var(--success);
+}
+#reportingCalendarApp .legend .submitted:before {
+  background: var(--p);
+}
+#reportingCalendarApp .legend .overdue:before {
+  background: var(--red);
+}
+#reportingCalendarApp .weekdays,
+#reportingCalendarApp .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+#reportingCalendarApp .weekdays {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+#reportingCalendarApp .weekdays span {
+  text-align: center;
+  padding: 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+#reportingCalendarApp .day {
+  min-height: 112px;
+  padding: 8px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+#reportingCalendarApp .day:nth-child(7n) {
+  border-right: 0;
+}
+#reportingCalendarApp .day.outside {
+  background: var(--surface);
+  color: var(--muted);
+}
+#reportingCalendarApp .day.today {
+  box-shadow: inset 0 0 0 2px var(--success);
+}
+#reportingCalendarApp .day-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#reportingCalendarApp .day-number {
+  font-size: 11px;
+  font-weight: 700;
+}
+#reportingCalendarApp .event-count {
+  font-size: 9px;
+  color: var(--muted);
+}
+#reportingCalendarApp .event {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+  padding: 5px 7px;
+  border: 0;
+  border-left: 3px solid var(--blue);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primary) 11%, var(--card));
+  color: var(--primary);
+  text-align: left;
+  font-size: 9.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#reportingCalendarApp .event.in-review {
+  border-color: var(--amber);
+  background: color-mix(in srgb, var(--warning) 13%, var(--card));
+  color: var(--warning);
+}
+#reportingCalendarApp .event.approved {
+  border-color: var(--success);
+  background: color-mix(in srgb, var(--success) 12%, var(--card));
+  color: var(--primary-hover);
+}
+#reportingCalendarApp .event.submitted {
+  border-color: var(--p);
+  background: color-mix(in srgb, var(--success) 16%, var(--card));
+  color: var(--p);
+}
+#reportingCalendarApp .event.overdue {
+  border-color: var(--red);
+  background: color-mix(in srgb, var(--danger) 12%, var(--card));
+  color: var(--red);
+}
+#reportingCalendarApp .more-events {
+  width: 100%;
+  padding: 3px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
+}
+#reportingCalendarApp .hidden {
+  display: none !important;
+}
+#reportingCalendarApp .schedule-head {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+}
+#reportingCalendarApp .schedule-head h2 {
+  font-size: 19px;
+  color: var(--p);
+}
+#reportingCalendarApp .schedule-head p {
+  font-size: 11px;
+  color: var(--muted);
+}
+#reportingCalendarApp .table-wrapper {
+  overflow: auto;
+}
+#reportingCalendarApp table {
+  width: 100%;
+  min-width: 1100px;
+  border-collapse: collapse;
+}
+#reportingCalendarApp thead {
+  background: linear-gradient(135deg, var(--primary), var(--p), var(--ph));
+  color: var(--card);
+}
+#reportingCalendarApp th,
+#reportingCalendarApp td {
+  text-align: left;
+  padding: 13px 14px;
+}
+#reportingCalendarApp th {
+  font-size: 11.5px;
+}
+#reportingCalendarApp td {
+  font-size: 12px;
+  border-bottom: 1px solid var(--line);
+}
+#reportingCalendarApp tbody tr:hover {
+  background: var(--surface);
+}
+#reportingCalendarApp .status {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 80px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+#reportingCalendarApp .status.draft {
+  background: color-mix(in srgb, var(--primary) 12%, var(--card));
+  color: var(--primary);
+}
+#reportingCalendarApp .status.in-review {
+  background: color-mix(in srgb, var(--warning) 12%, var(--card));
+  color: var(--warning);
+}
+#reportingCalendarApp .status.approved {
+  background: color-mix(in srgb, var(--success) 12%, var(--card));
+  color: var(--primary-hover);
+}
+#reportingCalendarApp .status.submitted {
+  background: color-mix(in srgb, var(--success) 14%, var(--card));
+  color: var(--primary);
+}
+#reportingCalendarApp .status.overdue {
+  background: color-mix(in srgb, var(--danger) 12%, var(--card));
+  color: var(--danger);
+}
+#reportingCalendarApp .deadline {
+  font-weight: 600;
+}
+#reportingCalendarApp .deadline.safe {
+  color: var(--success);
+}
+#reportingCalendarApp .deadline.warning {
+  color: var(--warning);
+}
+#reportingCalendarApp .deadline.critical {
+  color: var(--danger);
+}
+#reportingCalendarApp .view-btn {
+  height: 31px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-weight: 600;
+}
+#reportingCalendarApp .overlay,
+#reportingCalendarApp .modal-overlay,
+#reportingCalendarApp .notification-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(25, 20, 29, 0.48);
+  backdrop-filter: blur(3px);
+  z-index: 2500;
+}
+#reportingCalendarApp .overlay.show {
+  display: block;
+}
+#reportingCalendarApp .modal-overlay.show,
+#reportingCalendarApp .notification-overlay.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#reportingCalendarApp .filter-panel {
+  position: absolute;
+  top: 82px;
+  right: 24px;
+  width: min(425px, calc(100vw - 32px));
+  max-height: calc(100vh - 105px);
+  overflow: auto;
+  padding: 24px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportingCalendarApp .panel-head,
+#reportingCalendarApp .modal-head,
+#reportingCalendarApp .report-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+#reportingCalendarApp .panel-head h2,
+#reportingCalendarApp .modal-head h2,
+#reportingCalendarApp .report-head h2 {
+  color: var(--p);
+  font-size: 20px;
+}
+#reportingCalendarApp .panel-head p,
+#reportingCalendarApp .modal-subtitle {
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+#reportingCalendarApp .panel-head button,
+#reportingCalendarApp .modal-head button,
+#reportingCalendarApp .report-head button {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-alt);
+}
+#reportingCalendarApp .filter-panel label {
+  display: block;
+  margin: 14px 0;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+}
+#reportingCalendarApp .filter-panel input,
+#reportingCalendarApp .filter-panel select {
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin-top: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+#reportingCalendarApp .date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+#reportingCalendarApp .panel-actions,
+#reportingCalendarApp .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+#reportingCalendarApp .modal {
+  width: min(670px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 27px;
+  border-radius: 22px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportingCalendarApp .eyebrow {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--muted);
+}
+#reportingCalendarApp .report-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+}
+#reportingCalendarApp .report-head #reportId {
+  color: var(--muted);
+  font-size: 11px;
+}
+#reportingCalendarApp .report-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+#reportingCalendarApp .report-meta > div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+#reportingCalendarApp .report-meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 9.5px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+#reportingCalendarApp .workflow {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+#reportingCalendarApp .workflow h3 {
+  color: var(--p);
+  font-size: 14px;
+  margin-bottom: 14px;
+}
+#reportingCalendarApp .workflow-step {
+  position: relative;
+  padding: 0 0 18px 30px;
+  color: var(--muted);
+  font-size: 12px;
+}
+#reportingCalendarApp .workflow-step:before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--line);
+}
+#reportingCalendarApp .workflow-step:not(:last-child):after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 16px;
+  width: 1px;
+  height: 18px;
+  background: var(--line);
+}
+#reportingCalendarApp .workflow-step.completed:before {
+  background: var(--primary-hover);
+}
+#reportingCalendarApp .workflow-step.current:before {
+  background: var(--amber);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--warning) 12%, var(--card));
+}
+#reportingCalendarApp .day-events {
+  display: grid;
+  gap: 9px;
+  margin-top: 16px;
+}
+#reportingCalendarApp .day-event {
+  width: 100%;
+  padding: 13px;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+}
+#reportingCalendarApp .day-event strong,
+#reportingCalendarApp .day-event span {
+  display: block;
+}
+#reportingCalendarApp .day-event strong {
+  color: var(--text);
+}
+#reportingCalendarApp .day-event span {
+  font-size: 10.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+#reportingCalendarApp .notification-popup {
+  width: min(510px, 100%);
+  padding: 24px;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportingCalendarApp .notification-item {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-left: 4px solid var(--success);
+  border-radius: 8px;
+  background: var(--surface);
+}
+#reportingCalendarApp .notification-item.critical {
+  border-color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, var(--card));
+}
+#reportingCalendarApp footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--muted);
+  font-size: 12px;
+}
+@media (max-width: 1000px) {
+  #reportingCalendarApp .main-content.shifted {
+    margin-left: 0;
+  }
+  #reportingCalendarApp .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #reportingCalendarApp .calendar-toolbar {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  #reportingCalendarApp .calendar-nav,
+  #reportingCalendarApp .legend {
+    justify-content: center;
+  }
+  #reportingCalendarApp .calendar-toolbar h2 {
+    text-align: center;
+    grid-row: 1;
+  }
+  #reportingCalendarApp .calendar-nav {
+    grid-row: 2;
+  }
+  #reportingCalendarApp .legend {
+    grid-row: 3;
+  }
+}
+@media (max-width: 600px) {
+  #reportingCalendarApp .topbar {
+    padding: 0 14px;
+  }
+  #reportingCalendarApp .brand-name {
+    font-size: 17px;
+  }
+  #reportingCalendarApp .main-content {
+    padding: 14px;
+  }
+  #reportingCalendarApp .content-card {
+    padding: 18px 13px;
+  }
+  #reportingCalendarApp .page-header {
+    flex-direction: column;
+  }
+  #reportingCalendarApp .page-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+  #reportingCalendarApp .kpi-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  #reportingCalendarApp .day {
+    min-height: 83px;
+    padding: 5px;
+  }
+  #reportingCalendarApp .event {
+    font-size: 8.5px;
+  }
+  #reportingCalendarApp .date-row,
+  #reportingCalendarApp .report-meta {
+    grid-template-columns: 1fr;
+  }
+  #reportingCalendarApp .filter-panel {
+    top: auto;
+    right: 8px;
+    left: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+  #reportingCalendarApp .modal-overlay {
+    align-items: flex-end !important;
+    padding: 8px;
+  }
+  #reportingCalendarApp .modal {
+    border-radius: 22px 22px 12px 12px;
+    padding: 20px;
+  }
+  #reportingCalendarApp .report-head {
+    grid-template-columns: auto 1fr auto;
+  }
+  #reportingCalendarApp .modal-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  #reportingCalendarApp .secondary {
+    width: 100%;
+  }
+}
