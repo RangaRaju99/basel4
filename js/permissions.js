@@ -128,26 +128,26 @@ const ROLE_PERMISSIONS = {
 
     /* REGULATORY REPORTING ANALYST */
 
-rra: {
+    rra: {
 
-    dashboard: { R: true },
+        dashboard: { R: true },
 
-    "rwa-calculation": { R: true },
-    "liquidity-calculation": { R: true },
-    "capital-calculation": { R: true },
-    "leverage-calculation": { R: true },
-    "calculation-repository": { R: true },
+        "rwa-calculation": { R: true },
+        "liquidity-calculation": { R: true },
+        "capital-calculation": { R: true },
+        "leverage-calculation": { R: true },
+        "calculation-repository": { R: true },
 
-    "generate-report": {
-        C: true,
-        R: true
+        "generate-report": {
+            C: true,
+            R: true
+        },
+
+        "reporting-dashboard": {
+            R: true
+        }
+
     },
-
-    "reporting-dashboard": {
-        R: true
-    }
-
-},
 
 
     /* RISK ANALYST */
@@ -215,7 +215,9 @@ rra: {
         "reconciliation-audit-logs": {
             R: true
         },
-
+        "workflow-management": {
+            R: true
+        },
         "generate-report": {
             C: true,
             R: true,
@@ -244,6 +246,9 @@ rra: {
         "manage-reports": {
             R: true,
             U: true
+        },
+        "workflow-management": {
+            R: true
         }
 
     },
@@ -262,7 +267,9 @@ rra: {
         "calculation-repository": { R: true },
 
         "reporting-dashboard": { R: true },
-
+        "workflow-management": {
+            R: true
+        },
         "manage-reports": {
             R: true,
             U: true
@@ -289,7 +296,9 @@ rra: {
             R: true,
             U: true
         },
-
+        "workflow-management": {
+            R: true
+        },
         "manage-query": {
             R: true,
             U: true
@@ -328,31 +337,31 @@ rra: {
 
     /* REGULATORY REVIEWER */
 
-rr: {
+    rr: {
 
-    dashboard: { R: true },
+        dashboard: { R: true },
 
-    "rwa-calculation": { R: true },
-    "liquidity-calculation": { R: true },
-    "capital-calculation": { R: true },
-    "leverage-calculation": { R: true },
-    "calculation-repository": { R: true },
+        "rwa-calculation": { R: true },
+        "liquidity-calculation": { R: true },
+        "capital-calculation": { R: true },
+        "leverage-calculation": { R: true },
+        "calculation-repository": { R: true },
 
-    "manage-reports": {
-        R: true
+        "manage-reports": {
+            R: true
+        },
+
+        "view-reports": {
+            R: true
+        },
+
+        "raise-query": {
+            C: true,
+            R: true,
+            U: true
+        }
+
     },
-
-    "view-reports": {
-        R: true
-    },
-
-    "raise-query": {
-        C: true,
-        R: true,
-        U: true
-    }
-
-},
 
 
     /* AUDITOR */
