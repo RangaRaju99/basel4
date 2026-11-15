@@ -1,0 +1,40 @@
+<section class="gr-module" id="generateReportsApp" aria-labelledby="grTitle">
+    <header class="gr-header">
+        <div>
+            <span class="gr-eyebrow">REPORT MANAGEMENT</span>
+            <h2 id="grTitle">Generate Consolidated Report</h2>
+            <p>Filter calculation results, review selected records, preview and generate a consolidated regulatory report.</p>
+        </div>
+        <span class="gr-header-tag">Basel IV calculations</span>
+    </header>
+
+    <section class="gr-panel" aria-labelledby="grFilterTitle">
+        <div class="gr-panel-heading">
+            <div><h3 id="grFilterTitle">Filter Calculation Data</h3><p>Matching calculation rows are selected by default.</p></div>
+            <button type="button" class="gr-btn" id="grRefreshRecords">Refresh</button>
+        </div>
+        <div class="gr-filter-grid">
+            <div class="gr-field"><label for="grTypeFilter">Report Type</label><select id="grTypeFilter"><option value="ALL">All Report Types</option><option value="RWA">RWA</option><option value="Liquidity">Liquidity</option><option value="Capital">Capital</option><option value="Leverage">Leverage</option></select></div>
+            <div class="gr-field"><label for="grBankFilter">Bank</label><select id="grBankFilter"><option value="ALL">All Banks</option></select></div>
+            <div class="gr-field"><label for="grPeriodFilter">Reporting Period</label><select id="grPeriodFilter"><option value="ALL">All Periods</option></select></div>
+            <div class="gr-field"><label for="grStatusFilter">Status</label><select id="grStatusFilter"><option value="ALL">All Statuses</option><option value="Completed">Completed</option><option value="Pending">Pending</option><option value="Failed">Failed</option></select></div>
+            <div class="gr-field"><label for="grBusinessDateFilter">Business Date</label><input type="date" id="grBusinessDateFilter"></div>
+            <div class="gr-field"><label for="grSearchInput">Search</label><input type="search" id="grSearchInput" placeholder="Calculation ID, bank, period…"></div>
+        </div>
+        <div class="gr-filter-actions"><button type="button" class="gr-btn" id="grResetFilters">Reset</button><button type="button" class="gr-btn gr-btn-primary" id="grApplyFilters">Apply Filters</button></div>
+    </section>
+
+    <section class="gr-panel" aria-labelledby="grMatchingTitle">
+        <div class="gr-panel-heading"><div><h3 id="grMatchingTitle">Matching Calculation Rows</h3><p id="grMatchingCount">0 matching rows</p></div></div>
+        <div class="gr-selection-bar"><span><strong id="grSelectedCount">0</strong> of <strong id="grFilteredTotal">0</strong> rows selected</span><label><input type="checkbox" id="grSelectAll" checked> Select all</label></div>
+        <div class="gr-table-wrap"><table class="gr-table"><thead><tr><th></th><th>Calculation ID</th><th>Type</th><th>Bank</th><th>Period</th><th>Business Date</th><th>Primary Result</th><th>Status</th><th>Actions</th></tr></thead><tbody id="grCalculationTableBody"><tr><td colspan="9"><div class="gr-empty"><strong>No calculation records found</strong>Run calculations to populate this table.</div></td></tr></tbody></table></div>
+        <div class="gr-pagination"><span class="gr-pagination-info" id="grPaginationInfo">Showing 0 records</span><div class="gr-pagination-buttons" id="grPaginationButtons"></div></div>
+    </section>
+
+    <section class="gr-generate-bar"><div><strong>Generate a consolidated report</strong><p>Review or preview selected calculation rows before generating.</p></div><div class="gr-actions"><button type="button" class="gr-btn" id="grReviewBtn">Review Selected</button><button type="button" class="gr-btn" id="grPreviewBtn">Preview Report</button><button type="button" class="gr-btn gr-btn-primary" id="grGenerateBtn">Generate Report</button></div></section>
+
+    <div class="gr-modal" id="grModal" role="dialog" aria-modal="true" aria-labelledby="grModalTitle">
+        <div class="gr-modal-box"><div class="gr-modal-head"><h3 class="gr-modal-title" id="grModalTitle">Report Preview</h3><button class="gr-modal-close" type="button" data-modal-close aria-label="Close">×</button></div><div class="gr-modal-body"></div><div class="gr-modal-footer"></div></div>
+    </div>
+    <div class="gr-toast" id="grToast" role="status" aria-live="polite"></div>
+</section>

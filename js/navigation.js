@@ -125,6 +125,8 @@
         },
         "generate-report": {
             template: "generateReportsTemplate",
+          folder: "modules/report-generation/generate-report/generate-report",
+          assetsInHead: true,
             init: "initGenerateReportsModule"
         },
         "manage-reports": {
@@ -332,11 +334,15 @@
   }
 
   async function loadExternalModule(config) {
-    loadCssOnce(config.folder + ".css");
+    if (!config.assetsInHead) {
+      loadCssOnce(config.folder + ".css");
+    }
     const response = await fetch(config.folder + ".html");
     if (!response.ok) throw new Error(config.folder + ".html not found");
     const html = await response.text();
-    await loadScriptOnce(config.folder + ".js");
+    if (!config.assetsInHead) {
+      await loadScriptOnce(config.folder + ".js");
+    }
     return html;
   }
 
@@ -383,7 +389,7 @@
 
     const moduleConfig = MODULES[pageId];
 
-    if (moduleConfig && moduleConfig.folder) {
+    if (moduleConfig && moduleConfig.folder && window.location.protocol !== "file:") {
       moduleView.innerHTML = '<p style="padding:30px">Loading...</p>';
 
       loadExternalModule(moduleConfig)
