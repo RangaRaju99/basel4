@@ -23,6 +23,14 @@
       folder: "modules/user-access/manage-users/manage-users",
       init: "initManageUsersModule",
     },
+    "manage-reports": {
+      folder : "modules/workflow-management/manage-reports/manage-reports",
+      init: "initManageReportsModule",
+    },
+    "workflow-dashboard": {
+      folder : "modules/workflow-management/workflow-dashboard/workflow-dashboard",
+      init: "initManageReportsModule",
+    },
     "system-configuration": {
       folder: "modules/configuration/system-configuration/system-configuration",
       init: "initSystemConfigurationModule",
@@ -138,10 +146,6 @@
     "generate-report": {
       template: "generateReportsTemplate",
       init: "initGenerateReportsModule",
-    },
-    "manage-reports": {
-      template: "manageReportsTemplate",
-      init: "initManageReportsModule",
     },
     "raise-query": {
       template: "raiseQueryTemplate",

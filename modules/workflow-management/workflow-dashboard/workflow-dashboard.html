@@ -1,0 +1,141 @@
+<section class="wf-module" id="workflowApp">
+
+    <!-- Module Header -->
+    <header class="wf-module-header">
+        <div class="wf-header-content">
+            <div>
+                <span class="wf-eyebrow">WORKFLOW MANAGEMENT</span>
+                <h2>Workflow Dashboard</h2>
+                <p>Review, approve and publish reports through each workflow stage.</p>
+            </div>
+
+            <div class="wf-header-icon">
+                <i class="fa-solid fa-diagram-project"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="wf-breadcrumb" id="wfBreadcrumb" aria-label="Breadcrumb">
+        <button type="button" data-wf-crumb="workspace">
+            Workspace
+        </button>
+
+        <span class="wf-breadcrumb-separator">/</span>
+
+        <button type="button" data-wf-crumb="workflow">
+            Workflow Management
+        </button>
+
+        <span class="wf-breadcrumb-separator">/</span>
+
+        <span class="wf-breadcrumb-current" id="wfBreadcrumbCurrent">
+            Workflow Dashboard
+        </span>
+    </nav>
+
+    <!-- Module Content -->
+    <div class="wf-content" id="wfContent">
+
+        <section class="content-card">
+
+            <div class="page-header">
+                <h1>Workflow Management</h1>
+                <p>Track report reviews, approvals and publication progress.</p>
+            </div>
+
+            <div class="workflow-container" id="workflowContainer">
+
+                <div class="workflow-step completed">
+                    <div class="circle">✓</div>
+                    <p>Submitted</p>
+                </div>
+
+                <div class="workflow-line completed"></div>
+
+                <div class="workflow-step current">
+                    <div class="circle">2</div>
+                    <p>Risk Review</p>
+                </div>
+
+                <div class="workflow-line"></div>
+
+                <div class="workflow-step">
+                    <div class="circle">3</div>
+                    <p>Finance Review</p>
+                </div>
+
+                <div class="workflow-line"></div>
+
+                <div class="workflow-step">
+                    <div class="circle">4</div>
+                    <p>Compliance Review</p>
+                </div>
+
+                <div class="workflow-line"></div>
+
+                <div class="workflow-step">
+                    <div class="circle">5</div>
+                    <p>Final Approval</p>
+                </div>
+
+                <div class="workflow-line"></div>
+
+                <div class="workflow-step">
+                    <div class="circle">6</div>
+                    <p>Published</p>
+                </div>
+
+            </div>
+
+            <div class="workflow-details">
+                <p><strong>Current Owner:</strong>
+                    <span id="currentOwner">Risk Analyst</span>
+                </p>
+
+                <p><strong>Current Status:</strong>
+                    <span id="currentStatus">Risk Review</span>
+                </p>
+
+                <p><strong>Due Date:</strong> 15-Nov-2026</p>
+            </div>
+
+            <div class="workflow-buttons">
+                <button type="button" class="primary approve-btn" id="approveBtn">
+                    Approve &amp; Move Next
+                </button>
+
+                <button type="button" class="primary rework-btn" id="reworkBtn">
+                    Send To Rework
+                </button>
+            </div>
+
+            <h2>Approval History</h2>
+
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Stage</th>
+                            <th>User</th>
+                            <th>Action</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="historyTable">
+                        <tr>
+                            <td>Submitted</td>
+                            <td>Maker</td>
+                            <td>Submitted</td>
+                            <td>12-Nov-2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </div>
+
+</section>
