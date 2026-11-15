@@ -14,7 +14,6 @@
        pageId -> template id + init function name
        ===================================================== */
 
-<<<<<<< HEAD
     const MODULES = {
         "manage-role": {
             template: "manageRolesTemplate",
@@ -126,12 +125,6 @@
         },
         "generate-report": {
             template: "generateReportsTemplate",
-<<<<<<< HEAD
-          folder: "modules/report-generation/generate-report/generate-report",
-          assetsInHead: true,
-=======
-            html: "modules/report-generation/generate-report/generate-report.html",
->>>>>>> sathish
             init: "initGenerateReportsModule"
         },
         "manage-reports": {
@@ -147,150 +140,6 @@
             init: "initManageQueryModule"
         },
     };
-=======
-  const MODULES = {
-    "manage-role": {
-      folder: "modules/user-access/manage-roles/manage-roles",
-      init: "initManageRolesModule",
-    },
-    "manage-user": {
-      folder: "modules/user-access/manage-users/manage-users",
-      init: "initManageUsersModule",
-    },
-    "manage-reports": {
-      folder : "modules/workflow-management/manage-reports/manage-reports",
-      init: "initManageReportsModule",
-    },
-    "workflow-dashboard": {
-      folder : "modules/workflow-management/workflow-dashboard/workflow-dashboard",
-      init: "initManageReportsModule",
-    },
-    "system-configuration": {
-      folder: "modules/configuration/system-configuration/system-configuration",
-      init: "initSystemConfigurationModule",
-    },
-    module: {
-      folder: "modules/configuration/module-management/module-management",
-      init: "initManageModulesModule",
-    },
-    "report-templates": {
-      folder: "modules/configuration/report-templates/report-templates",
-      init: "initManageReportTemplatesModule",
-    },
-    "reporting-calendar": {
-      folder: "modules/configuration/reporting-calendar/reporting-calendar",
-      init: "initReportingCalendarModule",
-    },
-    "audit-trail": {
-      folder: "modules/configuration/audit-trail/audit-trail",
-      init: "initAuditTrailModule",
-    },
-    "data-ingestion": {
-      template: "feedMonitorTemplate",
-      folder: "modules/data-ingestion/feed-monitor/feed-monitor",
-      init: "initFeedMonitorModule",
-    },
-    "sla-escalations": {
-      template: "slaEscalationsTemplate",
-      folder: "modules/data-ingestion/sla-escalations/sla-escalations",
-      init: "initSlaEscalationsModule",
-    },
-    "landing-zone": {
-      template: "landingZoneTemplate",
-      folder: "modules/data-ingestion/landing-zone/landing-zone",
-      init: "initLandingZoneModule",
-    },
-    "ingestion-audit-log": {
-      template: "ingestionAuditLogTemplate",
-      folder: "modules/data-ingestion/ingestion-audit-log/ingestion-audit-log",
-      init: "initIngestionAuditLogModule",
-    },
-    "operations-center": {
-      folder: "modules/data-quality/operations-center/operations-center",
-      init: "initOperationsCenterModule",
-    },
-    "file-intake-center": {
-      folder: "modules/data-quality/file-intake-center/file-intake-center",
-      init: "initFileIntakeModule",
-    },
-    "validation-results": {
-      folder: "modules/data-quality/validation-results/validation-results",
-      init: "initValidationResultsModule",
-    },
-    "issue-workbench": {
-      folder: "modules/data-quality/issue-workbench/issue-workbench",
-      init: "initIssueWorkbenchModule",
-    },
-    "revalidation-center": {
-      folder: "modules/data-quality/revalidation-center/revalidation-center",
-      init: "initRevalidationCenterModule",
-    },
-    "reporting-readiness": {
-      folder: "modules/data-quality/reporting-readiness/reporting-readiness",
-      init: "initReportingReadinessModule",
-    },
-    "rwa-calculation": {
-      folder: "modules/basel-calculations/rwa-calculation/rwa-calculation",
-      init: "initRWACalculationModule",
-    },
-    "liquidity-calculation": {
-      folder:
-        "modules/basel-calculations/liquidity-calculation/liquidity-calculation",
-      init: "initLiquidityCalculationModule",
-    },
-    "capital-calculation": {
-      folder:
-        "modules/basel-calculations/capital-calculation/capital-calculation",
-      init: "initCapitalCalculationModule",
-    },
-    "leverage-calculation": {
-      folder:
-        "modules/basel-calculations/leverage-calculation/leverage-calculation",
-      init: "initLeverageCalculationModule",
-    },
-    "calculation-repository": {
-      folder:
-        "modules/basel-calculations/calculation-repository/calculation-repository",
-      init: "initCalculationRepositoryModule",
-    },
-    "variance-analysis": {
-      template: "varianceAnalysisTemplate",
-      init: "initVarianceAnalysisModule",
-    },
-    "exception-management": {
-      template: "exceptionManagementTemplate",
-      init: "initExceptionManagementModule",
-    },
-    investigation: {
-      template: "investigationTemplate",
-      init: "initInvestigationModule",
-    },
-    "evidence-repository": {
-      template: "evidenceRepositoryTemplate",
-      init: "initEvidenceRepositoryModule",
-    },
-    "approval-closure": {
-      template: "approvalClosureTemplate",
-      init: "initApprovalClosureModule",
-    },
-    "reconciliation-audit-logs": {
-      template: "reconciliationAuditLogsTemplate",
-      init: "initReconciliationAuditLogsModule",
-    },
-    "generate-report": {
-      template: "generateReportsTemplate",
-      init: "initGenerateReportsModule",
-    },
-    "raise-query": {
-      template: "raiseQueryTemplate",
-      init: "initRaiseQueryModule",
-    },
-    "manage-query": {
-      template: "manageQueryTemplate",
-      init: "initManageQueryModule",
-    },
-  };
->>>>>>> 62e2c87268ea9beceabb194e7c13cffbdf4f0ed7
 
   const PAGE_NAMES = {
     "manage-user": "Manage Users",
