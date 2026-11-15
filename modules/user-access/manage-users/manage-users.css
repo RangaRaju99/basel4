@@ -1,1156 +1,981 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-
 #manageUsersApp,
 #manageUsersApp * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
 #manageUsersApp {
-    --p: var(--primary);
-    --ph: var(--primary-hover);
-    --soft: var(--surface-alt);
-    --surface: var(--card);
-    --top: 70px;
-    --side: 260px
+  --p: var(--primary);
+  --ph: var(--primary-hover);
+  --soft: var(--surface-alt);
+  --surface: var(--card);
+  --top: 70px;
+  --side: 260px;
 }
-
 #manageUsersApp {
-    font-family: Poppins, Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 13px
+  font-family: Poppins, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
 }
-
 #manageUsersApp button,
 #manageUsersApp input,
 #manageUsersApp select {
-    font: inherit
+  font: inherit;
 }
-
 #manageUsersApp button {
-    cursor: pointer
+  cursor: pointer;
 }
-
 #manageUsersApp a {
-    text-decoration: none;
-    color: inherit
+  text-decoration: none;
+  color: inherit;
 }
-
 #manageUsersApp .topbar {
-    position: fixed;
-    inset: 0 0 auto;
-    height: var(--top);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 25px;
-    background: var(--card);
-    border-bottom: 1px solid var(--line);
-    z-index: 1000
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
 }
-
 #manageUsersApp .topbar-left,
 #manageUsersApp .topbar-right,
 #manageUsersApp .brand {
-    display: flex;
-    align-items: center
+  display: flex;
+  align-items: center;
 }
-
 #manageUsersApp .topbar-left {
-    gap: 14px
+  gap: 14px;
 }
-
 #manageUsersApp .topbar-right {
-    gap: 14px
+  gap: 14px;
 }
-
 #manageUsersApp .hamburger,
 #manageUsersApp .icon-button {
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 10px;
-    background: transparent;
-    color: var(--p);
-    font-size: 22px
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--p);
+  font-size: 22px;
 }
-
 #manageUsersApp .hamburger:hover,
 #manageUsersApp .icon-button:hover {
-    background: var(--soft)
+  background: var(--soft);
 }
-
 #manageUsersApp .logo {
-    width: 42px;
-    height: 42px;
-    display: grid;
-    place-items: center;
-    border-radius: 12px;
-    background: var(--p);
-    color: #fff;
-    font-weight: 700
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--p);
+  color: #fff;
+  font-weight: 700;
 }
-
 #manageUsersApp .brand span {
-    margin-left: 9px;
-    color: var(--p);
-    font-size: 20px;
-    font-weight: 700
+  margin-left: 9px;
+  color: var(--p);
+  font-size: 20px;
+  font-weight: 700;
 }
-
 #manageUsersApp .profile-wrap {
-    position: relative
+  position: relative;
 }
-
 #manageUsersApp .profile-avatar {
-    width: 40px;
-    height: 40px;
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--p);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 700
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--p);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
 }
-
 #manageUsersApp .profile-menu {
-    position: absolute;
-    right: 0;
-    top: 52px;
-    width: 205px;
-    display: none;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 15px 35px #0002
+  position: absolute;
+  right: 0;
+  top: 52px;
+  width: 205px;
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px #0002;
 }
-
 #manageUsersApp .profile-menu.show {
-    display: block
+  display: block;
 }
-
 #manageUsersApp .profile-menu a {
-    display: block;
-    padding: 12px 15px
+  display: block;
+  padding: 12px 15px;
 }
-
 #manageUsersApp .profile-menu a:hover {
-    background: var(--soft)
+  background: var(--soft);
 }
-
 #manageUsersApp .sidebar {
-    position: fixed;
-    top: var(--top);
-    left: calc(-1*var(--side));
-    width: var(--side);
-    height: calc(100vh - var(--top));
-    background: var(--card);
-    border-right: 1px solid var(--line);
-    overflow: auto;
-    transition: .3s;
-    z-index: 950
+  position: fixed;
+  top: var(--top);
+  left: calc(-1 * var(--side));
+  width: var(--side);
+  height: calc(100vh - var(--top));
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  overflow: auto;
+  transition: 0.3s;
+  z-index: 950;
 }
-
 #manageUsersApp .sidebar.open {
-    left: 0
+  left: 0;
 }
-
 #manageUsersApp .menu-item {
-    border-bottom: 1px solid var(--line)
+  border-bottom: 1px solid var(--line);
 }
-
 #manageUsersApp .menu-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 20px;
-    cursor: pointer
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 20px;
+  cursor: pointer;
 }
-
 #manageUsersApp .menu-header:hover,
 #manageUsersApp .active-section {
-    background: var(--surface-alt);
-    color: var(--p)
+  background: var(--surface-alt);
+  color: var(--p);
 }
-
 #manageUsersApp .menu-header b {
-    font-size: 10px;
-    color: var(--p)
+  font-size: 10px;
+  color: var(--p);
 }
-
 #manageUsersApp .submenu {
-    max-height: 0;
-    overflow: hidden;
-    background: var(--surface);
-    transition: .3s
+  max-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+  transition: 0.3s;
 }
-
 #manageUsersApp .submenu.active {
-    max-height: 300px
+  max-height: 300px;
 }
-
 #manageUsersApp .submenu a {
-    position: relative;
-    display: block;
-    padding: 11px 20px 11px 40px;
-    color: var(--muted)
+  position: relative;
+  display: block;
+  padding: 11px 20px 11px 40px;
+  color: var(--muted);
 }
-
 #manageUsersApp .submenu a:hover,
 #manageUsersApp .active-link {
-    background: var(--soft);
-    color: var(--p)
+  background: var(--soft);
+  color: var(--p);
 }
-
 #manageUsersApp .active-link:before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: var(--p)
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--p);
 }
-
 #manageUsersApp .main-content {
-    margin-top: var(--top);
-    padding: 30px;
-    transition: .3s
+  margin-top: var(--top);
+  padding: 30px;
+  transition: 0.3s;
 }
-
 #manageUsersApp .main-content.shifted {
-    margin-left: var(--side)
+  margin-left: var(--side);
 }
-
 #manageUsersApp .content-card {
-    min-height: calc(100vh - 140px);
-    padding: 32px;
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    box-shadow: 0 5px 18px rgba(48, 34, 56, .08)
+  min-height: calc(100vh - 140px);
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 5px 18px rgba(48, 34, 56, 0.08);
 }
-
 #manageUsersApp .page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 25px
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
 }
-
 #manageUsersApp .page-header h1 {
-    font-size: 31px;
-    color: var(--p);
-    margin-bottom: 6px
+  font-size: 31px;
+  color: var(--p);
+  margin-bottom: 6px;
 }
-
 #manageUsersApp .page-header p {
-    color: var(--muted)
+  color: var(--muted);
 }
-
 #manageUsersApp .header-actions {
-    display: flex;
-    gap: 9px
+  display: flex;
+  gap: 9px;
 }
-
 #manageUsersApp .filter-btn,
 #manageUsersApp .add-btn,
 #manageUsersApp .primary,
 #manageUsersApp .secondary {
-    height: 42px;
-    padding: 0 17px;
-    border-radius: 9px;
-    font-weight: 600
+  height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-weight: 600;
 }
-
 #manageUsersApp .filter-btn,
 #manageUsersApp .secondary {
-    border: 1px solid var(--line);
-    background: var(--card);
-    color: var(--text)
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
 }
-
 #manageUsersApp .add-btn,
 #manageUsersApp .primary {
-    border: 1px solid var(--p);
-    background: var(--p);
-    color: #fff
+  border: 1px solid var(--p);
+  background: var(--p);
+  color: #fff;
 }
-
 #manageUsersApp .add-btn:hover,
 #manageUsersApp .primary:hover {
-    background: var(--ph)
+  background: var(--ph);
 }
-
 #manageUsersApp .summary-tabs {
-    display: flex;
-    gap: 9px;
-    margin-bottom: 23px
+  display: flex;
+  gap: 9px;
+  margin-bottom: 23px;
 }
-
 #manageUsersApp .summary-tab {
-    height: 40px;
-    min-width: 110px;
-    padding: 0 15px;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--card);
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 600
+  height: 40px;
+  min-width: 110px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
 }
-
 #manageUsersApp .summary-tab.active {
-    background: var(--p);
-    border-color: var(--p);
-    color: #fff
+  background: var(--p);
+  border-color: var(--p);
+  color: #fff;
 }
-
 #manageUsersApp .table-wrap {
-    overflow: auto;
-    border: 1px solid var(--line);
-    border-radius: 15px
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 15px;
 }
-
 #manageUsersApp .table-wrap table {
-    width: 100%;
-    min-width: 950px;
-    border-collapse: collapse
+  width: 100%;
+  min-width: 950px;
+  border-collapse: collapse;
 }
-
 #manageUsersApp .table-wrap thead {
-    background: linear-gradient(135deg, var(--brand), var(--primary), var(--primary-hover));
-    color: #fff
+  background: linear-gradient(
+    135deg,
+    var(--brand),
+    var(--primary),
+    var(--primary-hover)
+  );
+  color: #fff;
 }
-
 #manageUsersApp .table-wrap th,
 #manageUsersApp .table-wrap td {
-    text-align: left;
-    padding: 15px
+  text-align: left;
+  padding: 15px;
 }
-
 #manageUsersApp .table-wrap th {
-    font-size: 12px
+  font-size: 12px;
 }
-
 #manageUsersApp .table-wrap td {
-    font-size: 12.5px;
-    border-bottom: 1px solid var(--line)
+  font-size: 12.5px;
+  border-bottom: 1px solid var(--line);
 }
-
 #manageUsersApp .table-wrap tbody tr:hover {
-    background: var(--surface-alt)
+  background: var(--surface-alt);
 }
-
 #manageUsersApp .table-wrap tbody tr:last-child td {
-    border: 0
+  border: 0;
 }
-
 #manageUsersApp .sortable {
-    cursor: pointer
+  cursor: pointer;
 }
-
 #manageUsersApp .sortable span {
-    font-size: 8px;
-    margin-left: 4px
+  font-size: 8px;
+  margin-left: 4px;
 }
-
 #manageUsersApp .actions-head {
-    text-align: center !important
+  text-align: center !important;
 }
-
 #manageUsersApp .action-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 7px
+  display: flex;
+  justify-content: center;
+  gap: 7px;
 }
-
 #manageUsersApp .action-buttons button {
-    height: 33px;
-    min-width: 58px;
-    padding: 0 11px;
-    border-radius: 8px;
-    font-size: 11px;
-    font-weight: 600
+  height: 33px;
+  min-width: 58px;
+  padding: 0 11px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
 }
-
 #manageUsersApp .view-btn {
-    border: 1px solid var(--line);
-    background: var(--surface-alt);
-    color: var(--text)
+  border: 1px solid var(--line);
+  background: var(--surface-alt);
+  color: var(--text);
 }
-
 #manageUsersApp .edit-btn {
-    border: 1px solid color-mix(in srgb, var(--primary) 1800%, transparent);
-    background: var(--surface-alt);
-    color: var(--p)
+  border: 1px solid color-mix(in srgb, var(--primary) 1800%, transparent);
+  background: var(--surface-alt);
+  color: var(--p);
 }
-
 #manageUsersApp .status-pill {
-    display: inline-flex;
-    justify-content: center;
-    min-width: 75px;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 700
+  display: inline-flex;
+  justify-content: center;
+  min-width: 75px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
 }
-
 #manageUsersApp .status-pill.active {
-    background: var(--surface-alt);
-    color: var(--primary)
+  background: var(--surface-alt);
+  color: var(--primary);
 }
-
 #manageUsersApp .status-pill.inactive {
-    background: rgba(199, 71, 71, .10);
-    color: var(--danger)
+  background: rgba(199, 71, 71, 0.1);
+  color: var(--danger);
 }
-
 #manageUsersApp .empty-state {
-    display: none;
-    padding: 46px;
-    text-align: center;
-    color: var(--muted)
+  display: none;
+  padding: 46px;
+  text-align: center;
+  color: var(--muted);
 }
-
 #manageUsersApp .filter-overlay,
 #manageUsersApp .modal-overlay,
 #manageUsersApp .notification-overlay {
-    position: fixed;
-    inset: 0;
-    display: none;
-    background: rgba(25, 20, 29, .48);
-    backdrop-filter: blur(3px);
-    z-index: 2500
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(25, 20, 29, 0.48);
+  backdrop-filter: blur(3px);
+  z-index: 2500;
 }
-
 #manageUsersApp .filter-overlay.show {
-    display: block
+  display: block;
 }
-
 #manageUsersApp .modal-overlay.show,
 #manageUsersApp .notification-overlay.show {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-
 #manageUsersApp .filter-panel {
-    position: absolute;
-    top: 82px;
-    right: 24px;
-    width: min(420px, calc(100vw - 32px));
-    padding: 24px;
-    background: var(--card);
-    border-radius: 20px;
-    box-shadow: 0 20px 60px #0003
+  position: absolute;
+  top: 82px;
+  right: 24px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 24px;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px #0003;
 }
-
 #manageUsersApp .panel-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 20px
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
-
 #manageUsersApp .panel-head h2 {
-    color: var(--p);
-    font-size: 20px
+  color: var(--p);
+  font-size: 20px;
 }
-
 #manageUsersApp .panel-head p {
-    margin-top: 3px;
-    color: var(--muted);
-    font-size: 11px
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
 }
-
 #manageUsersApp .panel-head button {
-    width: 34px;
-    height: 34px;
-    border: 0;
-    border-radius: 50%;
-    background: var(--surface-alt)
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-alt);
 }
-
 #manageUsersApp .filter-panel label,
 #manageUsersApp .form-grid label {
-    display: block;
-    margin: 15px 0;
-    color: var(--text);
-    font-size: 11px;
-    font-weight: 600
+  display: block;
+  margin: 15px 0;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
 }
-
 #manageUsersApp .filter-panel input,
 #manageUsersApp .filter-panel select,
 #manageUsersApp .form-grid input,
 #manageUsersApp .form-grid select {
-    display: block;
-    width: 100%;
-    height: 43px;
-    margin-top: 6px;
-    padding: 0 12px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: var(--card)
+  display: block;
+  width: 100%;
+  height: 43px;
+  margin-top: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
 }
-
 #manageUsersApp .filter-actions,
 #manageUsersApp .modal-footer {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 9px;
-    margin-top: 22px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line)
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
-
 #manageUsersApp .modal {
-    width: min(770px, 100%);
-    max-height: calc(100vh - 40px);
-    overflow: auto;
-    padding: 25px;
-    border-radius: 20px;
-    background: var(--card);
-    box-shadow: 0 20px 60px #0003
+  width: min(770px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 20px 60px #0003;
 }
-
 #manageUsersApp .modal-title {
-    margin-bottom: 20px
+  margin-bottom: 20px;
 }
-
 #manageUsersApp .modal-title h2,
 #manageUsersApp .profile-title h2 {
-    font-size: 20px;
-    color: var(--brand)
+  font-size: 20px;
+  color: var(--brand);
 }
-
 #manageUsersApp .modal-title p,
 #manageUsersApp .profile-title p {
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 10px
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10px;
 }
-
 #manageUsersApp .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 17px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 17px;
 }
-
 #manageUsersApp .form-grid .full {
-    grid-column: 1/-1
+  grid-column: 1/-1;
 }
-
 #manageUsersApp .form-grid input:disabled {
-    background: var(--surface-alt);
-    color: var(--muted)
+  background: var(--surface-alt);
+  color: var(--muted);
 }
-
 #manageUsersApp .account-status {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    min-height: 62px;
-    padding: 12px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: var(--surface)
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 62px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
 }
-
 #manageUsersApp .account-status b {
-    font-size: 10px
+  font-size: 10px;
 }
-
 #manageUsersApp .account-status p {
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 8px
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8px;
 }
-
 #manageUsersApp .toggle-row {
-    display: flex;
-    align-items: center;
-    gap: 8px
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-
-#manageUsersApp .toggle-row>span {
-    font-size: 9px;
-    font-weight: 700;
-    color: var(--success)
+#manageUsersApp .toggle-row > span {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--success);
 }
-
 #manageUsersApp .toggle {
-    position: relative;
-    width: 44px;
-    height: 24px;
-    border: 0;
-    border-radius: 999px;
-    background: var(--line)
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
 }
-
 #manageUsersApp .toggle.on {
-    background: var(--success)
+  background: var(--success);
 }
-
 #manageUsersApp .toggle i {
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--card);
-    transition: .2s
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--card);
+  transition: 0.2s;
 }
-
 #manageUsersApp .toggle.on i {
-    transform: translateX(20px)
+  transform: translateX(20px);
 }
-
 #manageUsersApp .profile-card {
-    padding: 0
+  padding: 0;
 }
-
 #manageUsersApp .profile-title {
-    padding: 20px 20px 16px;
-    border-bottom: 1px solid var(--line)
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--line);
 }
-
 #manageUsersApp .profile-hero {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 20px
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
 }
-
 #manageUsersApp .large-avatar,
 #manageUsersApp .medium-avatar {
-    display: grid;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--surface-alt);
-    color: var(--muted);
-    font-weight: 700
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-weight: 700;
 }
-
 #manageUsersApp .large-avatar {
-    width: 72px;
-    height: 72px;
-    font-size: 22px
+  width: 72px;
+  height: 72px;
+  font-size: 22px;
 }
-
 #manageUsersApp .medium-avatar {
-    width: 42px;
-    height: 42px;
-    font-size: 12px
+  width: 42px;
+  height: 42px;
+  font-size: 12px;
 }
-
 #manageUsersApp .profile-hero h3 {
-    font-size: 20px
+  font-size: 20px;
 }
-
 #manageUsersApp .profile-hero p {
-    margin-top: 1px;
-    color: var(--muted);
-    font-size: 10px
+  margin-top: 1px;
+  color: var(--muted);
+  font-size: 10px;
 }
-
 #manageUsersApp .profile-badges {
-    display: flex;
-    gap: 5px;
-    margin-top: 6px
+  display: flex;
+  gap: 5px;
+  margin-top: 6px;
 }
-
-#manageUsersApp .profile-badges>span:first-child {
-    padding: 4px 7px;
-    border-radius: 6px;
-    background: color-mix(in srgb, var(--primary) 1200%, transparent);
-    color: var(--primary);
-    font-size: 9px;
-    font-weight: 600
+#manageUsersApp .profile-badges > span:first-child {
+  padding: 4px 7px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primary) 1200%, transparent);
+  color: var(--primary);
+  font-size: 9px;
+  font-weight: 600;
 }
-
 #manageUsersApp .profile-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 0 20px 20px;
-    border-bottom: 1px solid var(--line)
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--line);
 }
-
 #manageUsersApp .profile-details span,
 #manageUsersApp .profile-details strong {
-    display: block
+  display: block;
 }
-
 #manageUsersApp .profile-details span {
-    color: var(--muted);
-    font-size: 10px
+  color: var(--muted);
+  font-size: 10px;
 }
-
 #manageUsersApp .profile-details strong {
-    margin-top: 4px;
-    font-size: 14px
+  margin-top: 4px;
+  font-size: 14px;
 }
-
 #manageUsersApp .profile-tabs {
-    display: flex;
-    gap: 6px;
-    padding: 16px 20px 8px;
-    overflow: auto
+  display: flex;
+  gap: 6px;
+  padding: 16px 20px 8px;
+  overflow: auto;
 }
-
 #manageUsersApp .profile-tab {
-    height: 32px;
-    padding: 0 12px;
-    border: 0;
-    border-radius: 999px;
-    background: transparent;
-    color: var(--muted);
-    font-size: 11px
+  height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
 }
-
 #manageUsersApp .profile-tab.active {
-    background: var(--brand);
-    color: #fff
+  background: var(--brand);
+  color: #fff;
 }
-
 #manageUsersApp .profile-tab-content {
-    min-height: 180px;
-    padding: 10px 20px 18px
+  min-height: 180px;
+  padding: 10px 20px 18px;
 }
-
 #manageUsersApp .profile-tab-content h3 {
-    margin-bottom: 12px;
-    font-size: 14px
+  margin-bottom: 12px;
+  font-size: 14px;
 }
-
 #manageUsersApp .overview-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
-
 #manageUsersApp .overview-grid div {
-    padding: 11px;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 9px
+  padding: 11px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
 }
-
 #manageUsersApp .overview-grid span,
 #manageUsersApp .overview-grid strong {
-    display: block
+  display: block;
 }
-
 #manageUsersApp .overview-grid span {
-    font-size: 9px;
-    color: var(--muted)
+  font-size: 9px;
+  color: var(--muted);
 }
-
 #manageUsersApp .overview-grid strong {
-    font-size: 11px;
-    margin-top: 2px
+  font-size: 11px;
+  margin-top: 2px;
 }
-
 #manageUsersApp .activity-list {
-    list-style: none;
-    counter-reset: activity
+  list-style: none;
+  counter-reset: activity;
 }
-
 #manageUsersApp .activity-list li {
-    position: relative;
-    padding: 0 0 13px 26px;
-    counter-increment: activity
+  position: relative;
+  padding: 0 0 13px 26px;
+  counter-increment: activity;
 }
-
 #manageUsersApp .activity-list li:before {
-    content: counter(activity);
-    position: absolute;
-    left: 3px;
-    top: 0
+  content: counter(activity);
+  position: absolute;
+  left: 3px;
+  top: 0;
 }
-
 #manageUsersApp .activity-list li:not(:last-child):after {
-    content: "";
-    position: absolute;
-    left: 11px;
-    top: 20px;
-    width: 1px;
-    height: 23px;
-    background: var(--line)
+  content: "";
+  position: absolute;
+  left: 11px;
+  top: 20px;
+  width: 1px;
+  height: 23px;
+  background: var(--line);
 }
-
 #manageUsersApp .activity-list b,
 #manageUsersApp .activity-list span {
-    display: block
+  display: block;
 }
-
 #manageUsersApp .activity-list b {
-    font-size: 13px
+  font-size: 13px;
 }
-
 #manageUsersApp .activity-list span {
-    margin-top: 2px;
-    color: var(--muted);
-    font-size: 9px
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
 }
-
 #manageUsersApp .readonly {
-    margin-right: auto;
-    color: var(--muted);
-    font-size: 9px
+  margin-right: auto;
+  color: var(--muted);
+  font-size: 9px;
 }
-
 #manageUsersApp .compact-user {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    padding: 13px 0;
-    margin-bottom: 15px;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line)
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 0;
+  margin-bottom: 15px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
-
 #manageUsersApp .compact-user h3 {
-    font-size: 13px
+  font-size: 13px;
 }
-
 #manageUsersApp .compact-user span {
-    color: var(--muted);
-    font-size: 9px
+  color: var(--muted);
+  font-size: 9px;
 }
-
 #manageUsersApp .edit-layout h4 {
-    padding-top: 13px;
-    margin-top: 5px;
-    border-top: 1px solid var(--line);
-    font-size: 11px
+  padding-top: 13px;
+  margin-top: 5px;
+  border-top: 1px solid var(--line);
+  font-size: 11px;
 }
-
 #manageUsersApp .edit-note {
-    margin-top: 13px;
-    color: var(--muted);
-    font-size: 8.5px
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 8.5px;
 }
-
 #manageUsersApp .notification-box {
-    width: min(470px, 100%);
-    padding: 22px;
-    border-radius: 17px;
-    background: var(--card)
+  width: min(470px, 100%);
+  padding: 22px;
+  border-radius: 17px;
+  background: var(--card);
 }
-
 #manageUsersApp .notification-box h3 {
-    color: var(--p);
-    margin-bottom: 13px
+  color: var(--p);
+  margin-bottom: 13px;
 }
-
 #manageUsersApp .notification-box p {
-    padding: 10px;
-    background: var(--surface);
-    border-left: 4px solid var(--primary);
-    margin-bottom: 7px
+  padding: 10px;
+  background: var(--surface);
+  border-left: 4px solid var(--primary);
+  margin-bottom: 7px;
 }
-
 #manageUsersApp footer {
-    text-align: center;
-    padding: 15px;
-    color: var(--muted);
-    font-size: 9px
+  text-align: center;
+  padding: 15px;
+  color: var(--muted);
+  font-size: 9px;
 }
-
-@media(max-width:850px) {
-    #manageUsersApp .main-content.shifted {
-        margin-left: 0
-    }
-
-    #manageUsersApp .form-grid {
-        grid-template-columns: 1fr
-    }
-
-    #manageUsersApp .form-grid .full {
-        grid-column: auto
-    }
+@media (max-width: 850px) {
+  #manageUsersApp .main-content.shifted {
+    margin-left: 0;
+  }
+  #manageUsersApp .form-grid {
+    grid-template-columns: 1fr;
+  }
+  #manageUsersApp .form-grid .full {
+    grid-column: auto;
+  }
 }
-
-@media(max-width:580px) {
-    #manageUsersApp .topbar {
-        padding: 0 13px
-    }
-
-    #manageUsersApp .brand span {
-        font-size: 16px
-    }
-
-    #manageUsersApp .main-content {
-        padding: 14px
-    }
-
-    #manageUsersApp .content-card {
-        padding: 19px 13px
-    }
-
-    #manageUsersApp .page-header {
-        flex-direction: column;
-        gap: 13px
-    }
-
-    #manageUsersApp .header-actions {
-        width: 100%
-    }
-
-    #manageUsersApp .header-actions button {
-        flex: 1
-    }
-
-    #manageUsersApp .summary-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr)
-    }
-
-    #manageUsersApp .summary-tab {
-        min-width: 0;
-        padding: 0 5px;
-        font-size: 10px
-    }
-
-    #manageUsersApp .filter-panel {
-        top: auto;
-        left: 8px;
-        right: 8px;
-        bottom: 8px;
-        width: auto
-    }
-
-    #manageUsersApp .modal-overlay {
-        align-items: flex-end !important;
-        padding: 8px
-    }
-
-    #manageUsersApp .modal {
-        border-radius: 20px 20px 10px 10px;
-        padding: 19px
-    }
-
-    #manageUsersApp .profile-card {
-        padding: 0
-    }
-
-    #manageUsersApp .profile-details,
-    #manageUsersApp .overview-grid {
-        grid-template-columns: 1fr
-    }
-
-    #manageUsersApp .profile-tabs {
-        padding-left: 15px
-    }
-
-    #manageUsersApp .profile-tab-content {
-        padding-left: 15px;
-        padding-right: 15px
-    }
+@media (max-width: 580px) {
+  #manageUsersApp .topbar {
+    padding: 0 13px;
+  }
+  #manageUsersApp .brand span {
+    font-size: 16px;
+  }
+  #manageUsersApp .main-content {
+    padding: 14px;
+  }
+  #manageUsersApp .content-card {
+    padding: 19px 13px;
+  }
+  #manageUsersApp .page-header {
+    flex-direction: column;
+    gap: 13px;
+  }
+  #manageUsersApp .header-actions {
+    width: 100%;
+  }
+  #manageUsersApp .header-actions button {
+    flex: 1;
+  }
+  #manageUsersApp .summary-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #manageUsersApp .summary-tab {
+    min-width: 0;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+  #manageUsersApp .filter-panel {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+  #manageUsersApp .modal-overlay {
+    align-items: flex-end !important;
+    padding: 8px;
+  }
+  #manageUsersApp .modal {
+    border-radius: 20px 20px 10px 10px;
+    padding: 19px;
+  }
+  #manageUsersApp .profile-card {
+    padding: 0;
+  }
+  #manageUsersApp .profile-details,
+  #manageUsersApp .overview-grid {
+    grid-template-columns: 1fr;
+  }
+  #manageUsersApp .profile-tabs {
+    padding-left: 15px;
+  }
+  #manageUsersApp .profile-tab-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 
 /* ===== User Management refinement ===== */
 #manageUsersApp .filter-panel {
-    max-height: calc(100vh - 105px);
-    overflow-y: auto
+  max-height: calc(100vh - 105px);
+  overflow-y: auto;
 }
-
-#manageUsersApp .filter-panel>label {
-    margin: 0 0 15px
+#manageUsersApp .filter-panel > label {
+  margin: 0 0 15px;
 }
-
-#manageUsersApp .filter-panel>label>input,
-#manageUsersApp .filter-panel>label>select {
-    margin-top: 7px
+#manageUsersApp .filter-panel > label > input,
+#manageUsersApp .filter-panel > label > select {
+  margin-top: 7px;
 }
-
 #manageUsersApp .column-filter {
-    margin-top: 5px;
-    padding-top: 16px;
-    border-top: 1px solid var(--line)
+  margin-top: 5px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
-
 #manageUsersApp .filter-label {
-    display: block;
-    margin-bottom: 9px;
-    color: var(--text);
-    font-size: 11px;
-    font-weight: 600
+  display: block;
+  margin-bottom: 9px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
 }
-
 #manageUsersApp .column-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
 }
-
 #manageUsersApp .column-options label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 38px;
-    margin: 0;
-    padding: 8px 10px;
-    border: 1px solid var(--line);
-    border-radius: 9px;
-    background: var(--surface);
-    cursor: pointer
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  cursor: pointer;
 }
-
 #manageUsersApp .column-options input {
-    appearance: none;
-    width: 17px !important;
-    height: 17px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1.5px solid var(--line) !important;
-    border-radius: 5px !important;
-    background: var(--card) !important;
-    flex: 0 0 17px;
-    position: relative
+  appearance: none;
+  width: 17px !important;
+  height: 17px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1.5px solid var(--line) !important;
+  border-radius: 5px !important;
+  background: var(--card) !important;
+  flex: 0 0 17px;
+  position: relative;
 }
-
 #manageUsersApp .column-options input:checked {
-    background: var(--p) !important;
-    border-color: var(--p) !important
+  background: var(--p) !important;
+  border-color: var(--p) !important;
 }
-
 #manageUsersApp .column-options input:checked:after {
-    content: "";
-    position: absolute;
-    left: 4px;
-    top: 1px;
-    width: 5px;
-    height: 9px;
-    border: solid #fff;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg)
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
-
 #manageUsersApp .column-options span {
-    font-size: 10px;
-    color: var(--muted)
+  font-size: 10px;
+  color: var(--muted);
 }
-
 #manageUsersApp .filter-actions {
-    position: sticky;
-    bottom: -24px;
-    margin: 18px -4px -4px;
-    padding: 14px 4px 4px;
-    background: linear-gradient(transparent, var(--card) 22%);
-    z-index: 2
+  position: sticky;
+  bottom: -24px;
+  margin: 18px -4px -4px;
+  padding: 14px 4px 4px;
+  background: linear-gradient(transparent, var(--card) 22%);
+  z-index: 2;
 }
-
 #manageUsersApp .form-grid select:disabled {
-    background: var(--surface-alt);
-    color: var(--muted);
-    cursor: not-allowed;
-    opacity: 1
+  background: var(--surface-alt);
+  color: var(--muted);
+  cursor: not-allowed;
+  opacity: 1;
 }
-
 #manageUsersApp .view-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 4px;
-    padding: 15px 20px 20px;
-    border-top: 1px solid var(--line);
-    background: var(--surface)
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 15px 20px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
 }
-
 #manageUsersApp .readonly-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 5px 9px;
-    border-radius: 999px;
-    background: var(--surface-alt);
-    color: var(--muted);
-    font-size: 9px;
-    font-weight: 600
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 600;
 }
-
 #manageUsersApp .readonly-badge:before {
-    content: "";
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--muted)
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
 }
-
 #manageUsersApp .close-profile-btn {
-    min-width: 96px;
-    height: 39px
+  min-width: 96px;
+  height: 39px;
 }
-
 #manageUsersApp .profile-card .profile-tab-content {
-    max-height: 340px;
-    overflow: auto
+  max-height: 340px;
+  overflow: auto;
 }
-
-@media(max-width:580px) {
-    #manageUsersApp .column-options {
-        grid-template-columns: 1fr
-    }
-
-    #manageUsersApp .view-footer {
-        padding: 13px 15px 15px
-    }
-
-    #manageUsersApp .readonly-badge {
-        display: none
-    }
-
-    #manageUsersApp .close-profile-btn {
-        width: 100%
-    }
+@media (max-width: 580px) {
+  #manageUsersApp .column-options {
+    grid-template-columns: 1fr;
+  }
+  #manageUsersApp .view-footer {
+    padding: 13px 15px 15px;
+  }
+  #manageUsersApp .readonly-badge {
+    display: none;
+  }
+  #manageUsersApp .close-profile-btn {
+    width: 100%;
+  }
 }
-
 #manageUsersApp .status-pill.active {
-    background: rgba(22, 135, 122, .10);
-    color: var(--success)
+  background: rgba(22, 135, 122, 0.1);
+  color: var(--success);
 }
-
 #manageUsersApp .status-pill.inactive {
-    background: rgba(199, 71, 71, .10);
-    color: var(--danger)
+  background: rgba(199, 71, 71, 0.1);
+  color: var(--danger);
 }
-
 #manageUsersApp .toggle.on {
-    background: var(--success)
+  background: var(--success);
 }
-
 #manageUsersApp .status-pill.active {
-    background: rgba(22, 135, 122, .10);
-    color: var(--success)
+  background: rgba(22, 135, 122, 0.1);
+  color: var(--success);
 }
-
 #manageUsersApp .status-pill.inactive {
-    background: rgba(199, 71, 71, .10);
-    color: var(--danger)
+  background: rgba(199, 71, 71, 0.1);
+  color: var(--danger);
 }
-
 html[data-theme="dark"] #manageUsersApp .status-pill.active {
-    background: rgba(34, 160, 107, .15);
-    color: #6DD6A2
+  background: rgba(34, 160, 107, 0.15);
+  color: #6dd6a2;
 }
-
-html[data-theme="dark"] #manageUsersApp .toggle-row>span {
-    color: #6DD6A2
+html[data-theme="dark"] #manageUsersApp .toggle-row > span {
+  color: #6dd6a2;
 }
-
 html[data-theme="dark"] #manageUsersApp .status-pill.inactive {
-    background: rgba(210, 73, 73, .15);
-    color: #FF9292
+  background: rgba(210, 73, 73, 0.15);
+  color: #ff9292;
 }
