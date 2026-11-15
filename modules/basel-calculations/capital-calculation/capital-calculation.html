@@ -1,0 +1,214 @@
+<div class="cap-module" id="capitalCalculationApp">
+
+    <!-- PAGE HEADER -->
+    <header class="cap-header">
+        <div>
+            <span class="cap-eyebrow">BASEL IV / CALCULATIONS</span>
+            <h2>Capital Calculation</h2>
+            <p>
+                Calculate Basel IV capital adequacy metrics using
+                regulatory capital components and Risk Weighted Assets.
+            </p>
+        </div>
+
+        <div class="cap-header-icon">▥</div>
+    </header>
+
+
+    <!-- CALCULATION PARAMETERS -->
+    <section class="cap-panel">
+
+        <div class="cap-section-heading">
+            <div>
+                <h3>Calculation Parameters</h3>
+                <p>Select the reporting details for this calculation.</p>
+            </div>
+        </div>
+
+        <div class="cap-parameter-grid">
+
+            <div class="cap-field">
+                <label for="capPeriod">Reporting Period</label>
+                <select id="capPeriod">
+                    <option value="Oct 2026">Oct 2026</option>
+                    <option value="Nov 2026">Nov 2026</option>
+                </select>
+            </div>
+
+            <div class="cap-field">
+                <label for="capBank">Bank Name</label>
+                <select id="capBank">
+                    <option value="" selected disabled>Select Bank</option>
+                    <option value="HDFC Bank">HDFC Bank</option>
+                    <option value="ICICI Bank">ICICI Bank</option>
+                    <option value="SBI">SBI</option>
+                </select>
+            </div>
+
+            <div class="cap-field">
+                <label for="capBusinessDate">Business Date</label>
+                <input type="date" id="capBusinessDate" value="2026-11-10">
+            </div>
+
+        </div>
+
+        <div class="cap-actions">
+
+            <button type="button" class="cap-btn cap-btn-primary" id="capCalculateBtn">
+                Calculate Capital
+            </button>
+
+            <button type="button" class="cap-btn cap-btn-secondary" id="capResetBtn">
+                Reset
+            </button>
+
+            <button type="button" class="cap-btn cap-btn-outline" id="capExportBtn">
+                Export CSV
+            </button>
+
+        </div>
+
+        <div id="capMessage" class="cap-message" hidden>
+        </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+    <div id="capResults" hidden>
+
+        <!-- CAPITAL COMPONENTS -->
+        <section class="cap-panel">
+
+            <div class="cap-section-heading">
+                <div>
+                    <h3>Capital Components</h3>
+                    <p>
+                        Capital components and Risk Weighted Assets
+                        used in this calculation.
+                    </p>
+                </div>
+
+                <span class="cap-status">Calculation Completed</span>
+            </div>
+
+            <div class="cap-table-wrap">
+                <table class="cap-table">
+
+                    <thead>
+                        <tr>
+                            <th>Capital Component</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="capComponentTable"></tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+
+        <!-- SUMMARY CARDS -->
+        <div class="cap-summary-grid">
+
+            <div class="cap-summary-card">
+                <span class="cap-card-label">CET1 Ratio</span>
+                <strong id="capCet1RatioValue">-</strong>
+                <small>Common Equity Tier 1 Ratio</small>
+            </div>
+
+            <div class="cap-summary-card">
+                <span class="cap-card-label">Tier 1 Ratio</span>
+                <strong id="capTier1RatioValue">-</strong>
+                <small>Tier 1 Capital Ratio</small>
+            </div>
+
+            <div class="cap-summary-card cap-total-card">
+                <span class="cap-card-label">Capital Adequacy Ratio</span>
+                <strong id="capCarValue">-</strong>
+                <small>CAR</small>
+            </div>
+
+            <div class="cap-summary-card">
+                <span class="cap-card-label">Total Capital</span>
+                <strong id="capTotalCapitalValue">-</strong>
+                <small>Tier 1 + Tier 2 Capital</small>
+            </div>
+
+        </div>
+
+
+        <!-- CHART -->
+        <section class="cap-panel">
+
+            <div class="cap-section-heading">
+                <div>
+                    <h3>Capital Components Chart</h3>
+                    <p>
+                        Comparison of capital components and
+                        total capital.
+                    </p>
+                </div>
+            </div>
+
+            <div id="capChart" class="cap-chart"></div>
+
+        </section>
+
+
+        <!-- CALCULATION SUMMARY -->
+        <section class="cap-panel">
+
+            <div class="cap-section-heading">
+                <div>
+                    <h3>Basel IV Capital Calculation Summary</h3>
+                    <p>
+                        Calculation details and formula breakdown.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cap-summary-meta">
+
+                <div>
+                    <span>Bank</span>
+                    <strong id="capSummaryBank">-</strong>
+                </div>
+
+                <div>
+                    <span>Reporting Period</span>
+                    <strong id="capSummaryPeriod">-</strong>
+                </div>
+
+                <div>
+                    <span>Business Date</span>
+                    <strong id="capSummaryDate">-</strong>
+                </div>
+
+            </div>
+
+            <div id="capFormulaList" class="cap-formula-list"></div>
+
+            <div class="cap-grand-total">
+                <span>CET1 Capital Ratio</span>
+                <strong id="capSummaryCet1">-</strong>
+            </div>
+
+            <div class="cap-grand-total">
+                <span>Tier 1 Capital Ratio</span>
+                <strong id="capSummaryTier1">-</strong>
+            </div>
+
+            <div class="cap-grand-total">
+                <span>Capital Adequacy Ratio</span>
+                <strong id="capSummaryCar">-</strong>
+            </div>
+
+        </section>
+
+    </div>
+
+</div>

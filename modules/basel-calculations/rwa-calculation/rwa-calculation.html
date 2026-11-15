@@ -1,0 +1,149 @@
+<section class="rwa-module" id="rwaCalculationApp">
+
+    <header class="rwa-header">
+        <div>
+            <span class="rwa-eyebrow">BASEL IV CALCULATIONS</span>
+            <h2>RWA Calculation</h2>
+            <p>Calculate and manage Risk Weighted Assets using validated Basel IV reporting
+                data.</p>
+        </div>
+        <div class="rwa-header-icon">▤</div>
+    </header>
+
+    <section class="rwa-panel">
+        <div class="rwa-section-heading">
+            <div>
+                <h3>Calculation Parameters</h3>
+                <p>Select the reporting period, bank and business date.</p>
+            </div>
+        </div>
+
+        <div class="rwa-parameter-grid">
+            <div class="rwa-field">
+                <label for="rwaPeriod">Reporting Period</label>
+                <select id="rwaPeriod">
+                    <option value="Oct 2026" selected>Oct 2026</option>
+                    <option value="Nov 2026">Nov 2026</option>
+                </select>
+            </div>
+
+            <div class="rwa-field">
+                <label for="rwaBank">Bank Name</label>
+                <select id="rwaBank">
+                    <option value="HDFC Bank" selected>HDFC Bank</option>
+                    <option value="ICICI Bank">ICICI Bank</option>
+                    <option value="SBI">SBI</option>
+                </select>
+            </div>
+
+            <div class="rwa-field">
+                <label for="rwaBusinessDate">Business Date</label>
+                <input type="date" id="rwaBusinessDate" value="2026-11-10">
+            </div>
+        </div>
+
+        <div class="rwa-actions">
+            <button type="button" class="rwa-btn rwa-btn-primary" id="rwaCalculateBtn">
+                Calculate RWA
+            </button>
+            <button type="button" class="rwa-btn rwa-btn-secondary" id="rwaResetBtn">
+                Reset
+            </button>
+            <button type="button" class="rwa-btn rwa-btn-outline" id="rwaExportBtn">
+                Export CSV
+            </button>
+        </div>
+
+        <div class="rwa-message" id="rwaMessage" role="status" aria-live="polite" hidden></div>
+    </section>
+
+    <div id="rwaResults" hidden>
+
+        <section class="rwa-panel">
+            <div class="rwa-section-heading">
+                <div>
+                    <h3>Risk Exposure Details</h3>
+                    <p>Exposure values and illustrative risk weights used for this calculation.
+                    </p>
+                </div>
+                <span class="rwa-status">Calculation Completed</span>
+            </div>
+
+            <div class="rwa-table-wrap">
+                <table class="rwa-table">
+                    <thead>
+                        <tr>
+                            <th>Risk Category</th>
+                            <th>Exposure Type</th>
+                            <th>Exposure Amount</th>
+                            <th>Risk Weight</th>
+                            <th>Calculated RWA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rwaExposureTable"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="rwa-summary-grid">
+            <article class="rwa-summary-card">
+                <span class="rwa-card-label">Credit Risk RWA</span>
+                <strong id="rwaCreditValue">0</strong>
+                <small>Corporate Loans</small>
+            </article>
+
+            <article class="rwa-summary-card">
+                <span class="rwa-card-label">Market Risk RWA</span>
+                <strong id="rwaMarketValue">0</strong>
+                <small>Trading Book</small>
+            </article>
+
+            <article class="rwa-summary-card">
+                <span class="rwa-card-label">Operational Risk RWA</span>
+                <strong id="rwaOperationalValue">0</strong>
+                <small>Business Operations</small>
+            </article>
+
+            <article class="rwa-summary-card rwa-total-card">
+                <span class="rwa-card-label">Total RWA</span>
+                <strong id="rwaTotalValue">0</strong>
+                <small>All risk categories</small>
+            </article>
+        </section>
+
+        <section class="rwa-panel">
+            <div class="rwa-section-heading">
+                <div>
+                    <h3>RWA Calculation Chart</h3>
+                    <p>Comparison of calculated RWA across risk categories.</p>
+                </div>
+            </div>
+
+            <div class="rwa-chart" id="rwaChart" aria-label="RWA by risk category"></div>
+        </section>
+
+        <section class="rwa-panel">
+            <div class="rwa-section-heading">
+                <div>
+                    <h3>Basel IV RWA Calculation Summary</h3>
+                    <p>Calculation breakdown for the selected reporting parameters.</p>
+                </div>
+            </div>
+
+            <div class="rwa-summary-meta">
+                <div><span>Bank</span><strong id="rwaSummaryBank">-</strong></div>
+                <div><span>Reporting Period</span><strong id="rwaSummaryPeriod">-</strong></div>
+                <div><span>Business Date</span><strong id="rwaSummaryDate">-</strong></div>
+            </div>
+
+            <div class="rwa-formula-list" id="rwaFormulaList"></div>
+
+            <div class="rwa-grand-total">
+                <span>Total RWA</span>
+                <strong id="rwaSummaryTotal">0</strong>
+            </div>
+        </section>
+
+    </div>
+
+</section>

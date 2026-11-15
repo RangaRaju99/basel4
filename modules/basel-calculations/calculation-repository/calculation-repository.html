@@ -1,0 +1,141 @@
+<section class="repo-page" id="calculationRepositoryApp">
+
+    <div class="repo-header">
+        <div>
+            <h2>Calculation Result Repository</h2>
+            <p>Search, review, download and manage completed Basel IV calculation results.</p>
+        </div>
+        <button type="button" class="repo-btn repo-export" id="repoExportBtn">
+            Export Results
+        </button>
+    </div>
+
+    <div class="repo-metrics">
+        <div class="repo-metric-card">
+            <span>Total Calculations</span>
+            <strong id="repoTotalCount">0</strong>
+        </div>
+        <div class="repo-metric-card">
+            <span>Completed</span>
+            <strong id="repoCompletedCount">0</strong>
+        </div>
+        <div class="repo-metric-card">
+            <span>Pending</span>
+            <strong id="repoPendingCount">0</strong>
+        </div>
+        <div class="repo-metric-card">
+            <span>Failed</span>
+            <strong id="repoFailedCount">0</strong>
+        </div>
+    </div>
+
+    <div class="repo-card">
+        <h3>Filter Calculation Results</h3>
+
+        <div class="repo-filter-grid">
+            <div class="repo-field">
+                <label for="repoBankFilter">Bank</label>
+                <select id="repoBankFilter">
+                    <option value="All Banks">All Banks</option>
+                    <option value="HDFC Bank">HDFC Bank</option>
+                    <option value="ICICI Bank">ICICI Bank</option>
+                    <option value="SBI">SBI</option>
+                </select>
+            </div>
+
+            <div class="repo-field">
+                <label for="repoTypeFilter">Calculation Type</label>
+                <select id="repoTypeFilter">
+                    <option value="All Types">All Types</option>
+                    <option value="RWA">RWA</option>
+                    <option value="Liquidity">Liquidity</option>
+                    <option value="Capital">Capital</option>
+                    <option value="Leverage">Leverage</option>
+                </select>
+            </div>
+
+            <div class="repo-field">
+                <label for="repoPeriodFilter">Reporting Period</label>
+                <select id="repoPeriodFilter">
+                    <option value="All Periods">All Periods</option>
+                    <option value="Oct 2026">Oct 2026</option>
+                    <option value="Nov 2026">Nov 2026</option>
+                </select>
+            </div>
+
+            <div class="repo-field">
+                <label for="repoStatusFilter">Status</label>
+                <select id="repoStatusFilter">
+                    <option value="All Statuses">All Statuses</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Failed">Failed</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="repo-search-row">
+            <div class="repo-field repo-search-field">
+                <label for="repoSearchInput">Search</label>
+                <input type="search" id="repoSearchInput" placeholder="Search by calculation ID or bank name">
+            </div>
+
+            <div class="repo-filter-actions">
+                <button type="button" class="repo-btn repo-primary" id="repoSearchBtn">
+                    Search
+                </button>
+                <button type="button" class="repo-btn repo-secondary" id="repoClearBtn">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="repo-card">
+        <div class="repo-table-header">
+            <div>
+                <h3>Calculation History</h3>
+                <p id="repoResultCount">Showing 0 calculations</p>
+            </div>
+        </div>
+
+        <div class="repo-table-wrap">
+            <table class="repo-table">
+                <thead>
+                    <tr>
+                        <th>Calculation ID</th>
+                        <th>Bank Name</th>
+                        <th>Type</th>
+                        <th>Reporting Period</th>
+                        <th>Business Date</th>
+                        <th>Execution Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="repoTableBody">
+                    <tr>
+                        <td colspan="8" class="repo-empty">
+                            No calculation results available.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="repo-card repo-details-card" id="repoDetailsCard" hidden>
+        <div class="repo-details-header">
+            <div>
+                <h3>Calculation Details</h3>
+                <p id="repoDetailsSubtitle"></p>
+            </div>
+            <button type="button" class="repo-btn repo-secondary" id="repoCloseDetailsBtn">
+                Close
+            </button>
+        </div>
+
+        <div id="repoDetailsContent" class="repo-details-content"></div>
+    </div>
+
+</section>

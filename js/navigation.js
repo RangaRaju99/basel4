@@ -14,132 +14,140 @@
        pageId -> template id + init function name
        ===================================================== */
 
-    const MODULES = {
-        "manage-role": {
-            template: "manageRolesTemplate",
-            init: "initManageRolesModule"
-        },
-        "manage-user": {
-            template: "manageUsersTemplate",
-            init: "initManageUsersModule"
-        },
-        "module": {
-            template: "moduleManagementTemplate",
-            init: "initManageModulesModule"
-        },
-        "report-templates": {
-            template: "reportTemplatesTemplate",
-            init: "initManageReportTemplatesModule"
-        },
-        "reporting-calendar": {
-            template: "reportingCalendarTemplate",
-            init: "initReportingCalendarModule"
-        },
-        "audit-trail": {
-            template: "auditTrailTemplate",
-            init: "initAuditTrailModule"
-        },
-        "data-ingestion": {
-            template: "feedMonitorTemplate",
-            init: "initFeedMonitorModule"
-        },
-        "sla-escalations": {
-            template: "slaEscalationsTemplate",
-            init: "initSlaEscalationsModule"
-        },
-        "landing-zone": {
-            template: "landingZoneTemplate",
-            init: "initLandingZoneModule"
-        },
-        "ingestion-audit-log": {
-            template: "ingestionAuditLogTemplate",
-            init: "initIngestionAuditLogModule"
-        },
-        "operations-center": {
-            template: "operationsCenterTemplate",
-            init: "initOperationsCenterModule"
-        },
-        "file-intake-center": {
-            template: "fileIntakeTemplate",
-            init: "initFileIntakeModule"
-        },
-        "validation-results": {
-            template: "validationResultsTemplate",
-            init: "initValidationResultsModule"
-        },
-        "issue-workbench": {
-            template: "issueWorkbenchTemplate",
-            init: "initIssueWorkbenchModule"
-        },
-        "revalidation-center": {
-            template: "revalidationCenterTemplate",
-            init: "initRevalidationCenterModule"
-        },
-        "reporting-readiness": {
-            template: "reportingReadinessTemplate",
-            init: "initReportingReadinessModule"
-        },
-        "rwa-calculation": {
-            template: "rwaCalculationTemplate",
-            init: "initRWACalculationModule"
-        },
-        "liquidity-calculation": {
-            template: "liquidityCalculationTemplate",
-            init: "initLiquidityCalculationModule"
-        },
-        "capital-calculation": {
-            template: "capitalCalculationTemplate",
-            init: "initCapitalCalculationModule"
-        },
-        "leverage-calculation": {
-            template: "leverageCalculationTemplate",
-            init: "initLeverageCalculationModule"
-        },
-        "calculation-repository": {
-            template: "calculationRepositoryTemplate",
-            init: "initCalculationRepositoryModule"
-        },
-        "variance-analysis": {
-            template: "varianceAnalysisTemplate",
-            init: "initVarianceAnalysisModule"
-        },
-        "exception-management": {
-            template: "exceptionManagementTemplate",
-            init: "initExceptionManagementModule"
-        },
-        "investigation": {
-            template: "investigationTemplate",
-            init: "initInvestigationModule"
-        },
-        "evidence-repository": {
-            template: "evidenceRepositoryTemplate",
-            init: "initEvidenceRepositoryModule"
-        },
-        "approval-closure": {
-            template: "approvalClosureTemplate",
-            init: "initApprovalClosureModule"
-        },
-        "reconciliation-audit-logs": {
-            template: "reconciliationAuditLogsTemplate",
-            init: "initReconciliationAuditLogsModule"
-        },
-        "generate-report": {
-            template: "generateReportsTemplate",
-            init: "initGenerateReportsModule"
-        },
-        "manage-reports": {
-            template: "manageReportsTemplate",
-            init: "initManageReportsModule"
-        },
-        "raise-query": {
-            template: "raiseQueryTemplate",
-            init: "initRaiseQueryModule"
-        },
-        "manage-query": {
-            template: "manageQueryTemplate",
-            init: "initManageQueryModule"
-        },
-    };
+  const MODULES = {
+    "manage-role": {
+      template: "manageRolesTemplate",
+      init: "initManageRolesModule",
+    },
+    "manage-user": {
+      template: "manageUsersTemplate",
+      init: "initManageUsersModule",
+    },
+    "system-configuration": {
+      folder: "modules/configuration/system-configuration/system-configuration",
+      init: "initSystemConfigurationModule",
+    },
+    module: {
+      folder: "modules/configuration/module-management/module-management",
+      init: "initManageModulesModule",
+    },
+    "report-templates": {
+      folder: "modules/configuration/report-templates/report-templates",
+      init: "initManageReportTemplatesModule",
+    },
+    "reporting-calendar": {
+      template: "reportingCalendarTemplate",
+      init: "initReportingCalendarModule",
+    },
+    "audit-trail": {
+      template: "auditTrailTemplate",
+      init: "initAuditTrailModule",
+    },
+    "data-ingestion": {
+      template: "feedMonitorTemplate",
+      init: "initFeedMonitorModule",
+    },
+    "sla-escalations": {
+      template: "slaEscalationsTemplate",
+      init: "initSlaEscalationsModule",
+    },
+    "landing-zone": {
+      template: "landingZoneTemplate",
+      init: "initLandingZoneModule",
+    },
+    "ingestion-audit-log": {
+      template: "ingestionAuditLogTemplate",
+      init: "initIngestionAuditLogModule",
+    },
+    "operations-center": {
+      folder: "modules/data-quality/operations-center/operations-center",
+      init: "initOperationsCenterModule",
+    },
+    "file-intake-center": {
+      folder: "modules/data-quality/file-intake-center/file-intake-center",
+      init: "initFileIntakeModule",
+    },
+    "validation-results": {
+      folder: "modules/data-quality/validation-results/validation-results",
+      init: "initValidationResultsModule",
+    },
+    "issue-workbench": {
+      folder: "modules/data-quality/issue-workbench/issue-workbench",
+      init: "initIssueWorkbenchModule",
+    },
+    "revalidation-center": {
+      folder: "modules/data-quality/revalidation-center/revalidation-center",
+      init: "initRevalidationCenterModule",
+    },
+    "reporting-readiness": {
+      folder: "modules/data-quality/reporting-readiness/reporting-readiness",
+      init: "initReportingReadinessModule",
+    },
+    "rwa-calculation": {
+      folder: "modules/basel-calculations/rwa-calculation/rwa-calculation",
+      init: "initRWACalculationModule",
+    },
+    "liquidity-calculation": {
+      folder:
+        "modules/basel-calculations/liquidity-calculation/liquidity-calculation",
+      init: "initLiquidityCalculationModule",
+    },
+    "capital-calculation": {
+      folder:
+        "modules/basel-calculations/capital-calculation/capital-calculation",
+      init: "initCapitalCalculationModule",
+    },
+    "leverage-calculation": {
+      folder:
+        "modules/basel-calculations/leverage-calculation/leverage-calculation",
+      init: "initLeverageCalculationModule",
+    },
+    "calculation-repository": {
+      folder:
+        "modules/basel-calculations/calculation-repository/calculation-repository",
+      init: "initCalculationRepositoryModule",
+    },
+    "variance-analysis": {
+      template: "varianceAnalysisTemplate",
+      init: "initVarianceAnalysisModule",
+    },
+    "exception-management": {
+      template: "exceptionManagementTemplate",
+      init: "initExceptionManagementModule",
+    },
+    investigation: {
+      template: "investigationTemplate",
+      init: "initInvestigationModule",
+    },
+    "evidence-repository": {
+      template: "evidenceRepositoryTemplate",
+      init: "initEvidenceRepositoryModule",
+    },
+    "approval-closure": {
+      template: "approvalClosureTemplate",
+      init: "initApprovalClosureModule",
+    },
+    "reconciliation-audit-logs": {
+      template: "reconciliationAuditLogsTemplate",
+      init: "initReconciliationAuditLogsModule",
+    },
+    "generate-report": {
+      template: "generateReportsTemplate",
+      init: "initGenerateReportsModule",
+    },
+    "manage-reports": {
+      template: "manageReportsTemplate",
+      init: "initManageReportsModule",
+    },
+    "raise-query": {
+      template: "raiseQueryTemplate",
+      init: "initRaiseQueryModule",
+    },
+    "manage-query": {
+      template: "manageQueryTemplate",
+      init: "initManageQueryModule",
+    },
+  };
 
   const PAGE_NAMES = {
     "manage-user": "Manage Users",
@@ -167,12 +175,12 @@
     "leverage-calculation": "Leverage Calculation",
     "calculation-repository": "Calculation Repository",
 
-        "variance-analysis": "Variance Analysis",
-        "exception-management": "Exception Management",
-        "investigation": "Investigation",
-        "evidence-repository": "Evidence Repository",
-        "approval-closure": "Approval and Closure",
-        "reconciliation-audit-logs": "Reconciliation Audit Logs",
+    "variance-analysis": "Variance Analysis",
+    "exception-management": "Exception Management",
+    investigation: "Investigation",
+    "evidence-repository": "Evidence Repository",
+    "approval-closure": "Approval and Closure",
+    "reconciliation-audit-logs": "Reconciliation Audit Logs",
 
     "generate-report": "Generate Reports",
 
@@ -345,12 +353,10 @@
     const dashboardView = document.getElementById("dashboardView");
     const moduleView = document.getElementById("moduleView");
 
-        if (!dashboardView || !moduleView) {
-            console.error(
-                "BaselTrack: dashboardView or moduleView was not found."
-            );
-            return;
-        }
+    if (!dashboardView || !moduleView) {
+      console.error("BaselTrack: dashboardView or moduleView was not found.");
+      return;
+    }
 
     if (pageId === "dashboard") {
       moduleView.hidden = true;
@@ -430,20 +436,14 @@
         return;
       }
 
-            moduleView.innerHTML = "";
-            moduleView.appendChild(
-                template.content.cloneNode(true)
-            );
+      moduleView.innerHTML = "";
+      moduleView.appendChild(template.content.cloneNode(true));
 
-            if (typeof window[moduleConfig.init] === "function") {
-                window[moduleConfig.init]();
-            } else {
-                console.error(
-                    "BaselTrack: " +
-                    moduleConfig.init +
-                    "() was not found."
-                );
-            }
+      if (typeof window[moduleConfig.init] === "function") {
+        window[moduleConfig.init]();
+      } else {
+        console.error("BaselTrack: " + moduleConfig.init + "() was not found.");
+      }
 
       return;
     }

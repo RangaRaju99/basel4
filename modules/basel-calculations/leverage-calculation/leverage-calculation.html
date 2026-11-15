@@ -1,0 +1,144 @@
+<section class="lev-page" id="leverageCalculationApp">
+
+    <div class="lev-header">
+        <div>
+            <h2>Leverage Ratio Calculation</h2>
+            <p>Calculate the Basel IV Leverage Ratio using Tier 1 Capital and total exposure
+                data.</p>
+        </div>
+    </div>
+
+    <div class="lev-card">
+        <h3>Calculation Parameters</h3>
+
+        <div class="lev-form-grid">
+            <div class="lev-field">
+                <label for="levPeriod">Reporting Period</label>
+                <select id="levPeriod">
+                    <option value="Oct 2026">Oct 2026</option>
+                    <option value="Nov 2026">Nov 2026</option>
+                </select>
+            </div>
+
+            <div class="lev-field">
+                <label for="levBank">Bank Name</label>
+                <select id="levBank">
+                    <option value="" selected disabled>Select Bank</option>
+                    <option value="HDFC Bank">HDFC Bank</option>
+                    <option value="ICICI Bank">ICICI Bank</option>
+                    <option value="SBI">SBI</option>
+                </select>
+            </div>
+
+            <div class="lev-field">
+                <label for="levBusinessDate">Business Date</label>
+                <input type="date" id="levBusinessDate" value="2026-11-10">
+            </div>
+        </div>
+
+        <div class="lev-actions">
+            <button class="lev-btn lev-primary" id="levCalculateBtn">Calculate Leverage
+                Ratio</button>
+            <button class="lev-btn lev-secondary" id="levResetBtn">Reset</button>
+            <button class="lev-btn lev-export" id="levExportBtn" disabled>Export CSV</button>
+        </div>
+    </div>
+
+    <div class="lev-card">
+        <h3>Leverage Input Summary</h3>
+        <p class="lev-description">Illustrative sample capital and exposure values used for this
+            calculation.</p>
+
+        <div class="lev-table-wrap">
+            <table class="lev-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="levComponentsBody">
+                    <tr>
+                        <td>CET1 Capital</td>
+                        <td>800</td>
+                        <td>Common Equity Tier 1 capital</td>
+                    </tr>
+                    <tr>
+                        <td>Additional Tier 1 Capital</td>
+                        <td>100</td>
+                        <td>Additional Tier 1 capital</td>
+                    </tr>
+                    <tr>
+                        <td>Tier 1 Capital</td>
+                        <td>900</td>
+                        <td>CET1 + Additional Tier 1</td>
+                    </tr>
+                    <tr>
+                        <td>On-Balance Sheet Exposure</td>
+                        <td>15,000</td>
+                        <td>On-balance sheet assets</td>
+                    </tr>
+                    <tr>
+                        <td>Off-Balance Sheet Exposure</td>
+                        <td>3,000</td>
+                        <td>Off-balance sheet items</td>
+                    </tr>
+                    <tr>
+                        <td>Derivative Exposure</td>
+                        <td>1,000</td>
+                        <td>Derivative exposure measure</td>
+                    </tr>
+                    <tr>
+                        <td>Securities Financing Transaction Exposure</td>
+                        <td>1,000</td>
+                        <td>SFT exposure measure</td>
+                    </tr>
+                    <tr class="lev-total-row">
+                        <td>Total Exposure Measure</td>
+                        <td>20,000</td>
+                        <td>Sum of exposure components</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="levResults" class="lev-results" hidden>
+
+        <div class="lev-metric-grid">
+            <div class="lev-metric-card">
+                <span>CET1 Capital</span>
+                <strong id="levCET1Metric">-</strong>
+            </div>
+            <div class="lev-metric-card">
+                <span>Tier 1 Capital</span>
+                <strong id="levTier1Metric">-</strong>
+            </div>
+            <div class="lev-metric-card">
+                <span>Total Exposure</span>
+                <strong id="levExposureMetric">-</strong>
+            </div>
+            <div class="lev-metric-card lev-highlight">
+                <span>Leverage Ratio</span>
+                <strong id="levRatioMetric">-</strong>
+            </div>
+        </div>
+
+        <div class="lev-card">
+            <h3>Leverage Ratio Calculation Chart</h3>
+            <div id="levChart" class="lev-chart"></div>
+        </div>
+
+        <div class="lev-card">
+            <h3>Calculation Details</h3>
+            <div id="levCalculationDetails" class="lev-details"></div>
+        </div>
+
+        <div class="lev-card">
+            <h3>Calculation Summary</h3>
+            <div id="levSummary" class="lev-summary"></div>
+        </div>
+
+    </div>
+</section>
