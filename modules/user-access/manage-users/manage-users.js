@@ -203,9 +203,6 @@
                             <div class="profile-badges"><span id="viewRole" class="user-role-badge"></span><span id="viewStatus" class="status-pill"></span></div>
                         </div>
                     </div>
-                    <div class="profile-details user-profile-details">
-                        <div><span>User ID</span><strong id="viewUserId"></strong></div>
-                    </div>
                     <div class="view-footer"><button type="button" id="closeViewBtn" class="primary close-profile-btn">Close</button></div>
                 </section>
             </div>
@@ -302,7 +299,6 @@
         $("viewInitials").textContent = initials(user.fullName);
         $("viewFullName").textContent = user.fullName;
         $("viewUsername").textContent = user.username;
-        $("viewUserId").textContent = user.id;
         $("viewRole").textContent = "Role: " + roleName(user.role);
         $("viewStatus").textContent = user.status;
         $("viewStatus").className = "status-pill " + statusClass(user.status);

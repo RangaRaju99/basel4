@@ -439,7 +439,7 @@
 
 #manageUsersApp .profile-card .profile-hero {
     gap: 14px;
-    padding: 14px 22px 0;
+    padding: 14px 22px 18px;
 }
 
 #manageUsersApp .profile-card .large-avatar {
@@ -501,32 +501,6 @@
     min-width: 0;
     padding: 3px 8px;
     font-size: 9px;
-}
-
-#manageUsersApp .profile-card .user-profile-details {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 15px 22px 18px;
-    border: 0;
-}
-
-#manageUsersApp .profile-card .user-profile-details > div {
-    min-width: 0;
-    padding: 11px 12px;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    background: var(--surface);
-}
-
-#manageUsersApp .profile-card .user-profile-details span {
-    font-size: 10px;
-    font-weight: 600;
-}
-
-#manageUsersApp .profile-card .user-profile-details strong {
-    margin-top: 4px;
-    color: var(--text);
-    font-size: 13px;
 }
 
 #manageUsersApp .profile-card .view-footer {
