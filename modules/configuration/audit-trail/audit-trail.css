@@ -1,519 +1,734 @@
-/* =========================================
-   AUDIT TRAIL - BaselTrack template
-========================================= */
-
-.at-module {
-  width: 100%;
-  color: var(--text, #29232d);
-  animation: atFade 0.25s ease;
-}
-@keyframes atFade {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.at-module *,
-.at-module *::before,
-.at-module *::after {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+/* Audit Trail - scoped copy of the User Access (manage-users.css) design language.
+   Only the rules this screen needs are kept. Nothing here leaks outside #auditTrailApp. */
+#auditTrailApp,
+#auditTrailApp * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-.at-module button,
-.at-module input,
-.at-module select {
+#auditTrailApp {
+  --p: var(--primary);
+  --ph: var(--primary-hover);
+  --soft: var(--surface-alt);
+  --surface: var(--card);
+}
+#auditTrailApp {
+  font-family: Poppins, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+}
+#auditTrailApp button,
+#auditTrailApp input,
+#auditTrailApp select {
   font: inherit;
 }
-.at-module button {
+#auditTrailApp button {
   cursor: pointer;
 }
-
-/* Header */
-.at-page-header {
-  margin-bottom: 22px;
+#auditTrailApp .at-loading {
+  padding: 46px;
+  text-align: center;
+  color: var(--muted);
 }
-.at-breadcrumb {
-  margin-bottom: 8px;
-  color: var(--muted, #77717c);
-  font-size: 11px;
+#auditTrailApp .content-card {
+  min-height: calc(100vh - 140px);
+  padding: 32px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 5px 18px rgba(48, 34, 56, 0.08);
 }
-.at-breadcrumb span {
-  margin: 0 7px;
-  color: var(--primary, #a44c91);
-}
-.at-page-header h2 {
-  margin: 0;
-  font-size: 23px;
-  font-weight: 750;
-  color: var(--text, #29232d);
-}
-.at-page-header p {
-  margin: 6px 0 0;
-  color: var(--muted, #77717c);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* Summary card */
-.at-summary-card {
+#auditTrailApp .page-header {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  max-width: 340px;
-  min-height: 100px;
-  margin-bottom: 22px;
-  padding: 17px 19px;
-  background: var(--card, #fff);
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 13px;
-  box-shadow: var(--shadow, 0 12px 32px rgba(48, 34, 56, 0.08));
-}
-.at-summary-icon {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 43px;
-  height: 43px;
-  border-radius: 10px;
-  background: rgba(164, 76, 145, 0.1);
-  color: var(--primary, #a44c91);
-  font-size: 20px;
-}
-.at-summary-label {
-  color: var(--muted, #77717c);
-  font-size: 11px;
-  font-weight: 650;
-}
-.at-summary-value {
-  margin-top: 3px;
-  color: var(--text, #29232d);
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1.2;
-}
-.at-summary-description {
-  margin-top: 3px;
-  color: var(--muted, #77717c);
-  font-size: 10px;
-}
-
-/* Toolbar */
-.at-toolbar {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 15px;
+  align-items: flex-start;
+  margin-bottom: 25px;
 }
-.at-toolbar-left {
+#auditTrailApp .page-header h1 {
+  font-size: 31px;
+  color: var(--p);
+  margin-bottom: 6px;
+}
+#auditTrailApp .page-header p {
+  color: var(--muted);
+}
+#auditTrailApp .header-actions {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
-.at-toolbar-left h3 {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 750;
-  color: var(--text, #29232d);
+#auditTrailApp .filter-btn,
+#auditTrailApp .add-btn,
+#auditTrailApp .primary,
+#auditTrailApp .secondary {
+  height: 42px;
+  padding: 0 17px;
+  border-radius: 9px;
+  font-weight: 600;
 }
-.at-record-count {
-  display: inline-flex;
-  align-items: center;
-  height: 25px;
-  padding: 0 9px;
-  border-radius: 7px;
-  background: rgba(164, 76, 145, 0.1);
-  color: var(--primary, #a44c91);
-  font-size: 11px;
-  font-weight: 750;
+#auditTrailApp .filter-btn,
+#auditTrailApp .secondary {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
 }
-.at-filter-toggle {
-  min-height: 37px;
-  padding: 0 15px;
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 8px;
-  background: var(--card, #fff);
-  color: var(--text, #29232d);
-  font-size: 11px;
-  font-weight: 700;
-  transition: 0.2s;
-}
-.at-filter-toggle:hover {
-  border-color: var(--primary, #a44c91);
-  color: var(--primary, #a44c91);
-  background: rgba(164, 76, 145, 0.07);
-}
-
-/* Filter panel */
-.at-filter-panel {
-  margin-bottom: 17px;
-  padding: 16px;
-  background: var(--surface, #fbf9fc);
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 10px;
-}
-.at-filter-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 14px;
-}
-.at-filter-field {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  min-width: 0;
-}
-.at-filter-field label {
-  color: var(--text, #29232d);
-  font-size: 10px;
-  font-weight: 700;
-}
-.at-filter-field input,
-.at-filter-field select {
-  width: 100%;
-  min-width: 0;
-  height: 39px;
-  padding: 0 11px;
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 7px;
-  outline: none;
-  background: var(--card, #fff);
-  color: var(--text, #29232d);
-  font-size: 11px;
-  transition: 0.2s;
-}
-.at-filter-field input:focus,
-.at-filter-field select:focus {
-  border-color: var(--primary, #a44c91);
-  box-shadow: 0 0 0 3px rgba(164, 76, 145, 0.1);
-}
-.at-filter-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 15px;
-  padding-top: 12px;
-  border-top: 1px solid var(--line, #e6dde9);
-}
-.at-reset-btn,
-.at-apply-btn {
-  min-height: 37px;
-  padding: 0 16px;
-  border-radius: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  transition: 0.2s;
-}
-.at-reset-btn {
-  border: 1px solid var(--line, #e6dde9);
-  background: var(--card, #fff);
-  color: var(--text, #29232d);
-}
-.at-reset-btn:hover {
-  border-color: var(--primary, #a44c91);
-  color: var(--primary, #a44c91);
-  background: rgba(164, 76, 145, 0.07);
-}
-.at-apply-btn {
-  border: 1px solid var(--primary, #a44c91);
-  background: var(--primary, #a44c91);
+#auditTrailApp .add-btn,
+#auditTrailApp .primary {
+  border: 1px solid var(--p);
+  background: var(--p);
   color: #fff;
 }
-.at-apply-btn:hover {
-  background: var(--primary-hover, #873b78);
-  border-color: var(--primary-hover, #873b78);
+#auditTrailApp .add-btn:hover,
+#auditTrailApp .primary:hover {
+  background: var(--ph);
 }
-
-/* Table */
-.at-table-wrapper {
-  width: 100%;
-  overflow-x: auto;
-  background: var(--card, #fff);
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 9px;
+#auditTrailApp .summary-tabs {
+  display: flex;
+  gap: 9px;
+  margin-bottom: 23px;
 }
-.at-table {
+#auditTrailApp .summary-tab {
+  height: 40px;
+  min-width: 110px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+#auditTrailApp .summary-tab.active {
+  background: var(--p);
+  border-color: var(--p);
+  color: #fff;
+}
+#auditTrailApp .table-wrap {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+}
+#auditTrailApp .table-wrap table {
   width: 100%;
   min-width: 900px;
   border-collapse: collapse;
 }
-.at-table th {
-  height: 43px;
-  padding: 0 14px;
-  background: var(--surface, #fbf9fc);
-  border-bottom: 1px solid var(--line, #e6dde9);
-  color: var(--muted, #77717c);
+#auditTrailApp .table-wrap thead {
+  background: linear-gradient(
+    135deg,
+    var(--brand),
+    var(--primary),
+    var(--primary-hover)
+  );
+  color: #fff;
+}
+#auditTrailApp .table-wrap th,
+#auditTrailApp .table-wrap td {
   text-align: left;
-  white-space: nowrap;
-  font-size: 10px;
-  font-weight: 750;
+  padding: 15px;
 }
-.at-table td {
-  padding: 12px 14px;
-  border-bottom: 1px solid var(--line, #e6dde9);
-  color: var(--text, #29232d);
-  font-size: 11px;
-  vertical-align: middle;
+#auditTrailApp .table-wrap th {
+  font-size: 12px;
 }
-.at-table tbody tr:last-child td {
-  border-bottom: 0;
+#auditTrailApp .table-wrap td {
+  font-size: 12.5px;
+  border-bottom: 1px solid var(--line);
 }
-.at-table tbody tr:hover {
-  background: rgba(164, 76, 145, 0.035);
+#auditTrailApp .table-wrap tbody tr:hover {
+  background: var(--surface-alt);
 }
-.at-sort-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 0;
+#auditTrailApp .table-wrap tbody tr:last-child td {
   border: 0;
-  background: transparent;
-  color: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  white-space: nowrap;
 }
-.at-sort-btn:hover {
-  color: var(--primary, #a44c91);
+#auditTrailApp .sortable {
+  cursor: pointer;
 }
-.at-sort-icon {
-  color: var(--muted, #77717c);
-  font-size: 11px;
+#auditTrailApp .sortable span {
+  font-size: 8px;
+  margin-left: 4px;
 }
-.at-sort-btn.active .at-sort-icon {
-  color: var(--primary, #a44c91);
-  font-weight: 800;
+#auditTrailApp .actions-head {
+  text-align: center !important;
 }
-.at-module-name {
-  color: var(--primary, #a44c91);
-  font-weight: 750;
-}
-.at-processed-by {
-  color: var(--text, #29232d);
-  font-weight: 650;
-}
-.at-action-label {
-  display: inline-block;
-  padding: 5px 9px;
-  border-radius: 20px;
-  background: rgba(164, 76, 145, 0.1);
-  color: var(--primary, #a44c91);
-  font-size: 9px;
-  font-weight: 750;
-}
-.at-description {
-  min-width: 180px;
-  white-space: normal;
-  line-height: 1.5;
-  color: var(--muted, #77717c);
-}
-.at-updated-time {
-  white-space: nowrap;
-  color: var(--muted, #77717c);
-}
-.at-view-btn {
-  display: inline-flex;
-  align-items: center;
+#auditTrailApp .action-buttons {
+  display: flex;
   justify-content: center;
-  min-height: 29px;
-  padding: 0 12px;
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 6px;
-  background: var(--card, #fff);
-  color: var(--text, #29232d);
+  gap: 7px;
+}
+#auditTrailApp .action-buttons button {
+  height: 33px;
+  min-width: 58px;
+  padding: 0 11px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+}
+#auditTrailApp .view-btn {
+  border: 1px solid var(--line);
+  background: var(--surface-alt);
+  color: var(--text);
+}
+#auditTrailApp .edit-btn {
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, transparent);
+  background: var(--surface-alt);
+  color: var(--p);
+}
+#auditTrailApp .status-pill {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 75px;
+  padding: 5px 10px;
+  border-radius: 999px;
   font-size: 10px;
-  font-weight: 650;
-  transition: 0.2s;
+  font-weight: 700;
 }
-.at-view-btn:hover {
-  border-color: var(--primary, #a44c91);
-  color: var(--primary, #a44c91);
-  background: rgba(164, 76, 145, 0.07);
+#auditTrailApp .status-pill.active {
+  background: rgba(22, 135, 122, 0.1);
+  color: var(--success);
 }
-
-/* Empty state */
-.at-empty-state {
-  padding: 45px 15px;
+#auditTrailApp .status-pill.inactive {
+  background: rgba(199, 71, 71, 0.1);
+  color: var(--danger);
+}
+#auditTrailApp .empty-state {
+  display: none;
+  padding: 46px;
   text-align: center;
-  background: var(--card, #fff);
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 9px;
+  color: var(--muted);
 }
-.at-empty-icon {
-  color: var(--primary, #a44c91);
-  font-size: 26px;
-}
-.at-empty-state h4 {
-  margin: 9px 0 5px;
-  color: var(--text, #29232d);
-  font-size: 13px;
-}
-.at-empty-state p {
-  margin: 0;
-  color: var(--muted, #77717c);
-  font-size: 10px;
-}
-
-/* Details modal */
-.at-modal-overlay {
+#auditTrailApp .filter-overlay,
+#auditTrailApp .modal-overlay {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  display: none;
+  background: rgba(25, 20, 29, 0.48);
+  backdrop-filter: blur(3px);
+  z-index: 2500;
+}
+#auditTrailApp .filter-overlay.show {
+  display: block;
+}
+#auditTrailApp .modal-overlay.show {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  background: rgba(18, 12, 21, 0.58);
 }
-.at-modal-overlay[hidden] {
-  display: none !important;
-}
-.at-modal {
-  width: min(620px, 100%);
-  max-height: 90vh;
+#auditTrailApp .filter-panel {
+  position: absolute;
+  top: 82px;
+  right: 24px;
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100vh - 105px);
   overflow-y: auto;
-  background: var(--card, #fff);
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 16px;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px #0003;
 }
-.at-modal-header {
+#auditTrailApp .panel-head {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  padding: 20px 22px;
-  border-bottom: 1px solid var(--line, #e6dde9);
+  align-items: flex-start;
+  margin-bottom: 20px;
 }
-.at-modal-header h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 750;
-  color: var(--text, #29232d);
+#auditTrailApp .panel-head h2 {
+  color: var(--p);
+  font-size: 20px;
 }
-.at-modal-header p {
-  margin: 5px 0 0;
-  color: var(--muted, #77717c);
+#auditTrailApp .panel-head p {
+  margin-top: 3px;
+  color: var(--muted);
   font-size: 11px;
 }
-.at-modal-close {
-  width: 30px;
-  height: 30px;
+#auditTrailApp .panel-head button {
+  width: 34px;
+  height: 34px;
   border: 0;
-  border-radius: 7px;
-  background: transparent;
-  color: var(--muted, #77717c);
-  font-size: 22px;
-  line-height: 1;
+  border-radius: 50%;
+  background: var(--surface-alt);
 }
-.at-modal-close:hover {
-  background: var(--line, #e6dde9);
-  color: var(--text, #29232d);
+#auditTrailApp .filter-panel label,
+#auditTrailApp .form-grid label {
+  display: block;
+  margin: 15px 0;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
 }
-.at-modal-body {
-  padding: 21px 22px;
+#auditTrailApp .filter-panel input,
+#auditTrailApp .form-grid input {
+  display: block;
+  width: 100%;
+  height: 43px;
+  margin-top: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
 }
-.at-detail-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+#auditTrailApp .filter-panel > label {
+  margin: 0 0 15px;
 }
-.at-detail-item {
+#auditTrailApp .filter-panel > label > input {
+  margin-top: 7px;
+}
+#auditTrailApp .form-grid input:focus,
+#auditTrailApp .filter-panel input:focus {
+  outline: 0;
+  border-color: var(--primary);
+}
+#auditTrailApp .filter-actions,
+#auditTrailApp .modal-footer {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-  padding: 12px 14px;
-  border: 1px solid var(--line, #e6dde9);
-  border-radius: 8px;
-  background: var(--surface, #fbf9fc);
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
-.at-detail-item span {
-  color: var(--muted, #77717c);
+#auditTrailApp .filter-actions {
+  position: sticky;
+  bottom: -24px;
+  margin: 18px -4px -4px;
+  padding: 14px 4px 4px;
+  background: linear-gradient(transparent, var(--card) 22%);
+  z-index: 2;
+}
+#auditTrailApp .column-filter {
+  margin-top: 5px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+#auditTrailApp .filter-label {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+#auditTrailApp .column-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+#auditTrailApp .column-options label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  cursor: pointer;
+}
+#auditTrailApp .column-options input {
+  appearance: none;
+  width: 17px !important;
+  height: 17px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1.5px solid var(--line) !important;
+  border-radius: 5px !important;
+  background: var(--card) !important;
+  flex: 0 0 17px;
+  position: relative;
+}
+#auditTrailApp .column-options input:checked {
+  background: var(--p) !important;
+  border-color: var(--p) !important;
+}
+#auditTrailApp .column-options input:checked:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+#auditTrailApp .column-options span {
   font-size: 10px;
-  font-weight: 650;
+  color: var(--muted);
 }
-.at-detail-item strong {
-  color: var(--text, #29232d);
-  font-size: 12px;
+#auditTrailApp .modal {
+  width: min(770px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 20px 60px #0003;
+}
+#auditTrailApp .modal-title {
+  margin-bottom: 20px;
+}
+#auditTrailApp .modal-title h2,
+#auditTrailApp .profile-title h2 {
+  font-size: 20px;
+  color: var(--brand);
+}
+#auditTrailApp .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 17px;
+}
+#auditTrailApp .form-grid .full {
+  grid-column: 1/-1;
+}
+#auditTrailApp .form-grid input:disabled {
+  background: var(--surface-alt);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+#auditTrailApp .required-marker {
+  margin-left: 3px;
+  color: var(--danger);
+}
+#auditTrailApp .field-label {
+  display: block;
+  margin: 15px 0 6px;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+#auditTrailApp .account-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 62px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+}
+#auditTrailApp .account-status p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8px;
+}
+#auditTrailApp .toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#auditTrailApp .toggle-row > span,
+#auditTrailApp .account-status > span {
+  font-size: 9px;
   font-weight: 700;
+  color: var(--success);
+}
+#auditTrailApp .toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
+}
+#auditTrailApp .toggle.on {
+  background: var(--success);
+}
+#auditTrailApp .toggle i {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--card);
+  transition: 0.2s;
+}
+#auditTrailApp .toggle.on i {
+  transform: translateX(20px);
+}
+#auditTrailApp .profile-card {
+  padding: 0;
+}
+#auditTrailApp .profile-title {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--line);
+}
+#auditTrailApp .profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+}
+#auditTrailApp .large-avatar {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 22px;
+  font-weight: 700;
+}
+#auditTrailApp .profile-hero h3 {
+  font-size: 20px;
+}
+#auditTrailApp .profile-hero p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+}
+#auditTrailApp .profile-hero p strong {
+  margin-left: 4px;
+  color: var(--text);
+}
+#auditTrailApp .view-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 15px 20px 20px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+#auditTrailApp .close-profile-btn {
+  min-width: 96px;
+  height: 39px;
+}
+html[data-theme="dark"] #auditTrailApp .status-pill.active {
+  background: rgba(34, 160, 107, 0.15);
+  color: #6dd6a2;
+}
+html[data-theme="dark"] #auditTrailApp .toggle-row > span,
+html[data-theme="dark"] #auditTrailApp .account-status > span {
+  color: #6dd6a2;
+}
+html[data-theme="dark"] #auditTrailApp .status-pill.inactive {
+  background: rgba(210, 73, 73, 0.15);
+  color: #ff9292;
+}
+@media (max-width: 850px) {
+  #auditTrailApp .form-grid {
+    grid-template-columns: 1fr;
+  }
+  #auditTrailApp .form-grid .full {
+    grid-column: auto;
+  }
+}
+@media (max-width: 580px) {
+  #auditTrailApp .content-card {
+    padding: 19px 13px;
+  }
+  #auditTrailApp .page-header {
+    flex-direction: column;
+    gap: 13px;
+  }
+  #auditTrailApp .header-actions {
+    width: 100%;
+  }
+  #auditTrailApp .header-actions button {
+    flex: 1;
+  }
+  #auditTrailApp .summary-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #auditTrailApp .summary-tab {
+    min-width: 0;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+  #auditTrailApp .filter-panel {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+  #auditTrailApp .modal-overlay {
+    align-items: flex-end !important;
+    padding: 8px;
+  }
+  #auditTrailApp .modal {
+    border-radius: 20px 20px 10px 10px;
+    padding: 19px;
+  }
+  #auditTrailApp .profile-card {
+    padding: 0;
+  }
+  #auditTrailApp .column-options {
+    grid-template-columns: 1fr;
+  }
+  #auditTrailApp .view-footer {
+    padding: 13px 15px 15px;
+  }
+  #auditTrailApp .close-profile-btn {
+    width: 100%;
+  }
+}
+
+/* ---- System Configuration additions (same tokens as User Access) ---- */
+#auditTrailApp select {
+  font: inherit;
+}
+#auditTrailApp .form-grid textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+  resize: vertical;
+}
+#auditTrailApp .profile-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 0 20px 20px;
+}
+#auditTrailApp .profile-details .full {
+  grid-column: 1/-1;
+}
+#auditTrailApp .profile-details span,
+#auditTrailApp .profile-details strong {
+  display: block;
+}
+#auditTrailApp .profile-details span {
+  color: var(--muted);
+  font-size: 10px;
+}
+#auditTrailApp .profile-details strong {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.55;
   overflow-wrap: anywhere;
 }
-.at-detail-full {
-  grid-column: 1 / -1;
+@media (max-width: 850px) {
+  #auditTrailApp .profile-details {
+    grid-template-columns: 1fr;
+  }
 }
-.at-value-section {
-  margin-top: 20px;
+
+/* Pagination (createTablePagination renders into #atPagination) */
+#auditTrailApp #atPagination,
+#auditTrailApp #atPagination > * {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px 14px;
 }
-.at-value-section h4 {
-  margin: 0 0 8px;
-  color: var(--text, #29232d);
-  font-size: 11px;
-  font-weight: 750;
+#auditTrailApp #atPagination {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 12px;
 }
-.at-value-box {
-  min-height: 48px;
-  padding: 12px;
-  border: 1px solid var(--line, #e6dde9);
+#auditTrailApp #atPagination > * {
+  flex: 1 1 100%;
+}
+#auditTrailApp #atPagination > * > :first-child {
+  margin-right: auto;
+}
+#auditTrailApp #atPagination > * > * {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#auditTrailApp #atPagination button {
+  height: 40px;
+  min-width: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--surface, #fbf9fc);
-  color: var(--muted, #77717c);
-  font-size: 11px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+#auditTrailApp #atPagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+#auditTrailApp #atPagination button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+#auditTrailApp #atPagination select {
+  height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 12px;
+}
+
+/* ---- Audit Trail additions ---- */
+#auditTrailApp .filter-panel select {
+  display: block;
+  width: 100%;
+  height: 43px;
+  margin-top: 6px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+  color: var(--text);
+}
+#auditTrailApp .filter-panel > label > select {
+  margin-top: 7px;
+}
+#auditTrailApp .filter-panel select:focus {
+  outline: 0;
+  border-color: var(--primary);
+}
+#auditTrailApp .table-wrap td.description-cell {
+  min-width: 220px;
+  max-width: 380px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+#auditTrailApp .table-wrap td.time-cell {
+  white-space: nowrap;
+  color: var(--muted);
+}
+#auditTrailApp .action-pill {
+  display: inline-flex;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 700;
+}
+#auditTrailApp .profile-details strong.action-pill {
+  display: inline-flex;
+  margin-top: 4px;
+  font-size: 10px;
+}
+#auditTrailApp .value-box {
+  min-height: 48px;
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface-alt);
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.6;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
-.at-new-value {
-  background: rgba(164, 76, 145, 0.07);
-  border-color: rgba(164, 76, 145, 0.28);
-  color: var(--text, #29232d);
-}
-.at-modal-footer {
-  display: flex;
-  justify-content: flex-end;
-  padding: 14px 22px;
-  border-top: 1px solid var(--line, #e6dde9);
-}
-.at-close-btn {
-  min-height: 37px;
-  padding: 0 19px;
-  border: 1px solid var(--primary, #a44c91);
-  border-radius: 8px;
-  background: var(--primary, #a44c91);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  transition: 0.2s;
-}
-.at-close-btn:hover {
-  background: var(--primary-hover, #873b78);
-  border-color: var(--primary-hover, #873b78);
-}
-
-/* Responsive */
-@media (max-width: 800px) {
-  .at-filter-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 550px) {
-  .at-toolbar {
-    align-items: stretch;
-    flex-direction: column;
-  }
-  .at-filter-toggle {
-    width: 100%;
-  }
-  .at-filter-grid,
-  .at-detail-grid {
-    grid-template-columns: 1fr;
-  }
-  .at-detail-full {
-    grid-column: auto;
-  }
-  .at-summary-card {
-    max-width: none;
-  }
+#auditTrailApp .value-box.new-value {
+  border-color: color-mix(in srgb, var(--primary) 28%, transparent);
+  background: color-mix(in srgb, var(--primary) 7%, var(--card));
+  color: var(--text);
 }

@@ -1,0 +1,723 @@
+#reportTemplatesApp,
+#reportTemplatesApp * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#reportTemplatesApp {
+  --p: var(--primary);
+  --ph: var(--primary-hover);
+  --blue: var(--primary);
+  --cyan: var(--success);
+  --soft: var(--surface-alt);
+  --red: var(--danger);
+}
+#reportTemplatesApp {
+  font-family: Arial, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13px;
+  line-height: normal;
+}
+#reportTemplatesApp button,
+#reportTemplatesApp input,
+#reportTemplatesApp select,
+#reportTemplatesApp textarea {
+  font: inherit;
+}
+#reportTemplatesApp button {
+  cursor: pointer;
+}
+#reportTemplatesApp a {
+  text-decoration: none;
+  color: inherit;
+}
+#reportTemplatesApp .topbar {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  z-index: 1000;
+}
+#reportTemplatesApp .topbar-left,
+#reportTemplatesApp .topbar-right,
+#reportTemplatesApp .brand {
+  display: flex;
+  align-items: center;
+}
+#reportTemplatesApp .topbar-left {
+  gap: 13px;
+}
+#reportTemplatesApp .topbar-right {
+  gap: 13px;
+}
+#reportTemplatesApp .hamburger,
+#reportTemplatesApp .icon-btn {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--p);
+  font-size: 20px;
+}
+#reportTemplatesApp .hamburger:hover,
+#reportTemplatesApp .icon-btn:hover {
+  background: var(--soft);
+}
+#reportTemplatesApp .brand {
+  gap: 8px;
+  color: var(--primary);
+  font-size: 17px;
+  font-weight: 800;
+}
+#reportTemplatesApp .brand img {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+}
+#reportTemplatesApp .profile-wrap {
+  position: relative;
+}
+#reportTemplatesApp .avatar {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--primary), var(--primary));
+  color: var(--card);
+  font-size: 9px;
+  font-weight: 800;
+  cursor: pointer;
+}
+#reportTemplatesApp .profile-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 51px;
+  width: 205px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 0 15px 40px rgba(41, 35, 45, 0.12);
+  overflow: hidden;
+}
+#reportTemplatesApp .profile-menu.show {
+  display: block;
+}
+#reportTemplatesApp .profile-menu a {
+  display: block;
+  padding: 12px 15px;
+}
+#reportTemplatesApp .profile-menu a:hover {
+  background: var(--soft);
+}
+#reportTemplatesApp .sidebar {
+  position: fixed;
+  top: var(--top);
+  left: calc(-1 * var(--side));
+  width: var(--side);
+  height: calc(100vh - var(--top));
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  overflow: auto;
+  transition: 0.28s;
+  z-index: 950;
+}
+#reportTemplatesApp .sidebar.open {
+  left: 0;
+}
+#reportTemplatesApp .menu-item {
+  border-bottom: 1px solid var(--line);
+}
+#reportTemplatesApp .menu-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 18px;
+  cursor: pointer;
+}
+#reportTemplatesApp .menu-head b {
+  color: var(--p);
+  font-size: 10px;
+}
+#reportTemplatesApp .menu-head:hover,
+#reportTemplatesApp .active-menu {
+  background: var(--surface);
+  color: var(--p);
+}
+#reportTemplatesApp .submenu {
+  max-height: 0;
+  overflow: hidden;
+  background: var(--surface);
+  transition: 0.28s;
+}
+#reportTemplatesApp .submenu.active {
+  max-height: 280px;
+}
+#reportTemplatesApp .submenu a {
+  position: relative;
+  display: block;
+  padding: 10px 18px 10px 38px;
+  color: var(--muted);
+}
+#reportTemplatesApp .submenu a:hover,
+#reportTemplatesApp .active-link {
+  background: var(--soft);
+  color: var(--p);
+}
+#reportTemplatesApp .active-link:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--p);
+}
+#reportTemplatesApp .main {
+  margin-top: var(--top);
+  padding: 26px;
+  transition: 0.28s;
+}
+#reportTemplatesApp .main.shifted {
+  margin-left: var(--side);
+}
+#reportTemplatesApp .page-card {
+  min-height: calc(100vh - 125px);
+  padding: 28px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: 0 5px 18px rgba(48, 34, 56, 0.08);
+}
+#reportTemplatesApp .page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+#reportTemplatesApp .page-head h1 {
+  color: var(--p);
+  font-size: 27px;
+  margin-bottom: 4px;
+}
+#reportTemplatesApp .page-head p {
+  color: var(--muted);
+  font-size: 11px;
+}
+#reportTemplatesApp .filter-btn,
+#reportTemplatesApp .primary,
+#reportTemplatesApp .secondary {
+  height: 38px;
+  padding: 0 15px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+#reportTemplatesApp .filter-btn,
+#reportTemplatesApp .secondary {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+}
+#reportTemplatesApp .primary {
+  border: 1px solid var(--p);
+  background: var(--p);
+  color: var(--card);
+}
+#reportTemplatesApp .primary:hover {
+  background: var(--ph);
+}
+#reportTemplatesApp .tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+#reportTemplatesApp .tab {
+  height: 34px;
+  min-width: 78px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+}
+#reportTemplatesApp .tab.active {
+  background: var(--p);
+  border-color: var(--p);
+  color: var(--card);
+}
+#reportTemplatesApp .table-shell {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+#reportTemplatesApp .table-shell table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+#reportTemplatesApp .table-shell thead {
+  background: linear-gradient(92deg, var(--primary), var(--primary-hover));
+  color: var(--card);
+}
+#reportTemplatesApp .table-shell th,
+#reportTemplatesApp .table-shell td {
+  text-align: left;
+  padding: 13px 14px;
+}
+#reportTemplatesApp .table-shell th {
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+#reportTemplatesApp .table-shell td {
+  font-size: 11px;
+  border-bottom: 1px solid var(--line);
+}
+#reportTemplatesApp .table-shell tbody tr:hover {
+  background: var(--surface);
+}
+#reportTemplatesApp .table-shell tbody tr:last-child td {
+  border: 0;
+}
+#reportTemplatesApp .sortable {
+  cursor: pointer;
+}
+#reportTemplatesApp .sortable span {
+  font-size: 7px;
+  margin-left: 3px;
+}
+#reportTemplatesApp .status {
+  display: inline-flex;
+  min-width: 55px;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+}
+#reportTemplatesApp .status.active {
+  background: color-mix(in srgb, var(--success) 14%, var(--card));
+  color: var(--success);
+}
+#reportTemplatesApp .status.inactive {
+  background: color-mix(in srgb, var(--danger) 12%, var(--card));
+  color: var(--danger);
+}
+#reportTemplatesApp .actions {
+  display: flex;
+  gap: 6px;
+}
+#reportTemplatesApp .view-btn,
+#reportTemplatesApp .edit-btn {
+  height: 29px;
+  min-width: 46px;
+  padding: 0 9px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 700;
+}
+#reportTemplatesApp .view-btn {
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+}
+#reportTemplatesApp .edit-btn {
+  border: 1px solid var(--p);
+  background: var(--p);
+  color: var(--card);
+}
+#reportTemplatesApp .empty {
+  display: none;
+  padding: 38px;
+  text-align: center;
+  color: var(--muted);
+}
+#reportTemplatesApp .overlay,
+#reportTemplatesApp .modal-overlay,
+#reportTemplatesApp .notification-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  background: rgba(25, 20, 29, 0.48);
+  backdrop-filter: blur(3px);
+  z-index: 2500;
+}
+#reportTemplatesApp .overlay.show {
+  display: block;
+}
+#reportTemplatesApp .modal-overlay.show,
+#reportTemplatesApp .notification-overlay.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+#reportTemplatesApp .filter-panel {
+  position: absolute;
+  top: 78px;
+  right: 22px;
+  width: min(390px, calc(100vw - 30px));
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportTemplatesApp .panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+#reportTemplatesApp .panel-head h2 {
+  color: var(--p);
+  font-size: 19px;
+}
+#reportTemplatesApp .panel-head p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10.5px;
+}
+#reportTemplatesApp .panel-head button,
+#reportTemplatesApp .view-head > button {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-alt);
+}
+#reportTemplatesApp .filter-panel label,
+#reportTemplatesApp .form-grid label {
+  display: block;
+  margin: 13px 0;
+  color: var(--text);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+#reportTemplatesApp .filter-panel input,
+#reportTemplatesApp .filter-panel select,
+#reportTemplatesApp .form-grid input {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--card);
+}
+#reportTemplatesApp .panel-actions,
+#reportTemplatesApp .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+#reportTemplatesApp .modal {
+  width: min(690px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow: auto;
+  padding: 25px;
+  border-radius: 20px;
+  background: var(--card);
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportTemplatesApp .view-card {
+  padding: 0;
+  overflow: hidden;
+}
+#reportTemplatesApp .view-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 13px;
+  padding: 21px 23px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary) 10%, var(--card)),
+    var(--surface)
+  );
+  border-bottom: 1px solid var(--line);
+}
+#reportTemplatesApp .report-mark {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: linear-gradient(145deg, var(--blue), var(--p));
+  color: var(--card);
+  font-weight: 800;
+}
+#reportTemplatesApp .view-head span {
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  font-weight: 800;
+}
+#reportTemplatesApp .view-head h2 {
+  color: var(--primary);
+  font-size: 20px;
+}
+#reportTemplatesApp .view-head p {
+  color: var(--muted);
+  font-size: 10px;
+}
+#reportTemplatesApp .view-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 20px 23px 0;
+}
+#reportTemplatesApp .view-meta > div {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+}
+#reportTemplatesApp .view-meta span {
+  display: block;
+  color: var(--muted);
+  font-size: 8.5px;
+  font-weight: 700;
+}
+#reportTemplatesApp .view-meta strong {
+  font-size: 12px;
+}
+#reportTemplatesApp .template-preview {
+  margin: 16px 23px 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+#reportTemplatesApp .preview-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  font-weight: 800;
+}
+#reportTemplatesApp .preview-head small {
+  color: var(--muted);
+  font-weight: 500;
+}
+#reportTemplatesApp .preview-body {
+  min-height: 180px;
+  padding: 18px;
+  color: var(--text);
+  font-size: 11px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  background: var(--card);
+}
+#reportTemplatesApp .view-card .modal-actions {
+  margin: 0 23px 23px;
+}
+#reportTemplatesApp .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 14px;
+}
+#reportTemplatesApp .form-grid .full {
+  grid-column: 1/-1;
+}
+#reportTemplatesApp .form-grid input:disabled {
+  background: var(--surface-alt);
+  color: var(--muted);
+}
+#reportTemplatesApp .switch-row {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 5px;
+}
+#reportTemplatesApp .switch {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--line);
+}
+#reportTemplatesApp .switch.on {
+  background: var(--success);
+}
+#reportTemplatesApp .switch i {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--card);
+  transition: 0.2s;
+}
+#reportTemplatesApp .switch.on i {
+  transform: translateX(20px);
+}
+#reportTemplatesApp .switch-row b {
+  font-size: 10px;
+  color: var(--text);
+}
+#reportTemplatesApp .editor-block {
+  margin-top: 17px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+#reportTemplatesApp .editor-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--line);
+}
+#reportTemplatesApp .editor-head h3 {
+  font-size: 12px;
+  color: var(--p);
+}
+#reportTemplatesApp .editor-head p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 8.5px;
+}
+#reportTemplatesApp .editor-tools {
+  display: flex;
+  gap: 5px;
+}
+#reportTemplatesApp .editor-tools button {
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  font-size: 9px;
+}
+#reportTemplatesApp .editor-block textarea {
+  display: block;
+  width: 100%;
+  min-height: 260px;
+  padding: 15px;
+  border: 0;
+  outline: 0;
+  resize: vertical;
+  color: var(--text);
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+}
+#reportTemplatesApp .editor-foot {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 8px;
+}
+#reportTemplatesApp .notice-box {
+  width: min(480px, 100%);
+  padding: 22px;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(41, 35, 45, 0.18);
+}
+#reportTemplatesApp .notice {
+  padding: 11px;
+  margin-bottom: 8px;
+  border-left: 4px solid var(--success);
+  border-radius: 7px;
+  background: var(--surface);
+  font-size: 10px;
+}
+#reportTemplatesApp footer {
+  text-align: center;
+  padding: 14px;
+  color: var(--muted);
+  font-size: 9px;
+}
+@media (max-width: 800px) {
+  #reportTemplatesApp .main.shifted {
+    margin-left: 0;
+  }
+  #reportTemplatesApp .form-grid {
+    grid-template-columns: 1fr;
+  }
+  #reportTemplatesApp .form-grid .full {
+    grid-column: auto;
+  }
+}
+@media (max-width: 560px) {
+  #reportTemplatesApp .topbar {
+    padding: 0 13px;
+  }
+  #reportTemplatesApp .brand span {
+    font-size: 15px;
+  }
+  #reportTemplatesApp .main {
+    padding: 13px;
+  }
+  #reportTemplatesApp .page-card {
+    padding: 18px 13px;
+  }
+  #reportTemplatesApp .page-head {
+    flex-direction: column;
+    gap: 14px;
+  }
+  #reportTemplatesApp .filter-btn {
+    width: 100%;
+  }
+  #reportTemplatesApp .tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #reportTemplatesApp .tab {
+    min-width: 0;
+  }
+  #reportTemplatesApp .filter-panel {
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+  #reportTemplatesApp .modal-overlay {
+    align-items: flex-end !important;
+    padding: 8px;
+  }
+  #reportTemplatesApp .modal {
+    border-radius: 20px 20px 10px 10px;
+    padding: 19px;
+  }
+  #reportTemplatesApp .view-card {
+    padding: 0;
+  }
+  #reportTemplatesApp .view-meta {
+    grid-template-columns: 1fr;
+  }
+  #reportTemplatesApp .editor-head {
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+  }
+  #reportTemplatesApp .editor-foot {
+    gap: 8px;
+    flex-direction: column;
+  }
+}

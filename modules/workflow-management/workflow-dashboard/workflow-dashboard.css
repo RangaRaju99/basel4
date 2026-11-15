@@ -1,0 +1,575 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Fallback design tokens. :where() keeps specificity at 0, so if the host app
+   defines these variables (as the manage-roles / manage-users modules expect),
+   the host values always win. These apply only when the host has none. */
+:where(:root) {
+    --brand: #3a2a47;
+    --primary: #5b3f73;
+    --primary-hover: #6e4d8a;
+    --bg: #f6f3f8;
+    --card: #ffffff;
+    --surface-alt: #f1ecf5;
+    --line: #e3dbe9;
+    --text: #2a2130;
+    --muted: #70657a;
+    --success: #16877a;
+    --danger: #c74747;
+}
+
+/* ---- Module base (same pattern as manage-roles.css) ---- */
+#workflowApp,
+#workflowApp * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#workflowApp {
+    --p: var(--primary);
+    --ph: var(--primary-hover);
+    --soft: var(--surface-alt);
+    --surface: var(--card);
+    --side: 260px;
+}
+
+#workflowApp {
+    font-family: Poppins, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+}
+
+#workflowApp button,
+#workflowApp input,
+#workflowApp select,
+#workflowApp textarea {
+    font: inherit;
+}
+
+#workflowApp button {
+    cursor: pointer;
+}
+
+#workflowApp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---- Module header + breadcrumb ---- */
+#workflowApp .wf-module-header {
+    margin-bottom: 16px;
+    padding: 22px 26px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--brand), var(--primary), var(--primary-hover));
+    color: #fff;
+    box-shadow: 0 5px 18px rgba(48, 34, 56, .08);
+}
+
+#workflowApp .wf-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#workflowApp .wf-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    opacity: .8;
+}
+
+#workflowApp .wf-module-header h2 {
+    margin-bottom: 4px;
+    font-size: 24px;
+}
+
+#workflowApp .wf-module-header p {
+    font-size: 12px;
+    opacity: .85;
+}
+
+#workflowApp .wf-header-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .16);
+    font-size: 22px;
+}
+
+#workflowApp .wf-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+#workflowApp .wf-breadcrumb button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+#workflowApp .wf-breadcrumb button:hover {
+    color: var(--p);
+}
+
+#workflowApp .wf-breadcrumb-separator {
+    opacity: .5;
+}
+
+#workflowApp .wf-breadcrumb-current {
+    color: var(--p);
+    font-weight: 600;
+}
+
+/* ---- Reference content styles (values from manage-roles.css) ---- */
+#workflowApp .content-card {
+    min-height: calc(100vh - 140px);
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 5px 18px rgba(48, 34, 56, .08);
+}
+
+#workflowApp .content-card h2 {
+    font-size: 20px;
+    color: var(--brand);
+}
+
+#workflowApp .page-header {
+    margin-bottom: 25px;
+}
+
+#workflowApp .page-header h1 {
+    font-size: 31px;
+    color: var(--p);
+    margin-bottom: 6px;
+}
+
+#workflowApp .page-header p {
+    color: var(--muted);
+}
+
+#workflowApp .role-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 23px;
+}
+
+#workflowApp .search-box {
+    width: min(440px, 43vw);
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    transition: .18s;
+}
+
+#workflowApp .search-box:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+#workflowApp .search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 11px;
+}
+
+#workflowApp .table-wrap {
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+}
+
+#workflowApp .table-wrap table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+#workflowApp .table-wrap thead {
+    background: linear-gradient(135deg, var(--brand), var(--primary), var(--primary-hover));
+    color: #fff;
+}
+
+#workflowApp .table-wrap th,
+#workflowApp .table-wrap td {
+    text-align: left;
+    padding: 15px;
+}
+
+#workflowApp .table-wrap th {
+    font-size: 12px;
+}
+
+#workflowApp .table-wrap td {
+    font-size: 12.5px;
+    border-bottom: 1px solid var(--line);
+}
+
+#workflowApp .table-wrap tbody tr:hover {
+    background: var(--surface-alt);
+}
+
+#workflowApp .table-wrap tbody tr:last-child td {
+    border: 0;
+}
+
+#workflowApp .table-wrap .version-table,
+#workflowApp .table-wrap .history-table {
+    min-width: 0;
+}
+
+#workflowApp .table-wrap .report-table {
+    min-width: 800px;
+}
+
+#workflowApp .actions-head {
+    text-align: center !important;
+}
+
+#workflowApp .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+#workflowApp .action-buttons button {
+    height: 33px;
+    min-width: 58px;
+    padding: 0 11px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#workflowApp .view-btn {
+    border: 1px solid var(--line);
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+#workflowApp .primary,
+#workflowApp .secondary {
+    height: 42px;
+    padding: 0 17px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+#workflowApp .secondary {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--text);
+}
+
+#workflowApp .primary {
+    border: 1px solid var(--p);
+    background: var(--p);
+    color: #fff;
+}
+
+#workflowApp .primary:hover {
+    background: var(--ph);
+}
+
+#workflowApp .modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgba(25, 20, 29, .48);
+    backdrop-filter: blur(3px);
+    z-index: 2500;
+}
+
+#workflowApp .modal-overlay.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#workflowApp .modal {
+    position: relative;
+    width: min(770px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--card);
+    box-shadow: 0 20px 60px #0003;
+}
+
+#workflowApp .edit-layout {
+    padding: 25px;
+}
+
+#workflowApp .modal-title {
+    margin-bottom: 20px;
+}
+
+#workflowApp .modal-title h2 {
+    font-size: 20px;
+    color: var(--brand);
+}
+
+#workflowApp .profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+#workflowApp .profile-details>div:first-child {
+    grid-column: 1 / -1;
+}
+
+#workflowApp .profile-details span,
+#workflowApp .profile-details strong {
+    display: block;
+}
+
+#workflowApp .profile-details span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+#workflowApp .profile-details strong {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+#workflowApp .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+#workflowApp .close-btn {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 24px;
+    line-height: 1;
+}
+
+#workflowApp .close-btn:hover {
+    background: var(--soft);
+    color: var(--p);
+}
+
+@media (max-width: 850px) {
+    #workflowApp .role-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #workflowApp .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 580px) {
+    #workflowApp .content-card {
+        padding: 19px 13px;
+    }
+
+    #workflowApp .modal-overlay {
+        align-items: flex-end !important;
+        padding: 8px;
+    }
+
+    #workflowApp .modal {
+        border-radius: 20px 20px 10px 10px;
+    }
+
+    #workflowApp .profile-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- Page-specific additions ---- */
+
+/* ---------- Workflow Management page ---------- */
+
+#workflowApp .workflow-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 10px 0 15px;
+    overflow-x: auto;
+    padding: 5px 0 15px;
+}
+
+#workflowApp .workflow-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    text-align: center;
+}
+
+#workflowApp .workflow-step p {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+#workflowApp .workflow-step .circle {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--line);
+    border-radius: 50%;
+    background: var(--surface-alt);
+    color: var(--muted);
+    font-weight: 700;
+}
+
+#workflowApp .workflow-step.completed .circle {
+    background: var(--p);
+    border-color: var(--p);
+    color: #fff;
+}
+
+#workflowApp .workflow-step.completed p,
+#workflowApp .workflow-step.current p {
+    color: var(--text);
+}
+
+#workflowApp .workflow-step.current .circle {
+    background: var(--card);
+    border-color: var(--p);
+    color: var(--p);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--primary) 14%, transparent);
+}
+
+#workflowApp .workflow-line {
+    width: 55px;
+    height: 4px;
+    flex-shrink: 0;
+    background: var(--line);
+    border-radius: 10px;
+}
+
+#workflowApp .workflow-line.completed {
+    background: var(--p);
+}
+
+#workflowApp .workflow-details {
+    margin-top: 25px;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+#workflowApp .workflow-details p {
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: var(--text);
+}
+
+#workflowApp .workflow-details p:last-child {
+    margin: 0;
+}
+
+#workflowApp .workflow-details strong {
+    margin-right: 4px;
+    color: var(--p);
+}
+
+#workflowApp .workflow-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 24px 0 32px;
+}
+
+#workflowApp .rework-btn {
+    background: var(--danger);
+    border-color: var(--danger);
+}
+
+#workflowApp .rework-btn:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    filter: brightness(1.1);
+}
+
+#workflowApp .approve-btn:disabled,
+#workflowApp .rework-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+#workflowApp .table-wrap {
+    margin-top: 16px;
+}
+
+#workflowApp .approved {
+    color: var(--success);
+    font-weight: 600;
+}
+
+#workflowApp .rework {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+@media (max-width: 850px) {
+    #workflowApp .workflow-step {
+        min-width: 100px;
+    }
+
+    #workflowApp .workflow-line {
+        width: 35px;
+    }
+}
+
+@media (max-width: 580px) {
+    #workflowApp .workflow-buttons {
+        flex-direction: column;
+    }
+
+    #workflowApp .workflow-buttons button {
+        width: 100%;
+    }
+}

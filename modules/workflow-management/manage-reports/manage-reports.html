@@ -1,0 +1,253 @@
+<section class="mrp-module" id="manageReportsApp">
+
+    <!-- Module Header -->
+    <header class="mrp-module-header">
+        <div class="mrp-header-content">
+            <div>
+                <span class="mrp-eyebrow">WORKFLOW MANAGEMENT</span>
+                <h2>Manage Reports</h2>
+                <p>View, search and manage reports, their status and version history.</p>
+            </div>
+
+            <div class="mrp-header-icon">
+                <i class="fa-solid fa-file-lines"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="mrp-breadcrumb" id="mrpBreadcrumb" aria-label="Breadcrumb">
+        <button type="button" data-mrp-crumb="workspace">
+            Workspace
+        </button>
+
+        <span class="mrp-breadcrumb-separator">/</span>
+
+        <button type="button" data-mrp-crumb="workflow">
+            Workflow Management
+        </button>
+
+        <span class="mrp-breadcrumb-separator">/</span>
+
+        <span class="mrp-breadcrumb-current" id="mrpBreadcrumbCurrent">
+            Manage Reports
+        </span>
+    </nav>
+
+    <!-- Module Content -->
+    <div class="mrp-content" id="mrpContent">
+
+        <section class="content-card">
+
+            <div class="page-header">
+                <h1>Manage Reports</h1>
+                <p>Search reports, review their status and view version history.</p>
+            </div>
+
+            <div class="report-summary">
+
+                <div class="summary-card">
+                    <h2>24</h2>
+                    <p>Total Reports</p>
+                </div>
+
+                <div class="summary-card">
+                    <h2>6</h2>
+                    <p>Draft</p>
+                </div>
+
+                <div class="summary-card">
+                    <h2>8</h2>
+                    <p>In Progress</p>
+                </div>
+
+                <div class="summary-card">
+                    <h2>10</h2>
+                    <p>Published</p>
+                </div>
+
+            </div>
+
+            <div class="role-toolbar filters">
+
+                <div class="search-box">
+                    <input type="text" id="reportSearch" placeholder="Search Report ID or Name"
+                        aria-label="Search Report ID or Name">
+                </div>
+
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="All Reports">All Reports</option>
+                    <option value="Draft">Draft</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Published">Published</option>
+                    <option value="Finance Review">Finance Review</option>
+                </select>
+
+                <button type="button" class="primary search-btn" id="searchReportsBtn">
+                    Search
+                </button>
+
+            </div>
+
+            <div class="table-wrap">
+
+                <table class="report-table">
+
+                    <thead>
+                        <tr>
+                            <th>Report ID</th>
+                            <th>Report Name</th>
+                            <th>Version</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                            <th>Last Updated</th>
+                            <th class="actions-head">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportsTable">
+
+                        <tr class="reportRow">
+                            <td>REP-001</td>
+                            <td>Capital Adequacy Report</td>
+                            <td>V1.0</td>
+                            <td>Risk Team</td>
+                            <td>Published</td>
+                            <td>12-Nov-2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button type="button" class="view-report view-btn" data-id="REP-001">
+                                        View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="reportRow">
+                            <td>REP-002</td>
+                            <td>Liquidity Coverage Report</td>
+                            <td>V2.0</td>
+                            <td>Finance Team</td>
+                            <td>Finance Review</td>
+                            <td>13-Nov-2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button type="button" class="view-report view-btn" data-id="REP-002">
+                                        View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="reportRow">
+                            <td>REP-003</td>
+                            <td>Leverage Ratio Report</td>
+                            <td>V1.2</td>
+                            <td>Compliance Team</td>
+                            <td>Draft</td>
+                            <td>13-Nov-2026</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button type="button" class="view-report view-btn" data-id="REP-003">
+                                        View
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <p id="noResults" style="display:none; margin-top:15px">
+                No reports match your search.
+            </p>
+
+            <h2 class="version-heading">Version History</h2>
+
+            <div class="table-wrap">
+
+                <table class="version-table">
+
+                    <thead>
+                        <tr>
+                            <th>Version</th>
+                            <th>Updated By</th>
+                            <th>Date</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>V1.0</td>
+                            <td>Maker</td>
+                            <td>10-Nov-2026</td>
+                            <td>Initial Creation</td>
+                        </tr>
+
+                        <tr>
+                            <td>V1.1</td>
+                            <td>Risk Analyst</td>
+                            <td>11-Nov-2026</td>
+                            <td>Risk Validation Completed</td>
+                        </tr>
+
+                        <tr>
+                            <td>V1.2</td>
+                            <td>Finance Approver</td>
+                            <td>12-Nov-2026</td>
+                            <td>Finance Review Completed</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Report details popup -->
+        <div class="modal-overlay" id="reportDetailsPopup">
+
+            <div class="modal edit-layout" role="dialog" aria-modal="true" aria-labelledby="reportDetailsTitle">
+
+                <button type="button" class="close-btn" id="closeReportDetails" aria-label="Close">×</button>
+
+                <div class="modal-title">
+                    <h2 id="reportDetailsTitle">Report Details</h2>
+                </div>
+
+                <div class="profile-details">
+                    <div>
+                        <span>Report ID</span>
+                        <strong id="popupReportId"></strong>
+                    </div>
+
+                    <div>
+                        <span>Report Name</span>
+                        <strong id="popupReportName"></strong>
+                    </div>
+
+                    <div>
+                        <span>Version</span>
+                        <strong id="popupVersion"></strong>
+                    </div>
+
+                    <div>
+                        <span>Status</span>
+                        <strong id="popupStatus"></strong>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="primary" id="downloadReport">Download Report</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
