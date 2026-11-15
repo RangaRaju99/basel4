@@ -73,10 +73,16 @@
         <label>Report Code<input id="editCode" disabled></label>
         <label>Report Name<input id="editName"></label>
         <label class="full">Description<textarea id="editDescription" rows="3"></textarea></label>
-        <label class="full">Status
+        <label>Default Reporting Frequency
+          <select id="editFrequency">
+            <option>Daily</option><option>Weekly</option><option>Monthly</option>
+            <option>Quarterly</option><option>Half-Yearly</option><option>Annual</option><option>Ad-hoc</option>
+          </select>
+        </label>
+        <label>Status
           <div class="switch-row">
-            <button id="editStatus" class="switch" role="switch"><i></i></button>
             <b id="editStatusText"></b>
+            <button id="editStatus" class="switch" type="button" role="switch" aria-label="Toggle template status"><i></i></button>
           </div>
         </label>
       </div>

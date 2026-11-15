@@ -411,6 +411,9 @@
   --red: var(--danger);
   --amber: var(--warning);
   --blue: var(--primary);
+  --status-draft: #7c3aed;
+  --status-submitted: #0f766e;
+  --status-overdue: var(--red);
 }
 #reportingCalendarApp {
   font-family: Poppins, Arial, sans-serif;
@@ -610,6 +613,16 @@
 #reportingCalendarApp .page-subtitle {
   color: var(--muted);
 }
+#reportingCalendarApp .sample-preview-notice {
+  max-width: 620px;
+  margin-top: 8px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--primary) 8%, var(--card));
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
 #reportingCalendarApp .page-actions {
   display: flex;
   gap: 10px;
@@ -755,19 +768,13 @@
   background: var(--line);
 }
 #reportingCalendarApp .legend .draft:before {
-  background: var(--blue);
-}
-#reportingCalendarApp .legend .review:before {
-  background: var(--amber);
-}
-#reportingCalendarApp .legend .approved:before {
-  background: var(--success);
+  background: var(--status-draft);
 }
 #reportingCalendarApp .legend .submitted:before {
-  background: var(--p);
+  background: var(--status-submitted);
 }
 #reportingCalendarApp .legend .overdue:before {
-  background: var(--red);
+  background: var(--status-overdue);
 }
 #reportingCalendarApp .weekdays,
 #reportingCalendarApp .calendar-grid {
@@ -821,35 +828,30 @@
   margin: 4px 0;
   padding: 5px 7px;
   border: 0;
-  border-left: 3px solid var(--blue);
+  border-left: 3px solid var(--status-draft);
   border-radius: 6px;
   background: color-mix(in srgb, var(--primary) 11%, var(--card));
-  color: var(--primary);
+  color: var(--status-draft);
   text-align: left;
   font-size: 9.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-#reportingCalendarApp .event.in-review {
-  border-color: var(--amber);
-  background: color-mix(in srgb, var(--warning) 13%, var(--card));
-  color: var(--warning);
-}
-#reportingCalendarApp .event.approved {
-  border-color: var(--success);
-  background: color-mix(in srgb, var(--success) 12%, var(--card));
-  color: var(--primary-hover);
+#reportingCalendarApp .event.draft {
+  border-color: var(--status-draft);
+  background: color-mix(in srgb, var(--status-draft) 12%, var(--card));
+  color: var(--status-draft);
 }
 #reportingCalendarApp .event.submitted {
-  border-color: var(--p);
-  background: color-mix(in srgb, var(--success) 16%, var(--card));
-  color: var(--p);
+  border-color: var(--status-submitted);
+  background: color-mix(in srgb, var(--status-submitted) 12%, var(--card));
+  color: var(--status-submitted);
 }
 #reportingCalendarApp .event.overdue {
-  border-color: var(--red);
-  background: color-mix(in srgb, var(--danger) 12%, var(--card));
-  color: var(--red);
+  border-color: var(--status-overdue);
+  background: color-mix(in srgb, var(--status-overdue) 12%, var(--card));
+  color: var(--status-overdue);
 }
 #reportingCalendarApp .more-events {
   width: 100%;
@@ -912,24 +914,28 @@
   font-weight: 700;
 }
 #reportingCalendarApp .status.draft {
-  background: color-mix(in srgb, var(--primary) 12%, var(--card));
-  color: var(--primary);
-}
-#reportingCalendarApp .status.in-review {
-  background: color-mix(in srgb, var(--warning) 12%, var(--card));
-  color: var(--warning);
-}
-#reportingCalendarApp .status.approved {
-  background: color-mix(in srgb, var(--success) 12%, var(--card));
-  color: var(--primary-hover);
+  background: color-mix(in srgb, var(--status-draft) 12%, var(--card));
+  color: var(--status-draft);
 }
 #reportingCalendarApp .status.submitted {
-  background: color-mix(in srgb, var(--success) 14%, var(--card));
-  color: var(--primary);
+  background: color-mix(in srgb, var(--status-submitted) 14%, var(--card));
+  color: var(--status-submitted);
 }
 #reportingCalendarApp .status.overdue {
-  background: color-mix(in srgb, var(--danger) 12%, var(--card));
-  color: var(--danger);
+  background: color-mix(in srgb, var(--status-overdue) 12%, var(--card));
+  color: var(--status-overdue);
+}
+#reportingCalendarApp #statusFilter.status-draft {
+  border-color: var(--status-draft);
+  color: var(--status-draft);
+}
+#reportingCalendarApp #statusFilter.status-submitted {
+  border-color: var(--status-submitted);
+  color: var(--status-submitted);
+}
+#reportingCalendarApp #statusFilter.status-overdue {
+  border-color: var(--status-overdue);
+  color: var(--status-overdue);
 }
 #reportingCalendarApp .deadline {
   font-weight: 600;
@@ -1088,48 +1094,6 @@
   font-weight: 600;
   margin-bottom: 2px;
 }
-#reportingCalendarApp .workflow {
-  margin-top: 22px;
-  padding-top: 18px;
-  border-top: 1px solid var(--line);
-}
-#reportingCalendarApp .workflow h3 {
-  color: var(--p);
-  font-size: 14px;
-  margin-bottom: 14px;
-}
-#reportingCalendarApp .workflow-step {
-  position: relative;
-  padding: 0 0 18px 30px;
-  color: var(--muted);
-  font-size: 12px;
-}
-#reportingCalendarApp .workflow-step:before {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 2px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--line);
-}
-#reportingCalendarApp .workflow-step:not(:last-child):after {
-  content: "";
-  position: absolute;
-  left: 9px;
-  top: 16px;
-  width: 1px;
-  height: 18px;
-  background: var(--line);
-}
-#reportingCalendarApp .workflow-step.completed:before {
-  background: var(--primary-hover);
-}
-#reportingCalendarApp .workflow-step.current:before {
-  background: var(--amber);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--warning) 12%, var(--card));
-}
 #reportingCalendarApp .day-events {
   display: grid;
   gap: 9px;
@@ -1154,6 +1118,10 @@
   font-size: 10.5px;
   color: var(--muted);
   margin-top: 2px;
+}
+#reportingCalendarApp .day-event .status {
+  display: inline-flex;
+  margin-top: 8px;
 }
 #reportingCalendarApp .notification-popup {
   width: min(510px, 100%);
@@ -1343,6 +1311,23 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 17px;
 }
+#reportingCalendarApp .request-form-sections {
+  display: grid;
+  gap: 16px;
+}
+#reportingCalendarApp .request-form-section + .request-form-section {
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+#reportingCalendarApp .request-form-section h3,
+#reportingCalendarApp .template-snapshot h3 {
+  color: var(--p);
+  font-size: 13px;
+  font-weight: 700;
+}
+#reportingCalendarApp .request-form-section .request-form-grid {
+  margin-top: 5px;
+}
 #reportingCalendarApp .request-form-grid label,
 #reportingCalendarApp .filter-panel label {
   display: block;
@@ -1377,6 +1362,64 @@
   background: var(--surface-alt);
   color: var(--muted);
 }
+#reportingCalendarApp th.sortable {
+  cursor: pointer;
+  white-space: nowrap;
+}
+#reportingCalendarApp th.sortable:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#reportingCalendarApp .priority {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+}
+#reportingCalendarApp .priority.low {
+  background: color-mix(in srgb, var(--status-submitted) 12%, var(--card));
+  color: var(--status-submitted);
+}
+#reportingCalendarApp .priority.medium {
+  background: color-mix(in srgb, var(--primary) 10%, var(--card));
+  color: var(--primary);
+}
+#reportingCalendarApp .priority.high,
+#reportingCalendarApp .priority.critical {
+  background: color-mix(in srgb, var(--status-overdue) 12%, var(--card));
+  color: var(--status-overdue);
+}
+#reportingCalendarApp .report-meta strong {
+  display: block;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+#reportingCalendarApp .template-snapshot {
+  margin-top: 20px;
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+}
+#reportingCalendarApp .template-snapshot .report-meta {
+  margin-top: 11px;
+}
+#reportingCalendarApp .template-snapshot pre {
+  max-height: 230px;
+  overflow: auto;
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
 #reportingCalendarApp .required-marker {
   color: var(--danger);
 }
@@ -1402,15 +1445,6 @@
   border: 1px solid var(--line);
   background: var(--card);
   color: var(--text);
-}
-#reportingCalendarApp .request-extra-meta:empty {
-  display: none;
-}
-#reportingCalendarApp .request-extra-meta:not(:empty) {
-  margin-top: 12px;
-}
-#reportingCalendarApp .request-extra-meta strong {
-  overflow-wrap: anywhere;
 }
 #reportingCalendarApp .notification-overlay.show {
   display: flex;
@@ -1463,7 +1497,7 @@
   }
   #reportingCalendarApp .report-summary > .report-head,
   #reportingCalendarApp .report-summary > .report-meta,
-  #reportingCalendarApp .report-summary > .workflow,
+  #reportingCalendarApp .report-summary > .template-snapshot,
   #reportingCalendarApp .report-summary > .modal-actions {
     margin-left: 19px;
     margin-right: 19px;
