@@ -178,7 +178,10 @@ rra: {
 
         "calculation-repository": { R: true },
 
-        "risk-reconciliation": { R: true },
+        "risk-reconciliation": {
+            C: true,
+            R: true
+        },
 
         "variance-analysis": {
             C: true,

@@ -1,7 +1,8 @@
 /* =========================================================
    BASELTRACK - NAVIGATION & MODULE MANAGEMENT
-   Works with direct file opening (file://). No fetch(), no iframe.
-   Module HTML comes from <template> elements in workspace.html.
+    Supports direct file opening and served workspaces.
+    Module HTML normally comes from <template> elements; routes with an
+    external HTML path load that file over HTTP and retain an inline fallback.
    Role permissions come from permissions.js.
    ========================================================= */
 
@@ -98,8 +99,13 @@
             template: "calculationRepositoryTemplate",
             init: "initCalculationRepositoryModule"
         },
+        "risk-reconciliation": {
+            template: "riskReconciliationTemplate",
+            init: "initRiskReconciliationModule"
+        },
         "variance-analysis": {
             template: "varianceAnalysisTemplate",
+            html: "modules/reconciliation/variance-analysis/variance-analysis.html",
             init: "initVarianceAnalysisModule"
         },
         "exception-management": {
@@ -166,6 +172,7 @@
         "leverage-calculation": "Leverage Calculation",
         "calculation-repository": "Calculation Repository",
 
+        "risk-reconciliation": "Risk Reconciliation",
         "variance-analysis": "Variance Analysis",
         "exception-management": "Exception Management",
         "investigation": "Investigation",
@@ -323,6 +330,8 @@
             return;
         }
 
+        moduleView.dataset.page = pageId;
+
         if (pageId === "dashboard") {
             moduleView.hidden = true;
             moduleView.innerHTML = "";
@@ -380,19 +389,44 @@
                 return;
             }
 
-            moduleView.innerHTML = "";
-            moduleView.appendChild(
-                template.content.cloneNode(true)
-            );
+            function mountModule(markup) {
+                if (moduleView.dataset.page !== pageId) {
+                    return;
+                }
 
-            if (typeof window[moduleConfig.init] === "function") {
-                window[moduleConfig.init]();
+                const content = document.createElement("template");
+                content.innerHTML = markup;
+                moduleView.replaceChildren(content.content.cloneNode(true));
+
+                if (typeof window[moduleConfig.init] === "function") {
+                    window[moduleConfig.init]();
+                } else {
+                    console.error(
+                        "BaselTrack: " +
+                        moduleConfig.init +
+                        "() was not found."
+                    );
+                }
+            }
+
+            const fallbackMarkup = template.innerHTML;
+
+            if (moduleConfig.html && window.location.protocol !== "file:") {
+                moduleView.innerHTML = '<div class="mr-panel" style="padding:30px;">Loading module…</div>';
+                fetch(moduleConfig.html)
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error("Unable to load " + moduleConfig.html);
+                        }
+                        return response.text();
+                    })
+                    .then(mountModule)
+                    .catch(function (error) {
+                        console.warn("BaselTrack: using inline module fallback.", error);
+                        mountModule(fallbackMarkup);
+                    });
             } else {
-                console.error(
-                    "BaselTrack: " +
-                    moduleConfig.init +
-                    "() was not found."
-                );
+                mountModule(fallbackMarkup);
             }
 
             return;

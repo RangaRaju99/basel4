@@ -1,0 +1,92 @@
+/* BaselTrack reconciliation module styles. Scoped so the workspace shell stays untouched. */
+#riskReconciliationApp,
+#riskReconciliationApp * { box-sizing: border-box; }
+
+#riskReconciliationApp {
+    padding: 24px;
+    color: var(--text-primary, #263247);
+    font-family: Poppins, Arial, sans-serif;
+}
+
+#riskReconciliationApp h2,
+#riskReconciliationApp h3,
+#riskReconciliationApp p { margin-top: 0; }
+
+#riskReconciliationApp .rr-header,
+#riskReconciliationApp .rr-section-heading,
+#riskReconciliationApp .rr-table-toolbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+#riskReconciliationApp .rr-header { margin-bottom: 22px; }
+#riskReconciliationApp .rr-breadcrumb { margin-bottom: 9px; color: #8490a3; font-size: 13px; }
+#riskReconciliationApp .rr-breadcrumb span { margin: 0 8px; }
+#riskReconciliationApp .rr-header h2 { margin-bottom: 7px; font-size: 25px; font-weight: 700; }
+#riskReconciliationApp .rr-header p,
+#riskReconciliationApp .rr-section-heading p,
+#riskReconciliationApp .rr-table-toolbar p { margin-bottom: 0; color: #8490a3; font-size: 13px; }
+#riskReconciliationApp .rr-header-icon { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; border-radius: 12px; background: #e8f2ed; color: #23764d; font-size: 23px; }
+#riskReconciliationApp .rr-card,
+#riskReconciliationApp .rr-kpi { border: 1px solid var(--border-color, #e5e9ef); border-radius: 12px; background: var(--panel-bg, var(--card, #fff)); }
+#riskReconciliationApp .rr-card { margin-bottom: 18px; padding: 20px; }
+#riskReconciliationApp .rr-section-heading { margin-bottom: 18px; }
+#riskReconciliationApp .rr-section-heading h3,
+#riskReconciliationApp .rr-table-toolbar h3 { margin-bottom: 5px; font-size: 16px; font-weight: 700; }
+#riskReconciliationApp .rr-filter-grid { display: grid; grid-template-columns: repeat(3, minmax(150px, 1fr)) auto; align-items: end; gap: 14px; }
+#riskReconciliationApp .rr-field { display: grid; gap: 7px; color: var(--text-primary, #263247); font-size: 13px; font-weight: 600; }
+#riskReconciliationApp .rr-field input,
+#riskReconciliationApp .rr-field select { width: 100%; height: 42px; padding: 0 11px; border: 1px solid var(--border-color, #dce2e9); border-radius: 8px; outline: none; background: var(--input-bg, var(--card, #fff)); color: var(--text-primary, #263247); font: inherit; font-weight: 400; }
+#riskReconciliationApp .rr-field input:focus,
+#riskReconciliationApp .rr-field select:focus { border-color: #27845b; box-shadow: 0 0 0 3px rgba(39, 132, 91, .1); }
+#riskReconciliationApp .rr-actions,
+#riskReconciliationApp .rr-table-actions { display: flex; align-items: center; gap: 9px; }
+#riskReconciliationApp .rr-button { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; gap: 7px; padding: 0 13px; border: 1px solid transparent; border-radius: 8px; font: inherit; font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; cursor: pointer; }
+#riskReconciliationApp .rr-primary { background: #23764d; color: #fff; }
+#riskReconciliationApp .rr-primary:hover { background: #195d3b; }
+#riskReconciliationApp .rr-secondary { border-color: var(--border-color, #dce2e9); background: var(--panel-bg, #fff); color: var(--text-primary, #263247); }
+#riskReconciliationApp .rr-secondary:hover:not(:disabled) { border-color: #27845b; background: #f3f8f5; }
+#riskReconciliationApp .rr-secondary:disabled { cursor: not-allowed; opacity: .5; }
+#riskReconciliationApp .rr-link { background: #edf5f0; color: #23764d; }
+#riskReconciliationApp .rr-helper { margin: 13px 0 0; color: #8490a3; font-size: 12px; }
+#riskReconciliationApp .rr-message { margin: 12px 0 0; color: #23764d; font-size: 13px; font-weight: 600; }
+#riskReconciliationApp .rr-message.error { color: #b42318; }
+#riskReconciliationApp .rr-kpis { display: grid; grid-template-columns: repeat(5, minmax(120px, 1fr)); gap: 12px; margin-bottom: 18px; }
+#riskReconciliationApp .rr-kpi { display: grid; min-height: 94px; align-content: space-between; gap: 10px; padding: 15px 16px; }
+#riskReconciliationApp .rr-kpi span { color: #8490a3; font-size: 12px; font-weight: 600; }
+#riskReconciliationApp .rr-kpi strong { overflow: hidden; color: var(--text-primary, #263247); font-size: 23px; text-overflow: ellipsis; white-space: nowrap; }
+#riskReconciliationApp .rr-kpi-warning strong { color: #c98220; }
+#riskReconciliationApp .rr-table-toolbar { align-items: center; margin-bottom: 14px; }
+#riskReconciliationApp .rr-table-wrap { width: 100%; overflow-x: auto; }
+#riskReconciliationApp .rr-table { width: 100%; min-width: 900px; border-collapse: collapse; text-align: left; }
+#riskReconciliationApp .rr-table th,
+#riskReconciliationApp .rr-table td { padding: 12px 13px; border-bottom: 1px solid var(--border-color, #e8ebef); font-size: 13px; }
+#riskReconciliationApp .rr-table th { background: var(--table-head-bg, #f6f8fa); color: #657187; font-size: 11px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; white-space: nowrap; }
+#riskReconciliationApp .rr-table tbody tr:last-child td { border-bottom: 0; }
+#riskReconciliationApp .rr-status { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+#riskReconciliationApp .rr-status.matched { background: #e8f5ed; color: #23764d; }
+#riskReconciliationApp .rr-status.unmatched { background: #fff2df; color: #a7600a; }
+#riskReconciliationApp .rr-empty,
+#riskReconciliationApp .rr-loading { padding: 28px !important; color: #8490a3; text-align: center; }
+
+@media (max-width: 1050px) {
+    #riskReconciliationApp .rr-filter-grid { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
+    #riskReconciliationApp .rr-kpis { grid-template-columns: repeat(3, minmax(120px, 1fr)); }
+}
+@media (max-width: 700px) {
+    #riskReconciliationApp { padding: 16px; }
+    #riskReconciliationApp .rr-filter-grid,
+    #riskReconciliationApp .rr-kpis { grid-template-columns: 1fr 1fr; }
+    #riskReconciliationApp .rr-actions,
+    #riskReconciliationApp .rr-table-toolbar,
+    #riskReconciliationApp .rr-table-actions { align-items: stretch; flex-direction: column; }
+    #riskReconciliationApp .rr-table-toolbar { align-items: flex-start; }
+    #riskReconciliationApp .rr-button { width: 100%; }
+}
+@media (max-width: 420px) {
+    #riskReconciliationApp .rr-filter-grid,
+    #riskReconciliationApp .rr-kpis { grid-template-columns: 1fr; }
+    #riskReconciliationApp .rr-header h2 { font-size: 21px; }
+}

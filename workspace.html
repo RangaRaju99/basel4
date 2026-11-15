@@ -31,12 +31,13 @@
   <link rel="stylesheet" href="css/modules/leverage-calculation.css">
   <link rel="stylesheet" href="css/modules/capital-calculation.css">
   <link rel="stylesheet" href="css/modules/calculation-repository.css">
-  <link rel="stylesheet" href="css/modules/variance-analysis.css">
-  <link rel="stylesheet" href="css/modules/exception-management.css">
-  <link rel="stylesheet" href="css/modules/investigation.css">
-  <link rel="stylesheet" href="css/modules/evidence-repository.css">
-  <link rel="stylesheet" href="css/modules/approval-closure.css">
-  <link rel="stylesheet" href="css/modules/reconciliation-audit-logs.css">
+    <link rel="stylesheet" href="modules/reconciliation/variance-analysis/variance-analysis.css">
+    <link rel="stylesheet" href="modules/reconciliation/exception-management/exception-management.css">
+    <link rel="stylesheet" href="modules/reconciliation/investigation/investigation.css">
+    <link rel="stylesheet" href="modules/reconciliation/evidence-repository/evidence-repository.css">
+    <link rel="stylesheet" href="modules/reconciliation/approval-closure/approval-closure.css">
+    <link rel="stylesheet" href="modules/reconciliation/risk-reconciliation/risk-reconciliation.css">
+    <link rel="stylesheet" href="modules/reconciliation/reconciliation-audit-logs/reconciliation-audit-logs.css">
   <link rel="stylesheet" href="css/modules/generate-report.css">
   <link rel="stylesheet" href="css/modules/manage-reports.css">
   <link rel="stylesheet" href="css/modules/raise-query.css">
@@ -67,12 +68,13 @@
   <script src="js/modules/leverage-calculation.js" defer></script>
   <script src="js/modules/capital-calculation.js" defer></script>
   <script src="js/modules/calculation-repository.js" defer></script>
-  <script src="js/modules/variance-analysis.js" defer></script>
-  <script src="js/modules/exception-management.js" defer></script>
-  <script src="js/modules/investigation.js" defer></script>
-  <script src="js/modules/evidence-repository.js" defer></script>
-  <script src="js/modules/approval-closure.js" defer></script>
-  <script src="js/modules/reconciliation-audit-logs.js" defer></script>
+    <script src="modules/reconciliation/variance-analysis/variance-analysis.js" defer></script>
+    <script src="modules/reconciliation/risk-reconciliation/risk-reconciliation.js" defer></script>
+    <script src="modules/reconciliation/exception-management/exception-management.js" defer></script>
+    <script src="modules/reconciliation/investigation/investigation.js" defer></script>
+    <script src="modules/reconciliation/evidence-repository/evidence-repository.js" defer></script>
+    <script src="modules/reconciliation/approval-closure/approval-closure.js" defer></script>
+    <script src="modules/reconciliation/reconciliation-audit-logs/reconciliation-audit-logs.js" defer></script>
   <script src="js/modules/generate-report.js" defer></script>
   <script src="js/modules/manage-reports.js" defer></script>
   <script src="js/modules/raise-query.js" defer></script>
@@ -182,6 +184,7 @@
           <div class="nav-group">
             <button class="nav-parent" aria-expanded="false"><span class="nav-icon">⇄</span><span>Reconciliation</span><span class="nav-chevron">⌄</span></button>
             <div class="submenu">
+              <a href="#risk-reconciliation" data-page="risk-reconciliation">Risk Reconciliation</a>
               <a href="#variance-analysis" data-page="variance-analysis">Variance Analysis</a>
               <a href="#exception-management" data-page="exception-management">Exception Management</a>
               <a href="#investigation" data-page="investigation">Investigation</a>
@@ -2998,7 +3001,13 @@
     </section>
         </template>
 
-        <template id="varianceAnalysisTemplate">
+        <template id="riskReconciliationTemplate">
+          <section class="rr-module" id="riskReconciliationApp" aria-labelledby="rrTitle">
+            <div class="rr-loading" role="status">Loading risk reconciliation…</div>
+          </section>
+        </template>
+
+                <template id="varianceAnalysisTemplate">
 
     <section class="va-module" id="varianceAnalysisApp">
 
