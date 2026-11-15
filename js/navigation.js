@@ -27,9 +27,9 @@
       init: "initManageModulesModule",
     },
     "report-templates": {
-      template: "reportTemplatesTemplate",
-      init: "initManageReportTemplatesModule",
-    },
+    folder: "modules/configuration/report-templates/report-templates",
+    init: "initManageReportTemplatesModule"
+},
     "reporting-calendar": {
       template: "reportingCalendarTemplate",
       init: "initReportingCalendarModule",
