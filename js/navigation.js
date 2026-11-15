@@ -130,6 +130,7 @@
         },
         "generate-report": {
             template: "generateReportsTemplate",
+            html: "modules/report-generation/generate-report/generate-report.html",
             init: "initGenerateReportsModule"
         },
         "manage-reports": {
