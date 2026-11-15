@@ -16,11 +16,11 @@
 
   const MODULES = {
     "manage-role": {
-      template: "manageRolesTemplate",
+      folder: "modules/user-access/manage-roles/manage-roles",
       init: "initManageRolesModule",
     },
     "manage-user": {
-      template: "manageUsersTemplate",
+      folder: "modules/user-access/manage-users/manage-users",
       init: "initManageUsersModule",
     },
     "system-configuration": {
@@ -36,27 +36,31 @@
       init: "initManageReportTemplatesModule",
     },
     "reporting-calendar": {
-      template: "reportingCalendarTemplate",
+      folder: "modules/configuration/reporting-calendar/reporting-calendar",
       init: "initReportingCalendarModule",
     },
     "audit-trail": {
-      template: "auditTrailTemplate",
+      folder: "modules/configuration/audit-trail/audit-trail",
       init: "initAuditTrailModule",
     },
     "data-ingestion": {
       template: "feedMonitorTemplate",
+      folder: "modules/data-ingestion/feed-monitor/feed-monitor",
       init: "initFeedMonitorModule",
     },
     "sla-escalations": {
       template: "slaEscalationsTemplate",
+      folder: "modules/data-ingestion/sla-escalations/sla-escalations",
       init: "initSlaEscalationsModule",
     },
     "landing-zone": {
       template: "landingZoneTemplate",
+      folder: "modules/data-ingestion/landing-zone/landing-zone",
       init: "initLandingZoneModule",
     },
     "ingestion-audit-log": {
       template: "ingestionAuditLogTemplate",
+      folder: "modules/data-ingestion/ingestion-audit-log/ingestion-audit-log",
       init: "initIngestionAuditLogModule",
     },
     "operations-center": {
@@ -348,6 +352,22 @@
     return html;
   }
 
+  let dashboardLoaded = false;
+
+  async function ensureDashboard(dashboardView) {
+    if (dashboardLoaded) return;
+    const base = "modules/dashboard/dashboard";
+    loadCssOnce(base + ".css");
+    const response = await fetch(base + ".html");
+    if (!response.ok) throw new Error(base + ".html not found");
+    dashboardView.innerHTML = await response.text();
+    await loadScriptOnce(base + ".js");
+    dashboardLoaded = true;
+    if (typeof window.initDashboardModule === "function")
+      window.initDashboardModule();
+    applyRoleNavigation(); // hides quick-access buttons the role can't use
+  }
+
   function renderWorkspaceModule(pageId) {
     const token = ++renderToken;
     const dashboardView = document.getElementById("dashboardView");
@@ -362,6 +382,13 @@
       moduleView.hidden = true;
       moduleView.innerHTML = "";
       dashboardView.hidden = false;
+      ensureDashboard(dashboardView).catch(function (error) {
+        console.error("BaselTrack:", error);
+        dashboardView.innerHTML =
+          '<p style="padding:30px">Dashboard failed to load: ' +
+          error.message +
+          "</p>";
+      });
       return;
     }
 
