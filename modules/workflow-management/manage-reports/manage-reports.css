@@ -1,0 +1,500 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Fallback design tokens. :where() keeps specificity at 0, so if the host app
+   defines these variables (as the manage-roles / manage-users modules expect),
+   the host values always win. These apply only when the host has none. */
+:where(:root) {
+    --brand: #3a2a47;
+    --primary: #5b3f73;
+    --primary-hover: #6e4d8a;
+    --bg: #f6f3f8;
+    --card: #ffffff;
+    --surface-alt: #f1ecf5;
+    --line: #e3dbe9;
+    --text: #2a2130;
+    --muted: #70657a;
+    --success: #16877a;
+    --danger: #c74747;
+}
+
+/* ---- Module base (same pattern as manage-roles.css) ---- */
+#manageReportsApp,
+#manageReportsApp * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#manageReportsApp {
+    --p: var(--primary);
+    --ph: var(--primary-hover);
+    --soft: var(--surface-alt);
+    --surface: var(--card);
+    --side: 260px;
+}
+
+#manageReportsApp {
+    font-family: Poppins, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 13px;
+}
+
+#manageReportsApp button,
+#manageReportsApp input,
+#manageReportsApp select,
+#manageReportsApp textarea {
+    font: inherit;
+}
+
+#manageReportsApp button {
+    cursor: pointer;
+}
+
+#manageReportsApp a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ---- Module header + breadcrumb ---- */
+#manageReportsApp .mrp-module-header {
+    margin-bottom: 16px;
+    padding: 22px 26px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--brand), var(--primary), var(--primary-hover));
+    color: #fff;
+    box-shadow: 0 5px 18px rgba(48, 34, 56, .08);
+}
+
+#manageReportsApp .mrp-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+#manageReportsApp .mrp-eyebrow {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    opacity: .8;
+}
+
+#manageReportsApp .mrp-module-header h2 {
+    margin-bottom: 4px;
+    font-size: 24px;
+}
+
+#manageReportsApp .mrp-module-header p {
+    font-size: 12px;
+    opacity: .85;
+}
+
+#manageReportsApp .mrp-header-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .16);
+    font-size: 22px;
+}
+
+#manageReportsApp .mrp-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+#manageReportsApp .mrp-breadcrumb button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+#manageReportsApp .mrp-breadcrumb button:hover {
+    color: var(--p);
+}
+
+#manageReportsApp .mrp-breadcrumb-separator {
+    opacity: .5;
+}
+
+#manageReportsApp .mrp-breadcrumb-current {
+    color: var(--p);
+    font-weight: 600;
+}
+
+/* ---- Reference content styles (values from manage-roles.css) ---- */
+#manageReportsApp .content-card {
+    min-height: calc(100vh - 140px);
+    padding: 32px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    box-shadow: 0 5px 18px rgba(48, 34, 56, .08);
+}
+
+#manageReportsApp .content-card h2 {
+    font-size: 20px;
+    color: var(--brand);
+}
+
+#manageReportsApp .page-header {
+    margin-bottom: 25px;
+}
+
+#manageReportsApp .page-header h1 {
+    font-size: 31px;
+    color: var(--p);
+    margin-bottom: 6px;
+}
+
+#manageReportsApp .page-header p {
+    color: var(--muted);
+}
+
+#manageReportsApp .role-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 23px;
+}
+
+#manageReportsApp .search-box {
+    width: min(440px, 43vw);
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    transition: .18s;
+}
+
+#manageReportsApp .search-box:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+#manageReportsApp .search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
+    font-size: 11px;
+}
+
+#manageReportsApp .table-wrap {
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-radius: 15px;
+}
+
+#manageReportsApp .table-wrap table {
+    width: 100%;
+    min-width: 1000px;
+    border-collapse: collapse;
+}
+
+#manageReportsApp .table-wrap thead {
+    background: linear-gradient(135deg, var(--brand), var(--primary), var(--primary-hover));
+    color: #fff;
+}
+
+#manageReportsApp .table-wrap th,
+#manageReportsApp .table-wrap td {
+    text-align: left;
+    padding: 15px;
+}
+
+#manageReportsApp .table-wrap th {
+    font-size: 12px;
+}
+
+#manageReportsApp .table-wrap td {
+    font-size: 12.5px;
+    border-bottom: 1px solid var(--line);
+}
+
+#manageReportsApp .table-wrap tbody tr:hover {
+    background: var(--surface-alt);
+}
+
+#manageReportsApp .table-wrap tbody tr:last-child td {
+    border: 0;
+}
+
+#manageReportsApp .table-wrap .version-table,
+#manageReportsApp .table-wrap .history-table {
+    min-width: 0;
+}
+
+#manageReportsApp .table-wrap .report-table {
+    min-width: 800px;
+}
+
+#manageReportsApp .actions-head {
+    text-align: center !important;
+}
+
+#manageReportsApp .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+#manageReportsApp .action-buttons button {
+    height: 33px;
+    min-width: 58px;
+    padding: 0 11px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageReportsApp .view-btn {
+    border: 1px solid var(--line);
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+#manageReportsApp .primary,
+#manageReportsApp .secondary {
+    height: 42px;
+    padding: 0 17px;
+    border-radius: 9px;
+    font-weight: 600;
+}
+
+#manageReportsApp .secondary {
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--text);
+}
+
+#manageReportsApp .primary {
+    border: 1px solid var(--p);
+    background: var(--p);
+    color: #fff;
+}
+
+#manageReportsApp .primary:hover {
+    background: var(--ph);
+}
+
+#manageReportsApp .modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgba(25, 20, 29, .48);
+    backdrop-filter: blur(3px);
+    z-index: 2500;
+}
+
+#manageReportsApp .modal-overlay.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+#manageReportsApp .modal {
+    position: relative;
+    width: min(770px, 100%);
+    max-height: calc(100vh - 40px);
+    overflow: auto;
+    padding: 25px;
+    border-radius: 20px;
+    background: var(--card);
+    box-shadow: 0 20px 60px #0003;
+}
+
+#manageReportsApp .edit-layout {
+    padding: 25px;
+}
+
+#manageReportsApp .modal-title {
+    margin-bottom: 20px;
+}
+
+#manageReportsApp .modal-title h2 {
+    font-size: 20px;
+    color: var(--brand);
+}
+
+#manageReportsApp .profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--line);
+}
+
+#manageReportsApp .profile-details>div:first-child {
+    grid-column: 1 / -1;
+}
+
+#manageReportsApp .profile-details span,
+#manageReportsApp .profile-details strong {
+    display: block;
+}
+
+#manageReportsApp .profile-details span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+#manageReportsApp .profile-details strong {
+    margin-top: 4px;
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+#manageReportsApp .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 22px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+}
+
+#manageReportsApp .close-btn {
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 24px;
+    line-height: 1;
+}
+
+#manageReportsApp .close-btn:hover {
+    background: var(--soft);
+    color: var(--p);
+}
+
+@media (max-width: 850px) {
+    #manageReportsApp .role-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    #manageReportsApp .search-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 580px) {
+    #manageReportsApp .content-card {
+        padding: 19px 13px;
+    }
+
+    #manageReportsApp .modal-overlay {
+        align-items: flex-end !important;
+        padding: 8px;
+    }
+
+    #manageReportsApp .modal {
+        border-radius: 20px 20px 10px 10px;
+    }
+
+    #manageReportsApp .profile-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---- Page-specific additions ---- */
+
+/* ---------- Manage Reports page ---------- */
+
+#manageReportsApp .report-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px;
+    margin: 0 0 25px;
+}
+
+#manageReportsApp .summary-card {
+    padding: 20px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 3px 10px rgba(48, 34, 56, .08);
+}
+
+#manageReportsApp .summary-card h2 {
+    font-size: 32px;
+    color: var(--p);
+}
+
+#manageReportsApp .summary-card p {
+    margin-top: 7px;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+#manageReportsApp .filters {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#manageReportsApp .filters .search-box {
+    flex: 1 1 260px;
+}
+
+#manageReportsApp .filters select {
+    height: 42px;
+    min-width: 200px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 12px;
+    outline: 0;
+    transition: .18s;
+}
+
+#manageReportsApp .filters select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+#manageReportsApp .version-heading {
+    margin: 30px 0 12px;
+}
+
+#manageReportsApp #noResults {
+    padding: 46px;
+    text-align: center;
+    color: var(--muted);
+}
+
+@media (max-width: 580px) {
+
+    #manageReportsApp .filters select,
+    #manageReportsApp .filters .primary {
+        width: 100%;
+    }
+}
