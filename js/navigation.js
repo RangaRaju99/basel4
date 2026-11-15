@@ -34,8 +34,12 @@
       folder: "modules/configuration/reporting-calendar/reporting-calendar",
       init: "initReportingCalendarModule",
     },
+    "system-configuration": {
+      folder: "modules/configuration/system-configuration/system-configuration",
+      init: "initSystemConfigurationModule",
+    },
     "audit-trail": {
-      template: "auditTrailTemplate",
+      folder: "modules/configuration/audit-trail/audit-trail",
       init: "initAuditTrailModule",
     },
     "data-ingestion": {

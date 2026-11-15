@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="modules/user-access/shared/manage-users-roles-refinements.css">
     <link rel="stylesheet" href="css/modules/report-templates.css">
     <link rel="stylesheet" href="css/modules/report-templates-controls.css">
-    <link rel="stylesheet" href="css/modules/audit-trail.css">
     <link rel="stylesheet" href="css/modules/feed-monitor.css">
     <link rel="stylesheet" href="css/modules/sla-escalations.css">
     <link rel="stylesheet" href="css/modules/landing-zone.css">
@@ -49,7 +48,6 @@
     <script defer src="modules/user-access/manage-roles/manage-roles.js"></script>
     <script defer src="modules/user-access/manage-users/manage-users.js"></script>
     <script src="js/modules/report-templates.js" defer></script>
-    <script src="js/modules/audit-trail.js" defer></script>
     <script src="js/modules/feed-monitor.js" defer></script>
     <script src="js/modules/sla-escalations.js" defer></script>
     <script src="js/modules/landing-zone.js" defer></script>
@@ -391,191 +389,6 @@
 
                 <template id="manageUsersTemplate">
                     <section class="mu-module" id="manageUsersApp"></section>
-                </template>
-
-                <template id="auditTrailTemplate">
-                    <section class="at-module" id="auditTrailApp">
-
-                        <div class="at-page-header">
-                            <div>
-                                <div class="at-breadcrumb">Configuration Management <span>/</span> Audit Trail</div>
-                                <h2>Audit Trail</h2>
-                                <p>Monitor and review activities performed across the BaselTrack application.</p>
-                            </div>
-                        </div>
-
-                        <!-- Summary -->
-                        <div class="at-summary-card">
-                            <div class="at-summary-icon">▤</div>
-                            <div>
-                                <div class="at-summary-label">Total Logs</div>
-                                <div class="at-summary-value" id="atTotalLogs">5</div>
-                                <div class="at-summary-description">Total records matching the current filters</div>
-                            </div>
-                        </div>
-
-                        <!-- Toolbar -->
-                        <div class="at-toolbar">
-                            <div class="at-toolbar-left">
-                                <h3>Audit Logs</h3>
-                                <span class="at-record-count" id="atRecordCount">5 records</span>
-                            </div>
-
-                            <button type="button" class="at-filter-toggle" id="atFilterToggle">
-                                <span>☷</span> Filter Logs
-                            </button>
-                        </div>
-
-                        <!-- Filters -->
-                        <div class="at-filter-panel" id="atFilterPanel" hidden>
-                            <div class="at-filter-grid">
-
-                                <div class="at-filter-field">
-                                    <label for="atSearch">Search</label>
-                                    <input type="text" id="atSearch" placeholder="Search module, user or description">
-                                </div>
-
-                                <div class="at-filter-field">
-                                    <label for="atModuleFilter">Module</label>
-                                    <select id="atModuleFilter">
-                                        <option value="All">All Modules</option>
-                                        <option value="User Management">User Management</option>
-                                        <option value="Role Management">Role Management</option>
-                                        <option value="Query Management">Query Management</option>
-                                        <option value="Data Ingestion">Data Ingestion</option>
-                                        <option value="Report Management">Report Management</option>
-                                        <option value="System Configuration">System Configuration</option>
-                                    </select>
-                                </div>
-
-                                <div class="at-filter-field">
-                                    <label for="atActionFilter">Action</label>
-                                    <select id="atActionFilter">
-                                        <option value="All">All Actions</option>
-                                        <option value="Create">Create</option>
-                                        <option value="Update">Update</option>
-                                        <option value="Delete">Delete</option>
-                                        <option value="Close">Close</option>
-                                        <option value="Upload">Upload</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="at-filter-actions">
-                                <button type="button" class="at-reset-btn" id="atReset">Reset</button>
-                                <button type="button" class="at-apply-btn" id="atApply">Apply Filters</button>
-                            </div>
-                        </div>
-
-                        <!-- Audit table -->
-                        <div class="at-table-wrapper">
-                            <table class="at-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <button type="button" class="at-sort-btn" data-sort="module">
-                                                Module <span class="at-sort-icon">↕</span>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <button type="button" class="at-sort-btn" data-sort="processedBy">
-                                                Processed By <span class="at-sort-icon">↕</span>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <button type="button" class="at-sort-btn" data-sort="action">
-                                                Action <span class="at-sort-icon">↕</span>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <button type="button" class="at-sort-btn" data-sort="description">
-                                                Description <span class="at-sort-icon">↕</span>
-                                            </button>
-                                        </th>
-                                        <th>
-                                            <button type="button" class="at-sort-btn" data-sort="updatedTime">
-                                                Updated Time <span class="at-sort-icon">↕</span>
-                                            </button>
-                                        </th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="atTableBody"></tbody>
-                            </table>
-                        </div>
-
-                        <!-- Empty state -->
-                        <div class="at-empty-state" id="atEmptyState" hidden>
-                            <div class="at-empty-icon">⌕</div>
-                            <h4>No audit logs found</h4>
-                            <p>Try changing your search or filter criteria.</p>
-                        </div>
-
-                        <!-- Audit details modal -->
-                        <div class="at-modal-overlay" id="atDetailsModal" hidden>
-                            <div class="at-modal">
-
-                                <div class="at-modal-header">
-                                    <div>
-                                        <h3>Audit Details</h3>
-                                        <p>Detailed information about this activity</p>
-                                    </div>
-                                    <button type="button" class="at-modal-close" id="atCloseIcon"
-                                        aria-label="Close">×</button>
-                                </div>
-
-                                <div class="at-modal-body">
-
-                                    <div class="at-detail-grid">
-                                        <div class="at-detail-item">
-                                            <span>Module</span>
-                                            <strong id="atDetailModule">-</strong>
-                                        </div>
-
-                                        <div class="at-detail-item">
-                                            <span>Action</span>
-                                            <strong id="atDetailAction">-</strong>
-                                        </div>
-
-                                        <div class="at-detail-item at-detail-full">
-                                            <span>Description</span>
-                                            <strong id="atDetailDescription">-</strong>
-                                        </div>
-
-                                        <div class="at-detail-item">
-                                            <span>Processed By</span>
-                                            <strong id="atDetailProcessedBy">-</strong>
-                                        </div>
-
-                                        <div class="at-detail-item">
-                                            <span>Updated Time</span>
-                                            <strong id="atDetailUpdatedTime">-</strong>
-                                        </div>
-                                    </div>
-
-                                    <div class="at-value-section">
-                                        <h4>Previous Value</h4>
-                                        <div class="at-value-box" id="atPreviousValue">-</div>
-                                    </div>
-
-                                    <div class="at-value-section">
-                                        <h4>New Value</h4>
-                                        <div class="at-value-box at-new-value" id="atNewValue">-</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="at-modal-footer">
-                                    <button type="button" class="at-close-btn" id="atCloseModal">
-                                        Close
-                                    </button>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </section>
                 </template>
 
                 <template id="feedMonitorTemplate">
