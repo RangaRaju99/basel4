@@ -27,11 +27,11 @@
       init: "initManageModulesModule",
     },
     "report-templates": {
-    folder: "modules/configuration/report-templates/report-templates",
-    init: "initManageReportTemplatesModule"
-},
+      folder: "modules/configuration/report-templates/report-templates",
+      init: "initManageReportTemplatesModule",
+    },
     "reporting-calendar": {
-      template: "reportingCalendarTemplate",
+      folder: "modules/configuration/reporting-calendar/reporting-calendar",
       init: "initReportingCalendarModule",
     },
     "audit-trail": {

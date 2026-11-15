@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="modules/user-access/shared/manage-users-roles-refinements.css">
     <link rel="stylesheet" href="css/modules/report-templates.css">
     <link rel="stylesheet" href="css/modules/report-templates-controls.css">
-    <link rel="stylesheet" href="css/modules/reporting-calendar.css">
-    <link rel="stylesheet" href="css/modules/reporting-calendar-module.css">
     <link rel="stylesheet" href="css/modules/audit-trail.css">
     <link rel="stylesheet" href="css/modules/feed-monitor.css">
     <link rel="stylesheet" href="css/modules/sla-escalations.css">
@@ -51,7 +49,6 @@
     <script defer src="modules/user-access/manage-roles/manage-roles.js"></script>
     <script defer src="modules/user-access/manage-users/manage-users.js"></script>
     <script src="js/modules/report-templates.js" defer></script>
-    <script src="js/modules/reporting-calendar.js" defer></script>
     <script src="js/modules/audit-trail.js" defer></script>
     <script src="js/modules/feed-monitor.js" defer></script>
     <script src="js/modules/sla-escalations.js" defer></script>
@@ -394,164 +391,6 @@
 
                 <template id="manageUsersTemplate">
                     <section class="mu-module" id="manageUsersApp"></section>
-                </template>
-
-                <template id="reportingCalendarTemplate">
-                    <section class="rc-module" id="reportingCalendarApp">
-                        <div class="content-card">
-                            <div class="page-header">
-                                <div>
-                                    <h1 class="page-title">Reporting Calendar</h1>
-                                    <p class="page-subtitle">Monitor regulatory obligations, reporting deadlines and
-                                        submission progress</p>
-                                </div>
-                                <div class="page-actions">
-                                    <div class="view-toggle"><button class="active"
-                                            data-view="month">Month</button><button data-view="list">List</button></div>
-                                    <button class="filter-btn" id="openFilterBtn">Filter</button>
-                                </div>
-                            </div>
-                            <section class="kpi-grid">
-                                <article><span>Upcoming</span><strong id="upcomingCount">0</strong><small>Future
-                                        obligations</small></article>
-                                <article><span>Due This Week</span><strong id="weekCount">0</strong><small>Immediate
-                                        workload</small></article>
-                                <article><span>Submitted</span><strong id="submittedCount">0</strong><small>Completed
-                                        filings</small></article>
-                                <article class="danger"><span>Overdue</span><strong
-                                        id="overdueCount">0</strong><small>Needs attention</small></article>
-                            </section>
-                            <section class="month-view" id="monthView">
-                                <div class="calendar-card">
-                                    <div class="calendar-toolbar">
-                                        <div class="calendar-nav"><button id="prevMonth">‹</button><button id="todayBtn"
-                                                class="today-btn">Today</button><button id="nextMonth">›</button></div>
-                                        <h2 id="monthTitle"></h2>
-                                        <div class="legend"><span class="draft">Draft</span><span class="review">In
-                                                Review</span><span class="approved">Approved</span><span
-                                                class="submitted">Submitted</span><span class="overdue">Overdue</span>
-                                        </div>
-                                    </div>
-                                    <div class="weekdays">
-                                        <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
-                                    </div>
-                                    <div class="calendar-grid" id="calendarGrid"></div>
-                                </div>
-                            </section>
-                            <section class="list-view hidden" id="listView">
-                                <div class="schedule-head">
-                                    <div>
-                                        <h2>Regulatory Obligations</h2>
-                                        <p id="listSummary">All reporting obligations</p>
-                                    </div>
-                                </div>
-                                <div class="table-wrapper">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Report ID</th>
-                                                <th>Report Name</th>
-                                                <th>Regulator</th>
-                                                <th>Reporting Period</th>
-                                                <th>Due Date</th>
-                                                <th>Deadline</th>
-                                                <th>Owner</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="reportTableBody"></tbody>
-                                    </table>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="overlay" id="filterOverlay">
-                            <section class="filter-panel">
-                                <div class="panel-head">
-                                    <div>
-                                        <h2>Filter Reports</h2>
-                                        <p>Filters apply to both Month and List views.</p>
-                                    </div><button id="closeFilterBtn">✕</button>
-                                </div><label>Search<input id="searchFilter"
-                                        placeholder="Report ID or report name"></label><label>Regulator<select
-                                        id="regulatorFilter">
-                                        <option value="">All Regulators</option>
-                                        <option>RBI</option>
-                                        <option>EBA</option>
-                                        <option>PRA</option>
-                                        <option>ECB</option>
-                                    </select></label><label>Owner<select id="ownerFilter">
-                                        <option value="">All Owners</option>
-                                        <option>Risk</option>
-                                        <option>Finance</option>
-                                        <option>Treasury</option>
-                                        <option>Compliance</option>
-                                    </select></label><label>Reporting Period<select id="periodFilter">
-                                        <option value="">All Periods</option>
-                                    </select></label><label>Status<select id="statusFilter">
-                                        <option value="">All Status</option>
-                                        <option>Draft</option>
-                                        <option>In Review</option>
-                                        <option>Approved</option>
-                                        <option>Submitted</option>
-                                        <option>Overdue</option>
-                                    </select></label>
-                                <div class="date-row"><label>From<input type="date"
-                                            id="fromDate"></label><label>To<input type="date" id="toDate"></label></div>
-                                <div class="panel-actions"><button class="secondary"
-                                        id="resetFilters">Reset</button><button class="primary"
-                                        id="applyFilters">Apply</button></div>
-                            </section>
-                        </div>
-                        <div class="modal-overlay" id="dayModal">
-                            <section class="modal day-modal">
-                                <div class="modal-head">
-                                    <div><span class="eyebrow">DEADLINE DETAILS</span>
-                                        <h2 id="dayModalTitle"></h2>
-                                    </div><button id="closeDayModal">✕</button>
-                                </div>
-                                <p class="modal-subtitle" id="dayModalSummary"></p>
-                                <div class="day-events" id="dayEvents"></div>
-                                <div class="modal-actions"><button class="secondary" id="closeDayBottom">Close</button>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="modal-overlay" id="reportModal">
-                            <section class="modal report-summary">
-                                <div class="report-head">
-                                    <div class="report-mark">R</div>
-                                    <div><span class="eyebrow">REGULATORY REPORT</span>
-                                        <h2 id="reportName"></h2>
-                                        <p id="reportId"></p>
-                                    </div><button id="closeReportModal">✕</button>
-                                </div>
-                                <div class="report-meta">
-                                    <div><span>Regulator</span><strong id="reportRegulator"></strong></div>
-                                    <div><span>Reporting Period</span><strong id="reportPeriod"></strong></div>
-                                    <div><span>Frequency</span><strong id="reportFrequency"></strong></div>
-                                    <div><span>Responsible Team</span><strong id="reportOwner"></strong></div>
-                                    <div><span>Reviewer</span><strong id="reportReviewer"></strong></div>
-                                    <div><span>Due Date</span><strong id="reportDue"></strong></div>
-                                    <div><span>Status</span><strong id="reportStatus"></strong></div>
-                                    <div><span>Deadline</span><strong id="reportDeadline"></strong></div>
-                                </div>
-                                <div class="workflow">
-                                    <h3>Submission Progress</h3>
-                                    <div id="workflowSteps"></div>
-                                </div>
-                                <div class="modal-actions"><button class="secondary"
-                                        id="closeReportBottom">Close</button></div>
-                            </section>
-                        </div>
-                        <div class="notification-overlay" id="notificationOverlay">
-                            <div class="notification-popup">
-                                <div class="panel-head">
-                                    <h2>Deadline Alerts</h2><button id="closeNotification">✕</button>
-                                </div>
-                                <div id="notificationList"></div>
-                            </div>
-                        </div>
-                    </section>
                 </template>
 
                 <template id="auditTrailTemplate">
