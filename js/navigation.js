@@ -59,27 +59,27 @@
       init: "initIngestionAuditLogModule",
     },
     "operations-center": {
-      template: "operationsCenterTemplate",
+      folder: "modules/data-quality/operations-center/operations-center",
       init: "initOperationsCenterModule",
     },
     "file-intake-center": {
-      template: "fileIntakeTemplate",
+      folder: "modules/data-quality/file-intake-center/file-intake-center",
       init: "initFileIntakeModule",
     },
     "validation-results": {
-      template: "validationResultsTemplate",
+      folder: "modules/data-quality/validation-results/validation-results",
       init: "initValidationResultsModule",
     },
     "issue-workbench": {
-      template: "issueWorkbenchTemplate",
+      folder: "modules/data-quality/issue-workbench/issue-workbench",
       init: "initIssueWorkbenchModule",
     },
     "revalidation-center": {
-      template: "revalidationCenterTemplate",
+      folder: "modules/data-quality/revalidation-center/revalidation-center",
       init: "initRevalidationCenterModule",
     },
     "reporting-readiness": {
-      template: "reportingReadinessTemplate",
+      folder: "modules/data-quality/reporting-readiness/reporting-readiness",
       init: "initReportingReadinessModule",
     },
     "rwa-calculation": {

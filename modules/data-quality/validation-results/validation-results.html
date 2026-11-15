@@ -1,0 +1,85 @@
+<div class="vres-page" id="validationResultsApp">
+
+    <div class="vres-header">
+        <div>
+            <h2>Validation Results</h2>
+            <p>Review completed validation runs and monitor files sent for revalidation.</p>
+        </div>
+    </div>
+
+    <!-- Completed Validation Runs -->
+    <section class="vres-section">
+        <div class="vres-section-heading">
+            <div>
+                <h3>Completed Validation Runs</h3>
+                <p>Review validation outcomes and record-level results.</p>
+            </div>
+            <span class="vres-count" id="vresCompletedCount">0 Runs</span>
+        </div>
+
+        <div class="vres-table-wrapper">
+            <table class="vres-table">
+                <thead>
+                    <tr>
+                        <th>Run ID</th>
+                        <th>Feed</th>
+                        <th>Passed</th>
+                        <th>Failed</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody id="vresCompletedTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Files Sent For Revalidation -->
+    <section class="vres-section">
+        <div class="vres-section-heading">
+            <div>
+                <h3>Files Sent For Revalidation</h3>
+                <p>Track files that require corrections and another validation attempt.</p>
+            </div>
+            <span class="vres-count" id="vresRevalidationCount">0 Files</span>
+        </div>
+
+        <div class="vres-table-wrapper">
+            <table class="vres-table">
+                <thead>
+                    <tr>
+                        <th>Run ID</th>
+                        <th>Feed</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>View</th>
+                    </tr>
+                </thead>
+                <tbody id="vresRevalidationTableBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Details Modal -->
+    <div class="vres-modal" id="vresDetailsModal">
+        <div class="vres-modal-content">
+            <div class="vres-modal-header">
+                <div>
+                    <h3 id="vresModalTitle">Validation Details</h3>
+                    <p id="vresModalSubtitle">Review the selected record.</p>
+                </div>
+                <button type="button" class="vres-close" data-action="close-modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <div class="vres-modal-body" id="vresModalBody"></div>
+
+            <div class="vres-modal-footer">
+                <button type="button" class="vres-secondary-btn" data-action="close-modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

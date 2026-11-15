@@ -1,0 +1,135 @@
+<div class="rrd-page" id="reportingReadinessApp">
+
+    <div class="rrd-header">
+        <div>
+            <h2>Reporting Readiness</h2>
+            <p>Review data-quality readiness and manage the handoff of validated files to
+                reconciliation.</p>
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="rrd-summary-grid">
+
+        <div class="rrd-summary-card">
+            <span class="rrd-summary-label">Ready for Next Step</span>
+            <strong id="rrdReadyCount">0</strong>
+            <span class="rrd-summary-note">Validated files awaiting handoff</span>
+        </div>
+
+        <div class="rrd-summary-card">
+            <span class="rrd-summary-label">Blocked Files</span>
+            <strong id="rrdBlockedCount">0</strong>
+            <span class="rrd-summary-note">Files requiring further action</span>
+        </div>
+
+        <div class="rrd-summary-card">
+            <span class="rrd-summary-label">Sent to Reconciliation</span>
+            <strong id="rrdSentCount">0</strong>
+            <span class="rrd-summary-note">Files handed off successfully</span>
+        </div>
+
+    </div>
+
+    <!-- Ready Files -->
+    <section class="rrd-section">
+
+        <div class="rrd-section-heading">
+            <div>
+                <h3>Files Ready for Reconciliation Module</h3>
+                <p>These files have completed the required data-quality checks.</p>
+            </div>
+
+            <span class="rrd-count" id="rrdReadyBadge">0 Files</span>
+        </div>
+
+        <div class="rrd-table-wrapper">
+            <table class="rrd-table">
+                <thead>
+                    <tr>
+                        <th>Feed</th>
+                        <th>Status</th>
+                        <th>Permission</th>
+                    </tr>
+                </thead>
+
+                <tbody id="rrdReadyTableBody"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- Blocked Files -->
+    <section class="rrd-section">
+
+        <div class="rrd-section-heading">
+            <div>
+                <h3>Blocked Files</h3>
+                <p>Files that cannot proceed until the outstanding issue is resolved.</p>
+            </div>
+
+            <span class="rrd-count rrd-blocked-count" id="rrdBlockedBadge">0 Files</span>
+        </div>
+
+        <div class="rrd-table-wrapper">
+            <table class="rrd-table">
+                <thead>
+                    <tr>
+                        <th>Feed</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="rrdBlockedTableBody"></tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="rrd-modal" id="rrdConfirmModal">
+
+        <div class="rrd-modal-content">
+
+            <div class="rrd-modal-header">
+                <div>
+                    <h3>Confirm Handoff</h3>
+                    <p>Review the file before sending it to the next module.</p>
+                </div>
+
+                <button type="button" class="rrd-close" data-action="close-modal" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <div class="rrd-modal-body">
+
+                <div class="rrd-confirm-details" id="rrdConfirmDetails"></div>
+
+                <p class="rrd-confirm-note">
+                    Confirming this action will record the file as sent
+                    to the Reconciliation Module.
+                </p>
+
+            </div>
+
+            <div class="rrd-modal-footer">
+
+                <button type="button" class="rrd-secondary-btn" data-action="close-modal">
+                    Cancel
+                </button>
+
+                <button type="button" class="rrd-primary-btn" data-action="confirm-handoff" id="rrdConfirmButton">
+                    Send to Next Step
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="rrd-toast" id="rrdToast"></div>
+
+</div>
