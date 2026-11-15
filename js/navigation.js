@@ -43,19 +43,19 @@
       init: "initAuditTrailModule",
     },
     "data-ingestion": {
-      template: "feedMonitorTemplate",
+      folder: "modules/data-ingestion/feed-monitor/feed-monitor",
       init: "initFeedMonitorModule",
     },
     "sla-escalations": {
-      template: "slaEscalationsTemplate",
+      folder: "modules/data-ingestion/sla-escalations/sla-escalations",
       init: "initSlaEscalationsModule",
     },
     "landing-zone": {
-      template: "landingZoneTemplate",
+      folder: "modules/data-ingestion/landing-zone/landing-zone",
       init: "initLandingZoneModule",
     },
     "ingestion-audit-log": {
-      template: "ingestionAuditLogTemplate",
+      folder: "modules/data-ingestion/ingestion-audit-log/ingestion-audit-log",
       init: "initIngestionAuditLogModule",
     },
     "operations-center": {

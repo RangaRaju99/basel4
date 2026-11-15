@@ -1,0 +1,132 @@
+ <section class="fm-module" id="feedMonitorApp">
+
+        <!-- Page Header -->
+        <div class="fm-page-header">
+            <div>
+                <div class="fm-breadcrumb">
+                    Data Ingestion <span>/</span> Feed Monitor
+                </div>
+                <h2>Feed Monitor</h2>
+                <p>Monitor incoming data feeds from connected source systems.</p>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="fm-summary-grid">
+
+            <div class="fm-summary-card">
+                <div class="fm-card-heading">
+                    <span>Systems Received</span>
+                    <span class="fm-card-icon fm-icon-green">✓</span>
+                </div>
+
+                <div class="fm-card-value" id="fmSystemsReceived">5 / 7</div>
+                <div class="fm-card-description">Successfully received feeds</div>
+
+                <div class="fm-progress-track">
+                    <div class="fm-progress-fill" id="fmSystemsProgress"
+                         style="width: 71.43%;"></div>
+                </div>
+            </div>
+
+            <div class="fm-summary-card">
+                <div class="fm-card-heading">
+                    <span>Late Feeds (SLA)</span>
+                    <span class="fm-card-icon fm-icon-orange">◷</span>
+                </div>
+
+                <div class="fm-card-value" id="fmLateFeeds">1</div>
+                <div class="fm-card-description">Feeds received after cut-off</div>
+
+                <div class="fm-card-indicator fm-indicator-orange">
+                    Requires attention
+                </div>
+            </div>
+
+            <div class="fm-summary-card">
+                <div class="fm-card-heading">
+                    <span>Failed Feeds</span>
+                    <span class="fm-card-icon fm-icon-red">!</span>
+                </div>
+
+                <div class="fm-card-value" id="fmFailedFeeds">1</div>
+                <div class="fm-card-description">Feeds failed during ingestion</div>
+
+                <div class="fm-card-indicator fm-indicator-red">
+                    Action required
+                </div>
+            </div>
+
+            <div class="fm-summary-card">
+                <div class="fm-card-heading">
+                    <span>Total Rows Ingested</span>
+                    <span class="fm-card-icon fm-icon-blue">▤</span>
+                </div>
+
+                <div class="fm-card-value" id="fmTotalRows">4.2M</div>
+                <div class="fm-card-description">Rows received across source systems</div>
+
+                <div class="fm-card-indicator fm-indicator-blue">
+                    Combined ingestion volume
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Feed Monitor Toolbar -->
+        <div class="fm-section-toolbar">
+
+            <div class="fm-section-heading">
+                <h3>Source System Feed Monitor</h3>
+                <span class="fm-record-count" id="fmRecordCount">7 Systems</span>
+            </div>
+
+            <div class="fm-toolbar-actions">
+                <span class="fm-refresh-time" id="fmLastRefreshed">
+                    Last refreshed: Not yet refreshed
+                </span>
+
+                <button type="button" class="fm-refresh-btn" id="fmRefreshBtn">
+                    <span class="fm-refresh-icon" id="fmRefreshIcon">↻</span>
+                    <span id="fmRefreshText">Refresh Status</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Source System Table -->
+        <div class="fm-table-wrapper">
+
+            <table class="fm-table">
+                <thead>
+                    <tr>
+                        <th>Source System</th>
+                        <th>Method</th>
+                        <th>Status</th>
+                        <th>Arrival Time</th>
+                        <th>Row Count</th>
+                    </tr>
+                </thead>
+
+                <tbody id="fmTableBody">
+                    <!-- JavaScript renders feed records here -->
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- Empty State -->
+        <div class="fm-empty-state" id="fmEmptyState" hidden>
+            <div class="fm-empty-icon">▤</div>
+            <h4>No Source Systems Available</h4>
+            <p>No feed records are currently available.</p>
+        </div>
+
+        <!-- Refresh Message -->
+        <div class="fm-refresh-message" id="fmRefreshMessage"
+             role="status" aria-live="polite" hidden>
+            <span class="fm-message-icon">✓</span>
+            Feed status refreshed successfully.
+        </div>
+
+    </section>

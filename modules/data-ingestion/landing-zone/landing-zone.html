@@ -1,0 +1,119 @@
+<section class="lz-module" id="landingZoneApp">
+
+    <!-- Page Header -->
+    <div class="lz-page-header">
+        <div>
+            <div class="lz-breadcrumb">
+                Data Ingestion <span>/</span> Landing Zone (Raw)
+            </div>
+
+            <h2>Landing Zone (Raw)</h2>
+
+            <p>
+                View source data records received and stored in the raw landing zone.
+            </p>
+        </div>
+
+        <div class="lz-immutable-label">
+            <span class="lz-lock-icon">▣</span>
+            Immutable Data
+        </div>
+    </div>
+
+    <!-- Landing Zone Information -->
+    <div class="lz-info-card">
+
+        <div class="lz-info-left">
+            <div class="lz-info-icon">▤</div>
+
+            <div>
+                <h3>Raw Data Landing Zone (Immutable)</h3>
+                <p>Original records received from source systems</p>
+            </div>
+        </div>
+
+        <div class="lz-timestamp">
+            <span class="lz-timestamp-label">Timestamp</span>
+            <strong id="lzTimestamp">15-Nov-2023 23:15 PM</strong>
+        </div>
+
+    </div>
+
+    <!-- Data Summary -->
+    <div class="lz-summary-grid">
+
+        <div class="lz-summary-card">
+            <span class="lz-summary-label">Total Records</span>
+            <strong id="lzTotalRecords">3</strong>
+            <span class="lz-summary-description">
+                Records in this landing batch
+            </span>
+        </div>
+
+        <div class="lz-summary-card">
+            <span class="lz-summary-label">Source System</span>
+            <strong id="lzSourceSystems">1</strong>
+            <span class="lz-summary-description">
+                Unique source systems
+            </span>
+        </div>
+
+        <div class="lz-summary-card">
+            <span class="lz-summary-label">Data Status</span>
+            <strong class="lz-status-value">Raw</strong>
+            <span class="lz-summary-description">
+                Original received data
+            </span>
+        </div>
+
+    </div>
+
+    <!-- Raw Records Table -->
+    <div class="lz-section-header">
+        <div>
+            <h3>Raw Customer &amp; Loan Records</h3>
+            <p>Source: Core Banking</p>
+        </div>
+
+        <span class="lz-record-count" id="lzRecordCount">
+            3 Records
+        </span>
+    </div>
+
+    <div class="lz-table-wrapper">
+
+        <table class="lz-table">
+            <thead>
+                <tr>
+                    <th>Account_ID</th>
+                    <th>Customer_Name</th>
+                    <th>Loan_Amount</th>
+                    <th>Currency</th>
+                    <th>Source_System</th>
+                </tr>
+            </thead>
+
+            <tbody id="lzTableBody">
+                <!-- JavaScript renders raw records -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Empty State -->
+    <div class="lz-empty-state" id="lzEmptyState" hidden>
+        <div class="lz-empty-icon">▤</div>
+        <h4>No Raw Records Available</h4>
+        <p>There are currently no records in this landing batch.</p>
+    </div>
+
+    <!-- Read Only Notice -->
+    <div class="lz-readonly-notice">
+        <span class="lz-notice-icon">ⓘ</span>
+        <span>
+            This view is read-only. Raw landing records are displayed
+            without modification controls.
+        </span>
+    </div>
+
+</section>

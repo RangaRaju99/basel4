@@ -1,0 +1,104 @@
+<section class="ial-module" id="ingestionAuditLogApp">
+
+    <div class="ial-page-header">
+        <div>
+            <h2>Ingestion Audit Log</h2>
+            <p>View the audit history of source system data ingestion activities.</p>
+        </div>
+        <span class="ial-readonly-label">
+            <i class="fa-solid fa-lock"></i>
+            Read Only
+        </span>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="ial-summary-grid">
+
+        <div class="ial-summary-card">
+            <div class="ial-summary-icon ial-icon-total">
+                <i class="fa-solid fa-list-check"></i>
+            </div>
+            <div>
+                <p>Total Logs</p>
+                <h3 id="ialTotalLogs">0</h3>
+            </div>
+        </div>
+
+        <div class="ial-summary-card">
+            <div class="ial-summary-icon ial-icon-success">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+                <p>Successful</p>
+                <h3 id="ialSuccessLogs">0</h3>
+            </div>
+        </div>
+
+        <div class="ial-summary-card">
+            <div class="ial-summary-icon ial-icon-late">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+                <p>Late Arrivals</p>
+                <h3 id="ialLateLogs">0</h3>
+            </div>
+        </div>
+
+        <div class="ial-summary-card">
+            <div class="ial-summary-icon ial-icon-failed">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+            <div>
+                <p>Failed</p>
+                <h3 id="ialFailedLogs">0</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Audit Log Table -->
+    <div class="ial-table-container">
+
+        <div class="ial-table-header">
+            <div>
+                <h3>Ingestion Activity History</h3>
+                <p>Recorded source system ingestion events</p>
+            </div>
+            <span class="ial-record-count" id="ialRecordCount">
+                0 Records
+            </span>
+        </div>
+
+        <div class="ial-table-scroll">
+            <table class="ial-table">
+                <thead>
+                    <tr>
+                        <th>Log ID</th>
+                        <th>Source System</th>
+                        <th>File Name / API Endpoint</th>
+                        <th>Arrival Timestamp</th>
+                        <th class="ial-number-column">Row Count</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ialTableBody">
+                    <tr>
+                        <td colspan="6" class="ial-empty-state">
+                            Loading audit records...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ial-table-footer">
+            <span>
+                <i class="fa-solid fa-shield-halved"></i>
+                Audit records are displayed in read-only mode.
+            </span>
+        </div>
+
+    </div>
+
+</section>
