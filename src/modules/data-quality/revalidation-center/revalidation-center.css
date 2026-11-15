@@ -1,0 +1,442 @@
+/* =========================================
+   REVALIDATION CENTER
+========================================= */
+
+.rc-page {
+    width: 100%;
+    color: var(--text-primary, #1f2937);
+}
+
+.rc-header {
+    margin-bottom: 23px;
+}
+
+.rc-header h2 {
+    margin: 0 0 7px;
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--text-primary, #1f2937);
+}
+
+.rc-header p,
+.rc-section-heading p {
+    margin: 0;
+    color: var(--text-secondary, #6b7280);
+    font-size: 13px;
+}
+
+/* Summary cards */
+
+.rc-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.rc-summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 19px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 11px;
+}
+
+.rc-summary-label {
+    color: var(--text-secondary, #667085);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.rc-summary-card strong {
+    color: var(--text-primary, #1f2937);
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.rc-summary-note {
+    color: var(--text-secondary, #8a929e);
+    font-size: 11px;
+}
+
+/* Sections */
+
+.rc-section {
+    padding: 20px;
+    margin-bottom: 22px;
+    background: var(--card-bg, #ffffff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+}
+
+.rc-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.rc-section-heading h3 {
+    margin: 0 0 6px;
+    color: var(--text-primary, #1f2937);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.rc-count {
+    padding: 6px 11px;
+    border-radius: 20px;
+    background: #eaf3ee;
+    color: #26734d;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Tables */
+
+.rc-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.rc-table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+}
+
+.rc-table th {
+    padding: 13px 14px;
+    text-align: left;
+    background: var(--table-header-bg, #f7f9f8);
+    color: var(--text-secondary, #667085);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rc-table td {
+    padding: 15px 14px;
+    color: var(--text-primary, #344054);
+    font-size: 13px;
+    border-bottom: 1px solid var(--border-color, #edf0ee);
+}
+
+.rc-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.rc-table tbody tr:hover {
+    background: var(--table-hover-bg, #fafcfb);
+}
+
+.rc-file-name {
+    font-weight: 600;
+}
+
+.rc-owner {
+    font-weight: 600;
+}
+
+.rc-result {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.rc-result-passed {
+    background: #e7f5ec;
+    color: #218653;
+}
+
+.rc-result-failed {
+    background: #fdecec;
+    color: #c24141;
+}
+
+.rc-result-pending {
+    background: #fff4df;
+    color: #9a6700;
+}
+
+.rc-revalidate-btn {
+    padding: 8px 13px;
+    border: 1px solid #27734e;
+    border-radius: 6px;
+    background: #27734e;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.rc-revalidate-btn:hover {
+    background: #1d5c3d;
+}
+
+.rc-revalidate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.rc-empty {
+    padding: 25px !important;
+    text-align: center;
+    color: var(--text-secondary, #6b7280) !important;
+}
+
+/* Modal */
+
+.rc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.48);
+}
+
+.rc-modal.rc-modal-open {
+    display: flex;
+}
+
+.rc-modal-content {
+    width: 100%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--card-bg, #ffffff);
+    border-radius: 13px;
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.2);
+}
+
+.rc-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rc-modal-header h3 {
+    margin: 0 0 5px;
+    color: var(--text-primary, #1f2937);
+    font-size: 17px;
+}
+
+.rc-modal-header p {
+    margin: 0;
+    color: var(--text-secondary, #6b7280);
+    font-size: 12px;
+}
+
+.rc-close {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary, #667085);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.rc-modal-body {
+    padding: 22px;
+}
+
+.rc-confirm-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 14px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 9px;
+    background: var(--table-header-bg, #f7f9f8);
+}
+
+.rc-detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    font-size: 12px;
+}
+
+.rc-detail-row:first-child {
+    padding-top: 0;
+}
+
+.rc-detail-row:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.rc-detail-label {
+    color: var(--text-secondary, #667085);
+}
+
+.rc-detail-value {
+    color: var(--text-primary, #1f2937);
+    font-weight: 600;
+    text-align: right;
+}
+
+.rc-confirm-note {
+    margin: 15px 0 0;
+    color: var(--text-secondary, #667085);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.rc-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px 22px;
+    border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.rc-secondary-btn,
+.rc-primary-btn {
+    padding: 9px 16px;
+    border-radius: 7px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.rc-secondary-btn {
+    border: 1px solid var(--border-color, #d0d5dd);
+    background: var(--card-bg, #ffffff);
+    color: var(--text-primary, #344054);
+}
+
+.rc-primary-btn {
+    border: 1px solid #27734e;
+    background: #27734e;
+    color: #ffffff;
+}
+
+.rc-primary-btn:hover {
+    background: #1d5c3d;
+}
+
+/* Toast */
+
+.rc-toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 11000;
+    max-width: calc(100vw - 40px);
+    padding: 12px 18px;
+    border-radius: 8px;
+    background: #1f2937;
+    color: #ffffff;
+    font-size: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.2s ease;
+}
+
+.rc-toast.rc-toast-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+    .rc-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .rc-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rc-section {
+        padding: 14px;
+    }
+
+    .rc-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .rc-modal {
+        padding: 12px;
+    }
+
+    .rc-modal-footer {
+        flex-wrap: wrap;
+    }
+}
+
+/* Use the workspace palette while retaining the existing screen layout. */
+.rc-page {
+    --text-primary: var(--text);
+    --text-secondary: var(--muted);
+    --card-bg: var(--card);
+    --border-color: var(--line);
+    --table-header-bg: var(--surface-alt);
+    --table-hover-bg: var(--surface);
+}
+
+.rc-count {
+    color: var(--primary);
+    background: color-mix(in srgb, var(--primary) 10%, var(--card));
+}
+
+.rc-result-passed {
+    color: var(--success);
+    background: color-mix(in srgb, var(--success) 12%, var(--card));
+}
+
+.rc-result-failed {
+    color: var(--danger);
+    background: color-mix(in srgb, var(--danger) 12%, var(--card));
+}
+
+.rc-result-pending {
+    color: var(--warning);
+    background: color-mix(in srgb, var(--warning) 12%, var(--card));
+}
+
+.rc-revalidate-btn,
+.rc-primary-btn {
+    color: #fff;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.rc-revalidate-btn:hover,
+.rc-primary-btn:hover {
+    background: var(--primary-hover);
+}
+
+.rc-modal {
+    background: rgba(18, 12, 21, 0.58);
+}
+
+.rc-toast {
+    background: var(--brand);
+}

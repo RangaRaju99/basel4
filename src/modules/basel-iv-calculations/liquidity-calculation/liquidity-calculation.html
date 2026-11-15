@@ -1,0 +1,208 @@
+<template id="liquidityCalculationTemplate">
+
+    <div class="liq-module" id="liquidityCalculationApp">
+
+        <!-- PAGE HEADER -->
+        <header class="liq-header">
+            <div>
+                <span class="liq-eyebrow">BASEL IV / CALCULATIONS</span>
+                <h2>Liquidity Calculation</h2>
+                <p>
+                    Calculate Basel IV liquidity metrics including
+                    Liquidity Coverage Ratio and Net Stable Funding Ratio.
+                </p>
+            </div>
+
+            <div class="liq-header-icon">▥</div>
+        </header>
+
+
+        <!-- CALCULATION PARAMETERS -->
+        <section class="liq-panel">
+
+            <div class="liq-section-heading">
+                <div>
+                    <h3>Calculation Parameters</h3>
+                    <p>Select the reporting details for this calculation.</p>
+                </div>
+            </div>
+
+            <div class="liq-parameter-grid">
+
+                <div class="liq-field">
+                    <label for="liqPeriod">Reporting Period</label>
+                    <select id="liqPeriod">
+                        <option value="Oct 2026">Oct 2026</option>
+                        <option value="Nov 2026">Nov 2026</option>
+                    </select>
+                </div>
+
+                <div class="liq-field">
+                    <label for="liqBank">Bank Name</label>
+                    <select id="liqBank">
+                        <option value="HDFC Bank">HDFC Bank</option>
+                        <option value="ICICI Bank">ICICI Bank</option>
+                        <option value="SBI">SBI</option>
+                    </select>
+                </div>
+
+                <div class="liq-field">
+                    <label for="liqBusinessDate">Business Date</label>
+                    <input
+                        type="date"
+                        id="liqBusinessDate"
+                        value="2026-11-10"
+                    >
+                </div>
+
+            </div>
+
+            <div class="liq-actions">
+                <button
+                    type="button"
+                    class="liq-btn liq-btn-primary"
+                    id="liqCalculateBtn">
+                    Calculate Liquidity
+                </button>
+
+                <button
+                    type="button"
+                    class="liq-btn liq-btn-secondary"
+                    id="liqResetBtn">
+                    Reset
+                </button>
+
+                <button
+                    type="button"
+                    class="liq-btn liq-btn-outline"
+                    id="liqExportBtn">
+                    Export CSV
+                </button>
+            </div>
+
+            <div
+                id="liqMessage"
+                class="liq-message"
+                hidden>
+            </div>
+
+        </section>
+
+
+        <!-- RESULTS -->
+        <div id="liqResults" hidden>
+
+            <!-- LIQUIDITY COMPONENTS -->
+            <section class="liq-panel">
+
+                <div class="liq-section-heading">
+                    <div>
+                        <h3>Liquidity Components</h3>
+                        <p>
+                            Key liquidity and stable funding components
+                            used in the calculation.
+                        </p>
+                    </div>
+
+                    <span class="liq-status">Calculation Completed</span>
+                </div>
+
+                <div class="liq-table-wrap">
+                    <table class="liq-table">
+
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="liqComponentTable"></tbody>
+
+                    </table>
+                </div>
+
+            </section>
+
+
+            <!-- SUMMARY CARDS -->
+            <div class="liq-summary-grid">
+
+                <div class="liq-summary-card">
+                    <span class="liq-card-label">High Quality Liquid Assets</span>
+                    <strong id="liqHqlaValue">-</strong>
+                    <small>HQLA</small>
+                </div>
+
+                <div class="liq-summary-card">
+                    <span class="liq-card-label">Net Cash Outflows</span>
+                    <strong id="liqNetOutflowValue">-</strong>
+                    <small>30-day net cash outflows</small>
+                </div>
+
+                <div class="liq-summary-card liq-total-card">
+                    <span class="liq-card-label">Liquidity Coverage Ratio</span>
+                    <strong id="liqLcrValue">-</strong>
+                    <small>LCR</small>
+                </div>
+
+                <div class="liq-summary-card liq-total-card">
+                    <span class="liq-card-label">Net Stable Funding Ratio</span>
+                    <strong id="liqNsfrValue">-</strong>
+                    <small>NSFR</small>
+                </div>
+
+            </div>
+
+
+            <!-- CALCULATION SUMMARY -->
+            <section class="liq-panel">
+
+                <div class="liq-section-heading">
+                    <div>
+                        <h3>Basel IV Liquidity Calculation Summary</h3>
+                        <p>
+                            Calculation details and formula breakdown.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="liq-summary-meta">
+
+                    <div>
+                        <span>Bank</span>
+                        <strong id="liqSummaryBank">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Reporting Period</span>
+                        <strong id="liqSummaryPeriod">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Business Date</span>
+                        <strong id="liqSummaryDate">-</strong>
+                    </div>
+
+                </div>
+
+                <div id="liqFormulaList" class="liq-formula-list"></div>
+
+                <div class="liq-grand-total">
+                    <span>Liquidity Coverage Ratio (LCR)</span>
+                    <strong id="liqSummaryLcr">-</strong>
+                </div>
+
+                <div class="liq-grand-total">
+                    <span>Net Stable Funding Ratio (NSFR)</span>
+                    <strong id="liqSummaryNsfr">-</strong>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+        </template>

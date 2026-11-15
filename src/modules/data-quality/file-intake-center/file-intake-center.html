@@ -1,0 +1,190 @@
+<template id="fileIntakeTemplate">
+
+    <div class="fic-app" id="fileIntakeApp">
+
+        <!-- PAGE HEADER -->
+
+        <div class="fic-header">
+            <div>
+                <h2>File Intake Center</h2>
+                <p>Manage incoming data files and initiate data quality validation.</p>
+            </div>
+        </div>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <div class="fic-summary-grid">
+
+            <div class="fic-summary-card">
+                <div class="fic-summary-label">Files Under Validation</div>
+                <div class="fic-summary-value" id="ficUnderValidation">1</div>
+                <div class="fic-summary-note">Currently being validated</div>
+            </div>
+
+            <div class="fic-summary-card">
+                <div class="fic-summary-label">New Files Received</div>
+                <div class="fic-summary-value" id="ficNewFiles">2</div>
+                <div class="fic-summary-note">Waiting to start validation</div>
+            </div>
+
+            <div class="fic-summary-card">
+                <div class="fic-summary-label">Total Records</div>
+                <div class="fic-summary-value" id="ficTotalRecords">268,000</div>
+                <div class="fic-summary-note">Across displayed files</div>
+            </div>
+
+        </div>
+
+
+        <!-- FILES CURRENTLY UNDER VALIDATION -->
+
+        <section class="fic-panel">
+
+            <div class="fic-panel-header">
+                <div>
+                    <h3>Files Currently Under Validation</h3>
+                    <p>Monitor files undergoing data quality checks.</p>
+                </div>
+
+                <span class="fic-section-count" id="ficActiveCount">
+                    1 File
+                </span>
+            </div>
+
+
+            <div class="fic-table-wrapper">
+
+                <table class="fic-table">
+
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Records</th>
+                            <th>Stage</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ficActiveTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- NEW FILES RECEIVED -->
+
+        <section class="fic-panel">
+
+            <div class="fic-panel-header">
+                <div>
+                    <h3>New Files Received From Data Ingestion</h3>
+                    <p>Files received and waiting for validation to begin.</p>
+                </div>
+
+                <span class="fic-section-count" id="ficNewCount">
+                    2 Files
+                </span>
+            </div>
+
+
+            <div class="fic-table-wrapper">
+
+                <table class="fic-table">
+
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Received Time</th>
+                            <th>Records</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="ficNewTableBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- TRACK MODAL -->
+
+        <div class="fic-modal" id="ficTrackModal" hidden>
+
+            <div class="fic-modal-backdrop" data-fic-close></div>
+
+            <div class="fic-modal-content">
+
+                <div class="fic-modal-header">
+                    <div>
+                        <h3>File Validation Details</h3>
+                        <p>Track the current validation stage.</p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="fic-modal-close"
+                        data-fic-close
+                        aria-label="Close">
+                        &times;
+                    </button>
+                </div>
+
+
+                <div class="fic-modal-body">
+
+                    <div class="fic-detail-row">
+                        <span>File Name</span>
+                        <strong id="ficTrackFileName">-</strong>
+                    </div>
+
+                    <div class="fic-detail-row">
+                        <span>Records</span>
+                        <strong id="ficTrackRecords">-</strong>
+                    </div>
+
+                    <div class="fic-detail-row">
+                        <span>Validation Stage</span>
+                        <strong id="ficTrackStage">-</strong>
+                    </div>
+
+                    <div class="fic-detail-row">
+                        <span>Validation Run</span>
+                        <strong id="ficTrackRun">-</strong>
+                    </div>
+
+                    <div class="fic-detail-row">
+                        <span>Status</span>
+                        <strong id="ficTrackStatus">-</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="fic-modal-footer">
+                    <button
+                        type="button"
+                        class="fic-secondary-btn"
+                        data-fic-close>
+                        Close
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NOTIFICATION -->
+
+        <div class="fic-toast" id="ficToast" role="status" aria-live="polite"></div>
+
+    </div>
+
+        </template>

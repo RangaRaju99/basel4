@@ -1,0 +1,137 @@
+<template id="investigationTemplate">
+    <section class="investigation-module" id="investigationApp">
+
+        <div class="inv-header">
+            <div>
+                <h2>Investigation</h2>
+                <p>Investigate assigned exceptions, identify root causes and prepare cases for verification.</p>
+            </div>
+
+            <button class="inv-primary-btn" id="invImportBtn">
+                Import Assigned Exceptions
+            </button>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="inv-metrics">
+            <div class="inv-metric-card">
+                <span>Total Cases</span>
+                <strong id="invCasesCount">0</strong>
+            </div>
+
+            <div class="inv-metric-card">
+                <span>Investigating</span>
+                <strong id="invInvestigatingCount">0</strong>
+            </div>
+
+            <div class="inv-metric-card">
+                <span>Root Cause Identified</span>
+                <strong id="invRootCauseCount">0</strong>
+            </div>
+
+            <div class="inv-metric-card">
+                <span>Documents</span>
+                <strong id="invDocumentsCount">0</strong>
+            </div>
+
+            <div class="inv-metric-card">
+                <span>Pending Verification</span>
+                <strong id="invPendingVerifyCount">0</strong>
+            </div>
+
+            <div class="inv-metric-card">
+                <span>Approval Ready</span>
+                <strong id="invApprovalCount">0</strong>
+            </div>
+        </div>
+
+        <!-- Investigation Cases -->
+        <div class="inv-section">
+            <div class="inv-section-heading">
+                <h3>Investigation Cases</h3>
+                <span id="invCaseTotal">0 cases</span>
+            </div>
+
+            <div class="inv-table-wrap">
+                <table class="inv-table">
+                    <thead>
+                        <tr>
+                            <th>Case ID</th>
+                            <th>Exception ID</th>
+                            <th>Risk / Metric</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                            <th>Root Cause</th>
+                            <th>Evidence</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="invTableBody">
+                        <tr>
+                            <td colspan="8" class="inv-empty">
+                                Import assigned exceptions to create investigation cases.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Root Cause Modal -->
+        <div class="inv-modal" id="invRootCauseModal">
+            <div class="inv-modal-card">
+                <div class="inv-modal-header">
+                    <h3>Update Root Cause</h3>
+                    <button class="inv-close-btn" id="invRootClose" type="button">&times;</button>
+                </div>
+
+                <div class="inv-form-group">
+                    <label for="invRootCauseText">Root Cause Description</label>
+                    <textarea
+                        id="invRootCauseText"
+                        placeholder="Describe the reason behind the risk variance..."
+                    ></textarea>
+                </div>
+
+                <div class="inv-form-group">
+                    <label for="invCorrectiveAction">Corrective Action</label>
+                    <textarea
+                        id="invCorrectiveAction"
+                        placeholder="Describe the corrective action taken or proposed..."
+                    ></textarea>
+                </div>
+
+                <div class="inv-modal-actions">
+                    <button class="inv-secondary-btn" id="invRootCancel" type="button">
+                        Cancel
+                    </button>
+                    <button class="inv-primary-btn" id="invRootSave" type="button">
+                        Save Investigation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Case Modal -->
+        <div class="inv-modal" id="invViewModal">
+            <div class="inv-modal-card">
+                <div class="inv-modal-header">
+                    <h3>Investigation Case Details</h3>
+                    <button class="inv-close-btn" id="invViewClose" type="button">&times;</button>
+                </div>
+
+                <div id="invViewContent"></div>
+
+                <div class="inv-modal-actions">
+                    <button class="inv-secondary-btn" id="invViewDone" type="button">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="inv-toast" id="invToast"></div>
+
+    </section>
+        </template>

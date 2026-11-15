@@ -1,0 +1,142 @@
+<template id="revalidationCenterTemplate">
+    <div class="rc-page" id="revalidationCenterApp">
+
+        <div class="rc-header">
+            <div>
+                <h2>Revalidation Center</h2>
+                <p>Manage corrected files and track their revalidation attempts.</p>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="rc-summary-grid">
+
+            <div class="rc-summary-card">
+                <span class="rc-summary-label">Awaiting Revalidation</span>
+                <strong id="rcAwaitingCount">0</strong>
+                <span class="rc-summary-note">Files waiting for validation</span>
+            </div>
+
+            <div class="rc-summary-card">
+                <span class="rc-summary-label">Revalidation Attempts</span>
+                <strong id="rcAttemptsCount">0</strong>
+                <span class="rc-summary-note">Total recorded attempts</span>
+            </div>
+
+            <div class="rc-summary-card">
+                <span class="rc-summary-label">Passed Attempts</span>
+                <strong id="rcPassedCount">0</strong>
+                <span class="rc-summary-note">Successfully revalidated</span>
+            </div>
+
+        </div>
+
+        <!-- Awaiting Revalidation -->
+        <section class="rc-section">
+
+            <div class="rc-section-heading">
+                <div>
+                    <h3>Awaiting Revalidation</h3>
+                    <p>Corrected files submitted by their respective teams.</p>
+                </div>
+
+                <span class="rc-count" id="rcQueueCount">0 Files</span>
+            </div>
+
+            <div class="rc-table-wrapper">
+                <table class="rc-table">
+                    <thead>
+                        <tr>
+                            <th>File / Feed</th>
+                            <th>Corrected By</th>
+                            <th>Previous Failure</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="rcAwaitingTableBody"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Revalidation History -->
+        <section class="rc-section">
+
+            <div class="rc-section-heading">
+                <div>
+                    <h3>Revalidation History</h3>
+                    <p>Review previous revalidation attempts and their outcomes.</p>
+                </div>
+
+                <span class="rc-count" id="rcHistoryCount">0 Attempts</span>
+            </div>
+
+            <div class="rc-table-wrapper">
+                <table class="rc-table">
+                    <thead>
+                        <tr>
+                            <th>File / Feed</th>
+                            <th>Attempt</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="rcHistoryTableBody"></tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <!-- Revalidation Confirmation Modal -->
+        <div class="rc-modal" id="rcConfirmModal">
+            <div class="rc-modal-content">
+
+                <div class="rc-modal-header">
+                    <div>
+                        <h3>Confirm Revalidation</h3>
+                        <p>Review the corrected file before starting revalidation.</p>
+                    </div>
+
+                    <button type="button"
+                            class="rc-close"
+                            data-action="close-modal"
+                            aria-label="Close">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="rc-modal-body">
+
+                    <div class="rc-confirm-info" id="rcConfirmDetails"></div>
+
+                    <p class="rc-confirm-note">
+                        Starting revalidation will record a new validation attempt
+                        for this file.
+                    </p>
+
+                </div>
+
+                <div class="rc-modal-footer">
+                    <button type="button"
+                            class="rc-secondary-btn"
+                            data-action="close-modal">
+                        Cancel
+                    </button>
+
+                    <button type="button"
+                            class="rc-primary-btn"
+                            id="rcConfirmButton"
+                            data-action="confirm-revalidation">
+                        Start Revalidation
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Result Toast -->
+        <div class="rc-toast" id="rcToast"></div>
+
+    </div>
+        </template>

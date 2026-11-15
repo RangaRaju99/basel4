@@ -1,0 +1,152 @@
+<template id="slaEscalationsTemplate">
+    <section class="se-module" id="slaEscalationsApp">
+
+        <!-- Page Header -->
+        <div class="se-page-header">
+            <div>
+                <div class="se-breadcrumb">
+                    Data Ingestion <span>/</span> SLA &amp; Escalations
+                </div>
+                <h2>SLA &amp; Escalations</h2>
+                <p>Monitor delayed and failed feeds and escalate issues to accountable data owners.</p>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="se-summary-grid">
+
+            <div class="se-summary-card">
+                <div class="se-summary-label">Open Issues</div>
+                <div class="se-summary-value" id="seOpenIssues">2</div>
+                <div class="se-summary-description">Feeds requiring attention</div>
+            </div>
+
+            <div class="se-summary-card">
+                <div class="se-summary-label">SLA Breaches</div>
+                <div class="se-summary-value se-orange" id="seSlaBreaches">1</div>
+                <div class="se-summary-description">Feeds received after cut-off</div>
+            </div>
+
+            <div class="se-summary-card">
+                <div class="se-summary-label">Failed Feeds</div>
+                <div class="se-summary-value se-red" id="seFailedFeeds">1</div>
+                <div class="se-summary-description">Feeds failed during processing</div>
+            </div>
+
+            <div class="se-summary-card">
+                <div class="se-summary-label">Alerts Sent</div>
+                <div class="se-summary-value se-green" id="seAlertsSent">0</div>
+                <div class="se-summary-description">Escalation alerts sent in this session</div>
+            </div>
+
+        </div>
+
+        <!-- Alerts Table -->
+        <div class="se-section-header">
+            <div>
+                <h3>Late Feeds &amp; Failure Alerts</h3>
+                <p>Review feed issues and notify the responsible data owner.</p>
+            </div>
+            <span class="se-issue-count" id="seIssueCount">2 Issues</span>
+        </div>
+
+        <div class="se-table-wrapper">
+            <table class="se-table">
+                <thead>
+                    <tr>
+                        <th>Source System</th>
+                        <th>Issue Type</th>
+                        <th>Cut-off Time</th>
+                        <th>Accountable Data Owner</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="seTableBody">
+                    <!-- JavaScript renders issue records -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty State -->
+        <div class="se-empty-state" id="seEmptyState" hidden>
+            <div class="se-empty-icon">✓</div>
+            <h4>No Open Feed Issues</h4>
+            <p>All monitored feeds are currently clear.</p>
+        </div>
+
+        <!-- Escalation Modal -->
+        <div class="se-modal-overlay" id="seEscalationModal" hidden>
+            <div class="se-modal" role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="seModalTitle">
+
+                <div class="se-modal-header">
+                    <div>
+                        <h3 id="seModalTitle">Escalate to Data Owner</h3>
+                        <p>Send an alert to the accountable data owner.</p>
+                    </div>
+
+                    <button type="button"
+                            class="se-close-btn"
+                            id="seCloseModal"
+                            aria-label="Close modal">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="se-modal-body">
+
+                    <div class="se-selected-issue" id="seSelectedIssue">
+                        <!-- Selected feed details -->
+                    </div>
+
+                    <div class="se-form-group">
+                        <label for="seRecipient">To</label>
+                        <input type="email"
+                               id="seRecipient"
+                               placeholder="Enter data owner email address"
+                               required>
+                        <small id="seRecipientHelp">
+                            Verify the recipient email before sending.
+                        </small>
+                    </div>
+
+                    <div class="se-form-group">
+                        <label for="seMessage">Message</label>
+                        <textarea id="seMessage"
+                                  rows="5"
+                                  required></textarea>
+                    </div>
+
+                    <div class="se-modal-error" id="seModalError" hidden>
+                        Please enter a valid recipient email and message.
+                    </div>
+
+                </div>
+
+                <div class="se-modal-footer">
+                    <button type="button"
+                            class="se-cancel-btn"
+                            id="seCancelEscalation">
+                        Cancel
+                    </button>
+
+                    <button type="button"
+                            class="se-send-btn"
+                            id="seSendAlert">
+                        <span>Send Alert</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div class="se-toast" id="seToast" role="status" aria-live="polite" hidden>
+            <span class="se-toast-icon">✓</span>
+            <span id="seToastMessage">Alert sent successfully.</span>
+        </div>
+
+    </section>
+        </template>

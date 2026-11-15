@@ -1,0 +1,12 @@
+{
+  "pages": [
+    {
+      "source": "src/pages/index.html",
+      "output": "index.html"
+    },
+    {
+      "source": "src/pages/workspace.html",
+      "output": "workspace.html"
+    }
+  ]
+}

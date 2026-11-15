@@ -1,0 +1,169 @@
+<template id="varianceAnalysisTemplate">
+
+    <section class="va-module" id="varianceAnalysisApp">
+
+        <!-- Page Header -->
+        <header class="va-header">
+            <div>
+                <div class="va-breadcrumb">
+                    Reconciliation <span>/</span> Variance Analysis
+                </div>
+
+                <h2>Variance Analysis</h2>
+
+                <p>
+                    Identify and analyse variations across Basel risk metrics.
+                </p>
+            </div>
+
+            <div class="va-header-icon">⇄</div>
+        </header>
+
+        <!-- Analysis Criteria -->
+        <section class="va-card">
+
+            <div class="va-section-heading">
+                <div>
+                    <h3>Analysis Criteria</h3>
+                    <p>Configure the threshold and risk category before running analysis.</p>
+                </div>
+            </div>
+
+            <div class="va-filter-grid">
+
+                <div class="va-field">
+                    <label for="vaThreshold">Threshold (%)</label>
+                    <input
+                        type="number"
+                        id="vaThreshold"
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        value="5"
+                        placeholder="Enter threshold"
+                    >
+                </div>
+
+                <div class="va-field">
+                    <label for="vaRiskType">Risk Type</label>
+                    <select id="vaRiskType">
+                        <option value="ALL">ALL</option>
+                        <option value="CREDIT">CREDIT</option>
+                        <option value="MARKET">MARKET</option>
+                        <option value="OPERATIONAL">OPERATIONAL</option>
+                        <option value="LIQUIDITY">LIQUIDITY</option>
+                    </select>
+                </div>
+
+                <button
+                    type="button"
+                    class="va-primary-btn"
+                    id="vaRunAnalysis"
+                >
+                    Run Analysis
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- Summary Metrics -->
+        <section class="va-metrics-grid">
+
+            <article class="va-metric-card">
+                <span class="va-metric-label">Metrics</span>
+                <strong class="va-metric-value" id="vaMetricCount">0</strong>
+            </article>
+
+            <article class="va-metric-card high">
+                <span class="va-metric-label">High</span>
+                <strong class="va-metric-value" id="vaHighCount">0</strong>
+            </article>
+
+            <article class="va-metric-card medium">
+                <span class="va-metric-label">Medium</span>
+                <strong class="va-metric-value" id="vaMediumCount">0</strong>
+            </article>
+
+            <article class="va-metric-card low">
+                <span class="va-metric-label">Low</span>
+                <strong class="va-metric-value" id="vaLowCount">0</strong>
+            </article>
+
+            <article class="va-metric-card breach">
+                <span class="va-metric-label">Breaches</span>
+                <strong class="va-metric-value" id="vaBreachCount">0</strong>
+            </article>
+
+            <article class="va-metric-card threshold">
+                <span class="va-metric-label">Threshold</span>
+                <strong class="va-metric-value" id="vaThresholdValue">5%</strong>
+            </article>
+
+        </section>
+
+        <!-- Variance Results -->
+        <section class="va-card">
+
+            <div class="va-table-toolbar">
+                <div>
+                    <h3>Variance Analysis Results</h3>
+                    <span class="va-record-count" id="vaRecordCount">
+                        0 records
+                    </span>
+                </div>
+            </div>
+
+            <div class="va-table-wrap">
+
+                <table class="va-table">
+
+                    <thead>
+                        <tr>
+                            <th>Risk</th>
+                            <th>Metric</th>
+                            <th>Current</th>
+                            <th>Previous</th>
+                            <th>Variance %</th>
+                            <th>Severity</th>
+                            <th>Breach</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="vaTableBody">
+
+                        <tr>
+                            <td colspan="7" class="va-empty">
+                                <span class="va-empty-icon">▤</span>
+                                Run analysis to view variance results.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <p class="va-footer-note">
+                Variance is calculated using the absolute difference between
+                current and previous values divided by the previous value.
+                Results shown are illustrative demo data.
+            </p>
+
+        </section>
+
+        <!-- Toast -->
+        <div
+            class="va-toast"
+            id="vaToast"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Analysis completed successfully.
+        </div>
+
+    </section>
+
+        </template>

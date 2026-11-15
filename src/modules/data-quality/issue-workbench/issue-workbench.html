@@ -1,0 +1,103 @@
+<template id="issueWorkbenchTemplate">
+    <div class="iw-page" id="issueWorkbenchApp">
+
+        <div class="iw-header">
+            <div>
+                <h2>Issue Workbench</h2>
+                <p>Track data quality issues, ownership, correction requests and issue history.</p>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="iw-summary-grid">
+            <div class="iw-summary-card">
+                <span class="iw-summary-label">Total Issues</span>
+                <strong id="iwTotalIssues">0</strong>
+                <span class="iw-summary-note">Recorded issues</span>
+            </div>
+
+            <div class="iw-summary-card">
+                <span class="iw-summary-label">Open Issues</span>
+                <strong id="iwOpenIssues">0</strong>
+                <span class="iw-summary-note">Require attention</span>
+            </div>
+
+            <div class="iw-summary-card">
+                <span class="iw-summary-label">Correction Requested</span>
+                <strong id="iwCorrectionIssues">0</strong>
+                <span class="iw-summary-note">Awaiting team action</span>
+            </div>
+        </div>
+
+        <!-- Issues Table -->
+        <section class="iw-section">
+            <div class="iw-section-heading">
+                <div>
+                    <h3>Data Quality Issues</h3>
+                    <p>Review assigned issues and their current status.</p>
+                </div>
+
+                <span class="iw-count" id="iwIssueCount">0 Issues</span>
+            </div>
+
+            <div class="iw-table-wrapper">
+                <table class="iw-table">
+                    <thead>
+                        <tr>
+                            <th>Issue ID</th>
+                            <th>File / Feed</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                            <th>History</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="iwIssueTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Issue History Modal -->
+        <div class="iw-modal" id="iwHistoryModal">
+            <div class="iw-modal-content">
+
+                <div class="iw-modal-header">
+                    <div>
+                        <h3>Issue History</h3>
+                        <p id="iwHistorySubtitle">Issue activity timeline</p>
+                    </div>
+
+                    <button type="button"
+                            class="iw-close"
+                            data-action="close-history"
+                            aria-label="Close">
+                        &times;
+                    </button>
+                </div>
+
+                <div class="iw-modal-body">
+
+                    <div class="iw-issue-overview" id="iwIssueOverview"></div>
+
+                    <div class="iw-timeline-heading">
+                        <h4>Activity Timeline</h4>
+                        <span>Issue lifecycle</span>
+                    </div>
+
+                    <div class="iw-timeline" id="iwTimeline"></div>
+
+                </div>
+
+                <div class="iw-modal-footer">
+                    <button type="button"
+                            class="iw-secondary-btn"
+                            data-action="close-history">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+        </template>

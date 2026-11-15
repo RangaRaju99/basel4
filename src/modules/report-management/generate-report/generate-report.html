@@ -1,0 +1,271 @@
+<template id="generateReportsTemplate">
+
+    <section class="gr-module" id="generateReportsApp">
+
+        <!-- HEADER -->
+
+        <div class="gr-header">
+            <div>
+                <h2>Generate Consolidated Report</h2>
+                <p>
+                    Filter calculations, review matching rows,
+                    preview and generate one consolidated report.
+                </p>
+            </div>
+
+            <span class="gr-header-tag">
+                <i class="fa-solid fa-database"></i>
+                Calculation Repository
+            </span>
+        </div>
+
+        <section class="gr-overview" aria-label="Report generation overview">
+            <div class="gr-overview-cards" id="grOverviewCards"></div>
+
+            <div class="gr-overview-grid">
+                <article class="gr-panel">
+                    <div class="gr-panel-heading">
+                        <div>
+                            <h3>Calculation Records</h3>
+                            <p>Available records by calculation type</p>
+                        </div>
+                    </div>
+                    <div class="gr-type-breakdown" id="grTypeBreakdown"></div>
+                </article>
+
+                <article class="gr-panel">
+                    <div class="gr-panel-heading">
+                        <div>
+                            <h3>Recent Generated Reports</h3>
+                            <p>Latest reports saved in this workspace</p>
+                        </div>
+                    </div>
+                    <div class="gr-recent-reports" id="grRecentReports"></div>
+                </article>
+            </div>
+        </section>
+
+        <!-- FILTER PANEL -->
+
+        <div class="gr-panel">
+
+            <div class="gr-panel-heading">
+                <div>
+                    <h3>Filter Calculation Data</h3>
+                    <p>All matching rows are selected by default.</p>
+                </div>
+
+                <button class="gr-btn" id="grRefreshRecords">
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+            </div>
+
+            <div class="gr-filter-grid">
+
+                <div class="gr-field">
+                    <label for="grTypeFilter">Report Type</label>
+                    <select id="grTypeFilter">
+                        <option value="ALL">All Report Types</option>
+                        <option value="RWA">RWA</option>
+                        <option value="Liquidity">Liquidity</option>
+                        <option value="Capital">Capital</option>
+                        <option value="Leverage">Leverage</option>
+                    </select>
+                </div>
+
+                <div class="gr-field">
+                    <label for="grBankFilter">Bank</label>
+                    <select id="grBankFilter">
+                        <option value="ALL">All Banks</option>
+                    </select>
+                </div>
+
+                <div class="gr-field">
+                    <label for="grPeriodFilter">Reporting Period</label>
+                    <select id="grPeriodFilter">
+                        <option value="ALL">All Periods</option>
+                    </select>
+                </div>
+
+                <div class="gr-field">
+                    <label for="grStatusFilter">Status</label>
+                    <select id="grStatusFilter">
+                        <option value="ALL">All Statuses</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Failed">Failed</option>
+                    </select>
+                </div>
+
+                <div class="gr-field">
+                    <label for="grBusinessDateFilter">Business Date</label>
+                    <input type="date" id="grBusinessDateFilter">
+                </div>
+
+                <div class="gr-field">
+                    <label for="grSearchInput">Search</label>
+                    <input
+                        type="search"
+                        id="grSearchInput"
+                        placeholder="Search calculation ID, bank..."
+                    >
+                </div>
+
+            </div>
+
+            <div class="gr-filter-actions">
+                <button class="gr-btn" id="grResetFilters">
+                    Reset
+                </button>
+
+                <button class="gr-btn gr-btn-primary" id="grApplyFilters">
+                    <i class="fa-solid fa-filter"></i>
+                    Apply Filters
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- MATCHING CALCULATIONS -->
+
+        <div class="gr-panel">
+
+            <div class="gr-panel-heading">
+                <div>
+                    <h3>Matching Calculation Rows</h3>
+                    <p id="grMatchingCount">0 matching rows</p>
+                </div>
+            </div>
+
+            <div class="gr-selection-bar">
+
+                <div>
+                    <strong id="grSelectedCount">0</strong>
+                    of
+                    <strong id="grFilteredTotal">0</strong>
+                    rows selected
+                </div>
+
+                <label>
+                    <input type="checkbox" id="grSelectAll" checked>
+                    Select all
+                </label>
+
+            </div>
+
+            <div class="gr-table-wrap">
+
+                <table class="gr-table">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Calculation ID</th>
+                            <th>Type</th>
+                            <th>Bank</th>
+                            <th>Period</th>
+                            <th>Business Date</th>
+                            <th>Primary Result</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="grCalculationTableBody">
+                        <tr>
+                            <td colspan="9">
+                                <div class="gr-empty">
+                                    <strong>No calculation records found</strong>
+                                    Run calculations to populate this table.
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="gr-pagination">
+                <div id="grPaginationContainer"></div>
+            </div>
+
+        </div>
+
+
+        <!-- GENERATE REPORT -->
+
+        <div class="gr-generate-bar">
+
+            <div>
+                <strong>Generate one consolidated report</strong>
+                <p>
+                    All selected rows will be combined and grouped
+                    by calculation type.
+                </p>
+            </div>
+
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+
+                <button class="gr-btn" id="grReviewBtn">
+                    Review Selected
+                </button>
+
+                <button class="gr-btn" id="grPreviewBtn">
+                    <i class="fa-solid fa-eye"></i>
+                    Preview Report
+                </button>
+
+                <button
+                    class="gr-btn gr-btn-primary"
+                    id="grGenerateBtn"
+                >
+                    <i class="fa-solid fa-file-circle-check"></i>
+                    Generate Report
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MODAL -->
+
+        <div class="gr-modal" id="grModal" role="dialog" aria-modal="true" aria-labelledby="grModalTitle">
+
+            <div class="gr-modal-box">
+
+                <div class="gr-modal-head">
+                    <h3 class="gr-modal-title" id="grModalTitle">Report Preview</h3>
+
+                    <button
+                        class="gr-modal-close"
+                        type="button"
+                        data-modal-close
+                    >
+                        &times;
+                    </button>
+                </div>
+
+                <div class="gr-modal-body">
+                    <!-- Dynamic report content -->
+                </div>
+
+                <div class="gr-modal-footer">
+                    <!-- Dynamic modal buttons -->
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOAST -->
+
+        <div class="gr-toast" id="grToast"></div>
+
+    </section>
+
+        </template>

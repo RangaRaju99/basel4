@@ -1,0 +1,245 @@
+<template id="manageQueryTemplate">
+
+    <section class="mq-module" id="manageQueryApp">
+
+        <!-- HEADER -->
+
+        <header class="mq-header">
+            <div>
+                <span class="mq-eyebrow">QUERY MANAGEMENT</span>
+                <h2>Manage Queries</h2>
+                <p>
+                    View, track, update and close regulatory queries
+                    raised against reports.
+                </p>
+            </div>
+
+            <div class="mq-header-icon">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+        </header>
+
+
+        <!-- SUMMARY -->
+
+        <section class="mq-summary">
+
+            <article class="mq-summary-card">
+                <span>Total Queries</span>
+                <strong id="mqTotalCount">0</strong>
+            </article>
+
+            <article class="mq-summary-card">
+                <span>Assigned Queries</span>
+                <strong id="mqAssignedCount">0</strong>
+            </article>
+
+            <article class="mq-summary-card">
+                <span>Closed Queries</span>
+                <strong id="mqClosedCount">0</strong>
+            </article>
+
+        </section>
+
+
+        <!-- VIEW ALL QUERIES -->
+
+        <section class="mq-panel">
+
+            <div class="mq-panel-heading">
+                <div>
+                    <h3>View Queries</h3>
+                    <p>
+                        Review all queries and update their progress.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="mq-btn mq-btn-refresh"
+                    id="mqRefresh"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+            </div>
+
+
+            <!-- FILTERS -->
+
+            <div class="mq-filter-grid">
+
+                <div class="mq-field">
+                    <label for="mqSearch">Search Queries</label>
+                    <input
+                        type="search"
+                        id="mqSearch"
+                        placeholder="Search Query ID, report, user..."
+                    >
+                </div>
+
+                <div class="mq-field">
+                    <label for="mqStatusFilter">Status</label>
+                    <select id="mqStatusFilter">
+                        <option value="ALL">All Statuses</option>
+                        <option value="Open">Open</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+
+                <div class="mq-field">
+                    <label for="mqPriorityFilter">Priority</label>
+                    <select id="mqPriorityFilter">
+                        <option value="ALL">All Priorities</option>
+                        <option value="High">High</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Low">Low</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <!-- QUERY TABLE -->
+
+            <div class="mq-table-wrap">
+
+                <table class="mq-table">
+
+                    <thead>
+                        <tr>
+                            <th>Query ID</th>
+                            <th>Report Name</th>
+                            <th>Raised By</th>
+                            <th>Priority</th>
+                            <th>Assigned To</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="mqAllRows">
+                        <tr>
+                            <td colspan="9" class="mq-empty">
+                                Loading queries...
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ASSIGNED QUERIES -->
+
+        <section class="mq-panel">
+
+            <div class="mq-panel-heading">
+                <div>
+                    <h3>Assigned Queries</h3>
+                    <p>
+                        Queries currently assigned to a responsible team.
+                    </p>
+                </div>
+
+                <span class="mq-section-count" id="mqAssignedLabel">
+                    Assigned
+                </span>
+            </div>
+
+            <div class="mq-table-wrap">
+
+                <table class="mq-table">
+
+                    <thead>
+                        <tr>
+                            <th>Query ID</th>
+                            <th>Report Name</th>
+                            <th>Raised By</th>
+                            <th>Priority</th>
+                            <th>Assigned To</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="mqAssignedRows">
+                        <tr>
+                            <td colspan="9" class="mq-empty">
+                                No assigned queries available.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- CLOSED QUERIES -->
+
+        <section class="mq-panel">
+
+            <div class="mq-panel-heading">
+                <div>
+                    <h3>Closed Queries</h3>
+                    <p>
+                        Review queries that have been marked as resolved.
+                    </p>
+                </div>
+
+                <span class="mq-section-count">
+                    Completed
+                </span>
+            </div>
+
+            <div class="mq-table-wrap">
+
+                <table class="mq-table">
+
+                    <thead>
+                        <tr>
+                            <th>Query ID</th>
+                            <th>Report Name</th>
+                            <th>Raised By</th>
+                            <th>Priority</th>
+                            <th>Assigned To</th>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="mqClosedRows">
+                        <tr>
+                            <td colspan="9" class="mq-empty">
+                                No closed queries available.
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- TOAST -->
+
+        <div class="mq-toast" id="mqToast" role="status"></div>
+
+    </section>
+
+        </template>

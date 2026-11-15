@@ -1,0 +1,177 @@
+<template id="approvalClosureTemplate">
+    <section class="ac-module" id="approvalClosureApp">
+
+        <div class="ac-header">
+            <div>
+                <h2>Approval and Closure</h2>
+                <p>Review investigation cases, record approval decisions and manage regulatory exception closure.</p>
+            </div>
+
+            <div class="ac-header-actions">
+                <button class="ac-secondary-btn" id="acRefreshBtn">
+                    Refresh Cases
+                </button>
+
+                <button class="ac-primary-btn" id="acDemoBtn">
+                    Load Approval-Ready Demo
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="ac-metrics">
+            <div class="ac-metric-card">
+                <span>Pending</span>
+                <strong id="acPendingCount">0</strong>
+            </div>
+
+            <div class="ac-metric-card">
+                <span>Approved</span>
+                <strong id="acApprovedCount">0</strong>
+            </div>
+
+            <div class="ac-metric-card">
+                <span>Rejected</span>
+                <strong id="acRejectedCount">0</strong>
+            </div>
+
+            <div class="ac-metric-card">
+                <span>Escalated</span>
+                <strong id="acEscalatedCount">0</strong>
+            </div>
+
+            <div class="ac-metric-card">
+                <span>Closed</span>
+                <strong id="acClosedCount">0</strong>
+            </div>
+
+            <div class="ac-metric-card">
+                <span>Total Cases</span>
+                <strong id="acTotalCount">0</strong>
+            </div>
+        </div>
+
+        <div class="ac-layout">
+
+            <!-- Decision Workspace -->
+            <div class="ac-section">
+                <div class="ac-section-heading">
+                    <h3>Decision Workspace</h3>
+                    <p>Select a case and record the approval decision.</p>
+                </div>
+
+                <div class="ac-form">
+
+                    <div class="ac-form-group">
+                        <label for="acCaseSelect">Approval Case</label>
+                        <select id="acCaseSelect">
+                            <option value="">No case selected</option>
+                        </select>
+                    </div>
+
+                    <div class="ac-case-info" id="acCaseInfo">
+                        Select an approval case to view its details.
+                    </div>
+
+                    <div class="ac-form-group">
+                        <label for="acStageSelect">Approval Stage</label>
+                        <select id="acStageSelect">
+                            <option value="Risk Manager Review">Risk Manager Review</option>
+                            <option value="Compliance Review">Compliance Review</option>
+                            <option value="Finance Review">Finance Review</option>
+                            <option value="Committee Review">Committee Review</option>
+                        </select>
+                    </div>
+
+                    <div class="ac-form-group">
+                        <label for="acDecisionSelect">Decision</label>
+                        <select id="acDecisionSelect">
+                            <option value="">Select Decision</option>
+                            <option value="Approve">Approve</option>
+                            <option value="Reject">Reject</option>
+                            <option value="Escalate">Escalate</option>
+                            <option value="Return For Rework">Return For Rework</option>
+                        </select>
+                    </div>
+
+                    <div class="ac-form-group">
+                        <label for="acApproverSelect">Approver</label>
+                        <select id="acApproverSelect">
+                            <option value="">Select Approver</option>
+                            <option value="Suresh S">Suresh S - Risk Approver</option>
+                            <option value="Vidhya">Vidhya - Risk Approver</option>
+                            <option value="Gowtham">Gowtham - Compliance Officer</option>
+                        </select>
+                    </div>
+
+                    <div class="ac-form-group">
+                        <label for="acComments">Comments</label>
+                        <textarea
+                            id="acComments"
+                            placeholder="Enter your review comments or decision justification..."
+                        ></textarea>
+                    </div>
+
+                    <div class="ac-closure-box">
+                        <h4>Closure Confirmation</h4>
+
+                        <p style="font-size:12px;color:var(--text-secondary,#64748b);">
+                            Closure is available only after the final Committee Review approval.
+                        </p>
+
+                        <label class="ac-check-row">
+                            <input type="checkbox" id="acClosureCheck">
+                            <span>Controls/remediation verified</span>
+                        </label>
+
+                        <span class="ac-form-hint" id="acClosureHint">
+                            Not Confirmed
+                        </span>
+                    </div>
+
+                    <button class="ac-primary-btn ac-submit-btn" id="acSubmitBtn">
+                        Submit Decision
+                    </button>
+
+                </div>
+            </div>
+
+            <!-- Approval Queue -->
+            <div class="ac-section">
+                <div class="ac-queue-heading">
+                    <h3>Approval Queue</h3>
+                    <span id="acQueueTotal">0 cases</span>
+                </div>
+
+                <div class="ac-table-wrap">
+                    <table class="ac-table">
+                        <thead>
+                            <tr>
+                                <th>Approval ID</th>
+                                <th>Exception</th>
+                                <th>Investigation</th>
+                                <th>Stage</th>
+                                <th>Status</th>
+                                <th>Owner</th>
+                                <th>Evidence</th>
+                                <th>Decision</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="acTableBody">
+                            <tr>
+                                <td colspan="8" class="ac-empty">
+                                    No approval cases available.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ac-toast" id="acToast"></div>
+
+    </section>
+        </template>

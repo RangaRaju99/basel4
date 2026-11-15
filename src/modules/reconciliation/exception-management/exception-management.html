@@ -1,0 +1,246 @@
+<template id="exceptionManagementTemplate">
+
+    <section class="em-module" id="exceptionManagementApp">
+
+        <!-- Page Header -->
+        <header class="em-header">
+            <div>
+                <div class="em-breadcrumb">
+                    Reconciliation <span>/</span> Exception Management
+                </div>
+
+                <h2>Exception Management</h2>
+
+                <p>
+                    Register, assign and track regulatory reporting exceptions.
+                </p>
+            </div>
+
+            <div class="em-header-icon">⚑</div>
+        </header>
+
+        <!-- Exception Register -->
+        <section class="em-card">
+
+            <div class="em-section-heading">
+                <div>
+                    <h3>Exception Register</h3>
+                    <p>
+                        Import threshold breaches identified during variance analysis.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="em-primary-btn"
+                    id="emImportBreaches"
+                >
+                    <span>＋</span> Import Breaches
+                </button>
+            </div>
+
+        </section>
+
+        <!-- Summary Metrics -->
+        <section class="em-metrics-grid">
+
+            <article class="em-metric-card open">
+                <span class="em-metric-label">Open</span>
+                <strong class="em-metric-value" id="emOpenCount">0</strong>
+            </article>
+
+            <article class="em-metric-card assigned">
+                <span class="em-metric-label">Assigned</span>
+                <strong class="em-metric-value" id="emAssignedCount">0</strong>
+            </article>
+
+            <article class="em-metric-card investigation">
+                <span class="em-metric-label">Investigation</span>
+                <strong class="em-metric-value" id="emInvestigationCount">0</strong>
+            </article>
+
+            <article class="em-metric-card approval">
+                <span class="em-metric-label">Approval</span>
+                <strong class="em-metric-value" id="emApprovalCount">0</strong>
+            </article>
+
+            <article class="em-metric-card closed">
+                <span class="em-metric-label">Closed</span>
+                <strong class="em-metric-value" id="emClosedCount">0</strong>
+            </article>
+
+            <article class="em-metric-card critical">
+                <span class="em-metric-label">Critical</span>
+                <strong class="em-metric-value" id="emCriticalCount">0</strong>
+            </article>
+
+        </section>
+
+        <!-- Register Table -->
+        <section class="em-card">
+
+            <div class="em-table-toolbar">
+                <div>
+                    <h3>Exception Register</h3>
+                    <span class="em-record-count" id="emRecordCount">
+                        0 exceptions
+                    </span>
+                </div>
+            </div>
+
+            <div class="em-table-wrap">
+
+                <table class="em-table">
+
+                    <thead>
+                        <tr>
+                            <th>Exception ID</th>
+                            <th>Risk ID</th>
+                            <th>Risk / Metric</th>
+                            <th>Variance</th>
+                            <th>Severity</th>
+                            <th>Status</th>
+                            <th>Owner</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="emTableBody">
+
+                        <tr>
+                            <td colspan="8" class="em-empty">
+                                <span class="em-empty-icon">▤</span>
+                                No exceptions available. Import breaches to get started.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <!-- Assign Owner Modal -->
+        <div
+            class="em-modal-backdrop"
+            id="emAssignModal"
+            hidden
+        >
+            <div
+                class="em-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="emAssignTitle"
+            >
+
+                <div class="em-modal-header">
+                    <h3 id="emAssignTitle">Assign Exception</h3>
+
+                    <button
+                        type="button"
+                        class="em-modal-close"
+                        id="emAssignClose"
+                        aria-label="Close"
+                    >
+                        ×
+                    </button>
+                </div>
+
+                <div class="em-modal-info" id="emAssignInfo">
+                    Select an owner for this exception.
+                </div>
+
+                <div class="em-field">
+                    <label for="emOwnerSelect">Assign To</label>
+
+                    <select id="emOwnerSelect">
+                        <option value="">Select an owner</option>
+                        <option value="Market Risk Team">Market Risk Team</option>
+                        <option value="Liquidity Risk Team">Liquidity Risk Team</option>
+                        <option value="Credit Risk Team">Credit Risk Team</option>
+                        <option value="Operational Risk Team">Operational Risk Team</option>
+                        <option value="Risk Analyst">Risk Analyst</option>
+                    </select>
+                </div>
+
+                <div class="em-modal-actions">
+
+                    <button
+                        type="button"
+                        class="em-secondary-btn"
+                        id="emAssignCancel"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="button"
+                        class="em-primary-btn"
+                        id="emAssignConfirm"
+                    >
+                        Assign Exception
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- View Exception Modal -->
+        <div
+            class="em-modal-backdrop"
+            id="emViewModal"
+            hidden
+        >
+            <div
+                class="em-modal"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="emViewTitle"
+            >
+
+                <div class="em-modal-header">
+                    <h3 id="emViewTitle">Exception Details</h3>
+
+                    <button
+                        type="button"
+                        class="em-modal-close"
+                        id="emViewClose"
+                        aria-label="Close"
+                    >
+                        ×
+                    </button>
+                </div>
+
+                <div class="em-modal-info" id="emViewContent">
+                </div>
+
+                <div class="em-modal-actions">
+                    <button
+                        type="button"
+                        class="em-secondary-btn"
+                        id="emViewDone"
+                    >
+                        Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Toast -->
+        <div
+            class="em-toast"
+            id="emToast"
+            role="status"
+            aria-live="polite"
+            hidden
+        >
+            Exception operation completed.
+        </div>
+
+    </section>
+
+        </template>

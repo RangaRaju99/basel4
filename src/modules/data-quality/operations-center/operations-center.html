@@ -1,0 +1,185 @@
+<template id="operationsCenterTemplate">
+    <div class="oc-app" id="operationsCenterApp">
+
+        <!-- Page Header -->
+        <div class="oc-header">
+            <div>
+                <h2>Operations Center</h2>
+                <p>Monitor data quality validation activities and reporting readiness.</p>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="oc-summary-grid">
+
+            <div class="oc-summary-card">
+                <div class="oc-card-top">
+                    <span>Validation In Progress</span>
+                    <span class="oc-card-icon blue">↻</span>
+                </div>
+                <div class="oc-card-value" id="ocInProgress">12</div>
+                <div class="oc-card-subtitle">Active validation runs</div>
+            </div>
+
+            <div class="oc-summary-card">
+                <div class="oc-card-top">
+                    <span>Awaiting Review</span>
+                    <span class="oc-card-icon orange">◷</span>
+                </div>
+                <div class="oc-card-value" id="ocAwaitingReview">8</div>
+                <div class="oc-card-subtitle">Pending review</div>
+            </div>
+
+            <div class="oc-summary-card">
+                <div class="oc-card-top">
+                    <span>Open Issues</span>
+                    <span class="oc-card-icon red">!</span>
+                </div>
+                <div class="oc-card-value" id="ocOpenIssues">14</div>
+                <div class="oc-card-subtitle">Issues requiring attention</div>
+            </div>
+
+            <div class="oc-summary-card">
+                <div class="oc-card-top">
+                    <span>Revalidation Queue</span>
+                    <span class="oc-card-icon purple">⟳</span>
+                </div>
+                <div class="oc-card-value" id="ocRevalidation">6</div>
+                <div class="oc-card-subtitle">Waiting for revalidation</div>
+            </div>
+
+            <div class="oc-summary-card">
+                <div class="oc-card-top">
+                    <span>Ready For Next Step</span>
+                    <span class="oc-card-icon green">✓</span>
+                </div>
+                <div class="oc-card-value" id="ocReady">21</div>
+                <div class="oc-card-subtitle">Ready for reconciliation</div>
+            </div>
+
+            <div class="oc-summary-card oc-score-card">
+                <div class="oc-score-info">
+                    <div>
+                        <div class="oc-card-top">
+                            <span>DQ Score</span>
+                        </div>
+                        <div class="oc-card-value" id="ocDqScore">96%</div>
+                        <div class="oc-card-subtitle">Overall data quality score</div>
+                    </div>
+
+                    <div class="oc-score-ring" id="ocScoreRing">
+                        <span>96%</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Validation Chart -->
+        <section class="oc-panel">
+            <div class="oc-panel-header">
+                <div>
+                    <h3>Validation Workload</h3>
+                    <p>Current distribution of validation activities</p>
+                </div>
+            </div>
+
+            <div class="oc-chart" id="ocWorkloadChart">
+
+                <div class="oc-chart-row">
+                    <div class="oc-chart-label">Validation In Progress</div>
+                    <div class="oc-chart-track">
+                        <div class="oc-chart-bar blue-bar" data-value="12"></div>
+                    </div>
+                    <span class="oc-chart-count">12</span>
+                </div>
+
+                <div class="oc-chart-row">
+                    <div class="oc-chart-label">Awaiting Review</div>
+                    <div class="oc-chart-track">
+                        <div class="oc-chart-bar orange-bar" data-value="8"></div>
+                    </div>
+                    <span class="oc-chart-count">8</span>
+                </div>
+
+                <div class="oc-chart-row">
+                    <div class="oc-chart-label">Open Issues</div>
+                    <div class="oc-chart-track">
+                        <div class="oc-chart-bar red-bar" data-value="14"></div>
+                    </div>
+                    <span class="oc-chart-count">14</span>
+                </div>
+
+                <div class="oc-chart-row">
+                    <div class="oc-chart-label">Revalidation Queue</div>
+                    <div class="oc-chart-track">
+                        <div class="oc-chart-bar purple-bar" data-value="6"></div>
+                    </div>
+                    <span class="oc-chart-count">6</span>
+                </div>
+
+                <div class="oc-chart-row">
+                    <div class="oc-chart-label">Ready For Next Step</div>
+                    <div class="oc-chart-track">
+                        <div class="oc-chart-bar green-bar" data-value="21"></div>
+                    </div>
+                    <span class="oc-chart-count">21</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Live Process Status -->
+        <section class="oc-panel">
+            <div class="oc-panel-header">
+                <div>
+                    <h3>Live Process Status</h3>
+                    <p>Validation runs currently being processed</p>
+                </div>
+                <span class="oc-live-indicator">
+                    <span></span> Live Status
+                </span>
+            </div>
+
+            <div class="oc-table-wrapper">
+                <table class="oc-table">
+                    <thead>
+                        <tr>
+                            <th>Validation Run</th>
+                            <th>Feed</th>
+                            <th>Current Stage</th>
+                            <th>Owner</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ocLiveTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Finalized Validation Runs -->
+        <section class="oc-panel">
+            <div class="oc-panel-header">
+                <div>
+                    <h3>Finalized Validation Runs</h3>
+                    <p>Successfully completed validation runs</p>
+                </div>
+            </div>
+
+            <div class="oc-table-wrapper">
+                <table class="oc-table">
+                    <thead>
+                        <tr>
+                            <th>Run</th>
+                            <th>Feed</th>
+                            <th>Result</th>
+                            <th>Ready For Next Step</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ocFinalizedTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+        </template>

@@ -1,0 +1,230 @@
+<template id="manageReportsTemplate">
+
+    <section class="mrp-module" id="manageReportsApp">
+
+        <!-- HEADER -->
+
+        <header class="mrp-header">
+            <div>
+                <span class="mrp-eyebrow">REPORT MANAGEMENT</span>
+                <h2 id="mrpPageTitle">Manage Reports</h2>
+                <p id="mrpPageDescription">
+                    View, search, track and export previously generated
+                    regulatory reports.
+                </p>
+            </div>
+
+            <div class="mrp-header-icon">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+        </header>
+
+
+        <!-- SUMMARY CARDS -->
+
+        <section class="mrp-summary">
+
+            <article class="mrp-summary-card">
+                <span>Total Reports</span>
+                <strong id="mrpTotalReports">0</strong>
+            </article>
+
+            <article class="mrp-summary-card">
+                <span>Approved Reports</span>
+                <strong id="mrpApprovedReports">0</strong>
+            </article>
+
+            <article class="mrp-summary-card">
+                <span>Pending Reports</span>
+                <strong id="mrpPendingReports">0</strong>
+            </article>
+
+            <article class="mrp-summary-card">
+                <span>Calculation Records</span>
+                <strong id="mrpCalculationRecords">0</strong>
+            </article>
+
+        </section>
+
+
+        <!-- FILTER PANEL -->
+
+        <section class="mrp-panel">
+
+            <div class="mrp-panel-heading">
+                <div>
+                    <h3>Search & Filter Reports</h3>
+                    <p>Find reports using their details and reporting status.</p>
+                </div>
+
+                <button
+                    type="button"
+                    class="mrp-btn"
+                    id="mrpRefresh"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+            </div>
+
+
+            <div class="mrp-filter-grid">
+
+                <div class="mrp-field">
+                    <label for="mrpSearch">Search</label>
+                    <input
+                        type="search"
+                        id="mrpSearch"
+                        placeholder="Search report ID, name or bank..."
+                    >
+                </div>
+
+                <div class="mrp-field">
+                    <label for="mrpStatusFilter">Status</label>
+                    <select id="mrpStatusFilter">
+                        <option value="ALL">All Statuses</option>
+                    </select>
+                </div>
+
+                <div class="mrp-field">
+                    <label for="mrpBankFilter">Bank</label>
+                    <select id="mrpBankFilter">
+                        <option value="ALL">All Banks</option>
+                    </select>
+                </div>
+
+                <div class="mrp-field">
+                    <label for="mrpPeriodFilter">Reporting Period</label>
+                    <select id="mrpPeriodFilter">
+                        <option value="ALL">All Periods</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+            <div class="mrp-filter-actions">
+
+                <button
+                    type="button"
+                    class="mrp-btn"
+                    id="mrpReset"
+                >
+                    Reset
+                </button>
+
+                <button
+                    type="button"
+                    class="mrp-btn mrp-btn-primary"
+                    id="mrpApply"
+                >
+                    <i class="fa-solid fa-filter"></i>
+                    Apply Filters
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORT REGISTER -->
+
+        <section class="mrp-panel">
+
+            <div class="mrp-panel-heading">
+                <div>
+                    <h3>Generated Report Register</h3>
+                    <p id="mrpRecordCount">0 reports found</p>
+                </div>
+            </div>
+
+
+            <div class="mrp-table-wrap">
+
+                <table class="mrp-table">
+
+                    <thead>
+                        <tr>
+                            <th>Report Details</th>
+                            <th>Bank</th>
+                            <th>Period</th>
+                            <th>Generated Date</th>
+                            <th>Records</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="mrpTableBody">
+
+                        <tr>
+                            <td colspan="7" class="mrp-empty">
+                                <strong>No reports found</strong>
+                                Generate a report to view it here.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="mrp-table-footer" id="mrpPaginationContainer"></div>
+
+        </section>
+
+
+        <!-- REPORT DETAILS MODAL -->
+
+        <div class="mrp-modal" id="mrpModal">
+
+            <div class="mrp-modal-box">
+
+                <div class="mrp-modal-header">
+                    <h3>Report Details</h3>
+
+                    <button
+                        type="button"
+                        class="mrp-modal-close"
+                        data-mrp-close
+                    >
+                        &times;
+                    </button>
+                </div>
+
+                <div
+                    class="mrp-modal-body"
+                    id="mrpModalContent"
+                ></div>
+
+                <div class="mrp-modal-footer">
+
+                    <button
+                        type="button"
+                        class="mrp-btn"
+                        data-mrp-close
+                    >
+                        Close
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TOAST -->
+
+        <div
+            class="mrp-toast"
+            id="mrpToast"
+            role="status"
+            aria-live="polite"
+        ></div>
+
+    </section>
+
+        </template>
