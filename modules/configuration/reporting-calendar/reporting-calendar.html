@@ -67,10 +67,10 @@
   </div>
 
   <div class="overlay" id="filterOverlay">
-    <section class="filter-panel">
+    <section class="filter-panel" role="dialog" aria-modal="true" aria-labelledby="filterTitle">
       <div class="panel-head">
         <div>
-          <h2>Filter Reports</h2>
+          <h2 id="filterTitle">Filter Reports</h2>
           <p>Filters apply to both Month and List views.</p>
         </div>
         <button id="closeFilterBtn">✕</button>
@@ -102,6 +102,7 @@
         <label>From<input type="date" id="fromDate"></label>
         <label>To<input type="date" id="toDate"></label>
       </div>
+      <p class="form-error" id="filterError" role="alert" hidden></p>
       <div class="panel-actions">
         <button class="secondary" id="resetFilters">Reset</button>
         <button class="primary" id="applyFilters">Apply</button>
@@ -110,7 +111,7 @@
   </div>
 
   <div class="modal-overlay" id="dayModal">
-    <section class="modal day-modal">
+    <section class="modal day-modal" role="dialog" aria-modal="true" aria-labelledby="dayModalTitle">
       <div class="modal-head">
         <div>
           <span class="eyebrow">DEADLINE DETAILS</span>
@@ -125,7 +126,7 @@
   </div>
 
   <div class="modal-overlay" id="reportModal">
-    <section class="modal report-summary">
+    <section class="modal report-summary" role="dialog" aria-modal="true" aria-labelledby="reportName">
       <div class="report-head">
         <div class="report-mark">R</div>
         <div>
@@ -135,7 +136,7 @@
         </div>
         <button id="closeReportModal">✕</button>
       </div>
-      <div class="report-meta">
+      <div class="report-meta" id="reportMeta">
         <div><span>Regulator</span><strong id="reportRegulator"></strong></div>
         <div><span>Reporting Period</span><strong id="reportPeriod"></strong></div>
         <div><span>Frequency</span><strong id="reportFrequency"></strong></div>
@@ -145,6 +146,7 @@
         <div><span>Status</span><strong id="reportStatus"></strong></div>
         <div><span>Deadline</span><strong id="reportDeadline"></strong></div>
       </div>
+      <div class="report-meta request-extra-meta" id="requestExtraMeta"></div>
       <div class="workflow">
         <h3>Submission Progress</h3>
         <div id="workflowSteps"></div>
@@ -154,12 +156,12 @@
   </div>
 
   <div class="notification-overlay" id="notificationOverlay">
-    <div class="notification-popup">
+    <section class="notification-popup" role="dialog" aria-modal="true" aria-labelledby="notificationTitle">
       <div class="panel-head">
-        <h2>Deadline Alerts</h2>
+        <h2 id="notificationTitle">Deadline Alerts</h2>
         <button id="closeNotification">✕</button>
       </div>
       <div id="notificationList"></div>
-    </div>
+    </section>
   </div>
 </section>

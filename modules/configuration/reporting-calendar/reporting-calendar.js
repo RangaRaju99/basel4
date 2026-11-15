@@ -8,6 +8,10 @@ window.initReportingCalendarModule = function () {
     const role = typeof window.getCurrentRole === "function"
         ? window.getCurrentRole()
         : "";
+    const canCreateRequests = typeof window.canCreate !== "function" ||
+        window.canCreate(role, "reporting-calendar");
+    const canUpdateRequests = typeof window.canUpdate !== "function" ||
+        window.canUpdate(role, "reporting-calendar");
 
     if (typeof window.canRead === "function" &&
         !window.canRead(role, "reporting-calendar")) {
@@ -17,7 +21,10 @@ window.initReportingCalendarModule = function () {
 
     root.dataset.initialized = "true";
 
-    const scenarioToday = new Date("2026-11-12T00:00:00");
+    const scenarioToday = new Date();
+    scenarioToday.setHours(0, 0, 0, 0);
+    const requestStorageKey = "baseltrack-report-requests";
+    const notificationStorageKey = "baseltrack-report-request-notifications";
     const reports = [
         {
             reportId: "REP-001",
@@ -117,7 +124,105 @@ window.initReportingCalendarModule = function () {
         }
     ];
 
-    let shownMonth = new Date(2026, 10, 1);
+    const baseTemplateKey = "baseltrack-report-templates";
+    const fallbackTemplates = [
+        {
+            id: 1,
+            code: "B4C_001",
+            name: "Capital Adequacy Ratio Template",
+            description: "Minimum capital adequacy reporting template used for Basel IV regulatory submissions.",
+            version: "v1.4",
+            template: "Capital Adequacy Ratio\n\nReporting Period: {{reporting_period}}\nRegulator: {{regulator}}\n\n1. CET1 Capital: {{cet1}}\n2. Tier 1 Capital: {{tier1}}\n3. Total Capital: {{total_capital}}\n4. RWA: {{rwa}}\n\nCapital Adequacy Ratio: {{car_percent}}%",
+            status: "Active"
+        },
+        {
+            id: 2,
+            code: "B4C_002",
+            name: "Liquidity Coverage Ratio Template",
+            description: "Liquidity coverage template for short-term liquid asset adequacy reporting.",
+            version: "v1.2",
+            template: "Liquidity Coverage Ratio\n\nReporting Period: {{reporting_period}}\nHigh Quality Liquid Assets: {{hqla}}\nNet Cash Outflows: {{net_cash_outflows}}\n\nLCR: {{lcr_percent}}%",
+            status: "Active"
+        },
+        {
+            id: 4,
+            code: "B4C_004",
+            name: "Leverage Ratio Template",
+            description: "Template for leverage ratio monitoring and submission to regulators.",
+            version: "v2.0",
+            template: "Leverage Ratio\n\nTier 1 Capital: {{tier1_capital}}\nExposure Measure: {{exposure_measure}}\nLeverage Ratio: {{leverage_ratio}}%",
+            status: "Active"
+        }
+    ];
+    const todayISO = scenarioToday.getFullYear() + "-" +
+        String(scenarioToday.getMonth() + 1).padStart(2, "0") + "-" +
+        String(scenarioToday.getDate()).padStart(2, "0");
+
+    function readStorage(key, fallback) {
+        try {
+            const value = localStorage.getItem(key);
+            return value === null ? fallback : JSON.parse(value);
+        } catch (error) {
+            console.error("Unable to read reporting calendar data:", error);
+            return fallback;
+        }
+    }
+
+    function writeStorage(key, payload) {
+        try {
+            localStorage.setItem(key, JSON.stringify(payload));
+            return true;
+        } catch (error) {
+            console.error("Unable to save calendar records:", error);
+            return false;
+        }
+    }
+
+    function loadReportRequests() {
+        const stored = readStorage(requestStorageKey, []);
+        return Array.isArray(stored) ? stored : [];
+    }
+
+    function loadActiveTemplates() {
+        const stored = readStorage(baseTemplateKey, null);
+        const source = Array.isArray(stored) ? stored : fallbackTemplates;
+        return source.filter(function (template) {
+            return template && template.status === "Active";
+        });
+    }
+
+    function getVisibleRequests() {
+        const isAdmin = role === "regulatoryAdmin";
+        return loadReportRequests().filter(function (item) {
+            return isAdmin || item.status === "Submitted";
+        }).map(function (item) {
+            return {
+                ...item,
+                reportId: item.reportId || "RREQ-" + String(item.id || "0").slice(-6),
+                reportName: item.reportName || "Report Request",
+                regulator: item.regulator || "RBI",
+                reportingPeriod: item.reportingPeriod || "N/A",
+                frequency: item.reportingFrequency || "Ad-hoc",
+                owner: item.owner || "Regulatory Admin",
+                reviewer: item.reviewer || "Regulatory Team",
+                dueDate: item.dueDate || item.reportingPeriodEnd || "2026-11-30",
+                status: item.status || "Draft",
+                workflow: item.workflow || ["Current", "Pending", "Pending", "Pending", "Pending"],
+                source: "request",
+                templateSnapshot: item.templateSnapshot || {
+                    id: item.templateId || "",
+                    code: item.templateCode || "",
+                    title: item.templateTitle || ""
+                }
+            };
+        });
+    }
+
+    function getAllReports() {
+        return reports.concat(getVisibleRequests());
+    }
+
+    let shownMonth = new Date(scenarioToday.getFullYear(), scenarioToday.getMonth(), 1);
     let filters = {
         search: "",
         regulator: "",
@@ -191,7 +296,7 @@ window.initReportingCalendarModule = function () {
     }
 
     function getFilteredReports() {
-        return reports.filter(function (report) {
+        return getAllReports().filter(function (report) {
             const query = filters.search;
             const matchesSearch = !query ||
                 (report.reportId + " " + report.reportName).toLowerCase().includes(query);
@@ -213,21 +318,22 @@ window.initReportingCalendarModule = function () {
     function renderKpis() {
         const weekEnd = new Date(scenarioToday);
         weekEnd.setDate(weekEnd.getDate() + 7);
+        const allReports = getAllReports();
 
-        byId("upcomingCount").textContent = reports.filter(function (report) {
+        byId("upcomingCount").textContent = allReports.filter(function (report) {
             return report.status !== "Submitted" &&
                 parseDate(report.dueDate) >= scenarioToday;
         }).length;
-        byId("weekCount").textContent = reports.filter(function (report) {
+        byId("weekCount").textContent = allReports.filter(function (report) {
             const dueDate = parseDate(report.dueDate);
             return report.status !== "Submitted" &&
                 dueDate >= scenarioToday &&
                 dueDate < weekEnd;
         }).length;
-        byId("submittedCount").textContent = reports.filter(function (report) {
+        byId("submittedCount").textContent = allReports.filter(function (report) {
             return report.status === "Submitted";
         }).length;
-        byId("overdueCount").textContent = reports.filter(function (report) {
+        byId("overdueCount").textContent = allReports.filter(function (report) {
             return report.status === "Overdue" ||
                 (report.status !== "Submitted" && parseDate(report.dueDate) < scenarioToday);
         }).length;
@@ -248,7 +354,12 @@ window.initReportingCalendarModule = function () {
                 <td><span class="deadline ${deadline.className}">${deadline.text}</span></td>
                 <td>${escapeHTML(report.owner)}</td>
                 <td><span class="status ${getStatusClass(report.status)}">${escapeHTML(report.status)}</span></td>
-                <td><button class="view-btn" type="button" data-id="${escapeHTML(report.reportId)}">View</button></td>
+                <td><div class="action-buttons">
+                    <button class="view-btn" type="button" data-action="view" data-id="${escapeHTML(report.reportId)}">View</button>
+                    ${canUpdateRequests && report.source === "request" && report.status === "Draft"
+                        ? `<button class="edit-btn" type="button" data-action="edit-request" data-id="${escapeHTML(report.reportId)}">Edit</button>`
+                        : ""}
+                </div></td>
             </tr>`;
         }).join("");
     }
@@ -277,7 +388,7 @@ window.initReportingCalendarModule = function () {
             const dayReports = data.filter(function (report) {
                 return report.dueDate === isoDate;
             });
-            const isToday = isoDate === "2026-11-12";
+            const isToday = isoDate === todayISO;
 
             markup += `<div class="day ${isToday ? "today" : ""}" data-date="${isoDate}">
                 <div class="day-head">
@@ -317,12 +428,35 @@ window.initReportingCalendarModule = function () {
     }
 
     function openReport(id) {
-        const report = reports.find(function (item) {
+        const report = getAllReports().find(function (item) {
             return item.reportId === id;
         });
 
         if (!report) {
             return;
+        }
+
+        const extraMeta = byId("requestExtraMeta");
+        if (extraMeta) {
+            const rows = report.source === "request" ? [
+                ["Template Code", report.templateSnapshot?.code || "-"],
+                ["Template Title", report.templateSnapshot?.title || "-"],
+                ["Template Version", report.templateSnapshot?.version || "-"],
+                ["Template Description", report.templateSnapshot?.description || report.description || "-"],
+                ["Priority", report.priority || "Medium"],
+                ["Reporting Period Start", report.reportingPeriodStart || "-"],
+                ["Reporting Period End", report.reportingPeriodEnd || "-"],
+                ["Regulatory Reference", report.regulatoryReference || "-"],
+                ["Instructions", report.instructions || "-"],
+                ["Created By", report.createdBy || "-"],
+                ["Created Date", report.createdAt ? new Date(report.createdAt).toLocaleDateString() : "-"],
+                ["Last Modified By", report.modifiedBy || "-"],
+                ["Last Modified Date", report.modifiedAt ? new Date(report.modifiedAt).toLocaleDateString() : "-"],
+                ["Submission Date", report.submittedAt ? new Date(report.submittedAt).toLocaleDateString() : "-"]
+            ] : [];
+            extraMeta.innerHTML = rows.map(function (entry) {
+                return `<div><span>${escapeHTML(entry[0])}</span><strong>${escapeHTML(entry[1])}</strong></div>`;
+            }).join("");
         }
 
         byId("reportName").textContent = report.reportName;
@@ -338,7 +472,7 @@ window.initReportingCalendarModule = function () {
 
         const steps = ["Data Preparation", "Validation", "Review", "Approval", "Submission"];
         byId("workflowSteps").innerHTML = steps.map(function (label, index) {
-            const stepStatus = report.workflow[index];
+            const stepStatus = report.workflow[index] || "Pending";
             return `<div class="workflow-step ${stepStatus.toLowerCase()}">
                 ${label}<br><small>${escapeHTML(stepStatus)}</small>
             </div>`;
@@ -347,7 +481,7 @@ window.initReportingCalendarModule = function () {
     }
 
     function renderAlerts() {
-        const alerts = reports
+        const alerts = getAllReports()
             .filter(function (report) {
                 return report.status !== "Submitted";
             })
@@ -377,11 +511,12 @@ window.initReportingCalendarModule = function () {
 
     function populatePeriods() {
         const periodFilter = byId("periodFilter");
-        Array.from(new Set(reports.map(function (report) {
+        Array.from(new Set(getAllReports().map(function (report) {
             return report.reportingPeriod;
         }))).forEach(function (period) {
             const option = document.createElement("option");
             option.textContent = period;
+            option.value = period;
             periodFilter.appendChild(option);
         });
     }
@@ -406,8 +541,11 @@ window.initReportingCalendarModule = function () {
     function applyFilters() {
         const from = byId("fromDate").value;
         const to = byId("toDate").value;
+        const filterError = byId("filterError");
+        filterError.hidden = true;
         if (from && to && from > to) {
-            window.alert("From date cannot be later than To date.");
+            filterError.textContent = "From date cannot be later than To date.";
+            filterError.hidden = false;
             return;
         }
 
@@ -446,12 +584,283 @@ window.initReportingCalendarModule = function () {
             from: "",
             to: ""
         };
+        byId("filterError").hidden = true;
+        byId("filterError").textContent = "";
         closeOverlay("filterOverlay");
         renderCalendar();
         renderTable();
     }
 
+    function showRequestError(message) {
+        const error = byId("requestFormError");
+        error.textContent = message;
+        error.hidden = false;
+    }
+
+    function openRequestForm(request) {
+        const modal = byId("requestModal");
+        const templateSelect = byId("reportTemplateSelect");
+        const templates = loadActiveTemplates();
+        templateSelect.innerHTML = '<option value="">Select an active template</option>' +
+            templates.map(function (template) {
+                return `<option value="${escapeHTML(template.id)}">${escapeHTML(template.code)} - ${escapeHTML(template.name)}</option>`;
+            }).join("");
+        templateSelect.disabled = false;
+        const error = byId("requestFormError");
+        error.textContent = "";
+        error.hidden = true;
+
+        ["requestName", "requestDescription", "requestReportingPeriod", "requestPeriodStart",
+            "requestPeriodEnd", "requestDueDate", "requestReference", "requestInstructions",
+            "requestTemplateCode", "requestTemplateTitle"].forEach(function (id) {
+                byId(id).value = "";
+            });
+        byId("requestFrequency").value = "Monthly";
+        byId("requestPriority").value = "Medium";
+        byId("requestStatus").value = "Draft";
+        delete modal.dataset.requestId;
+
+        if (request) {
+            const snapshot = request.templateSnapshot || {
+                id: request.templateId,
+                code: request.templateCode,
+                title: request.templateTitle
+            };
+            const currentTemplate = templates.find(function (item) {
+                return String(item.id) === String(request.templateId || snapshot.id);
+            });
+            if (currentTemplate) {
+                templateSelect.value = String(currentTemplate.id);
+            } else if (snapshot.id) {
+                const historicalOption = document.createElement("option");
+                historicalOption.value = String(snapshot.id);
+                historicalOption.textContent = (snapshot.code || "") + " - " + (snapshot.title || "Historical template");
+                historicalOption.disabled = true;
+                templateSelect.appendChild(historicalOption);
+                templateSelect.value = historicalOption.value;
+            }
+            byId("requestTemplateCode").value = snapshot.code || request.templateCode || "";
+            byId("requestTemplateTitle").value = snapshot.title || request.templateTitle || "";
+            byId("requestName").value = request.reportName || "";
+            byId("requestDescription").value = request.description || "";
+            byId("requestReportingPeriod").value = request.reportingPeriod || "";
+            byId("requestFrequency").value = request.reportingFrequency || "Monthly";
+            byId("requestPeriodStart").value = request.reportingPeriodStart || "";
+            byId("requestPeriodEnd").value = request.reportingPeriodEnd || "";
+            byId("requestDueDate").value = request.dueDate || "";
+            byId("requestPriority").value = request.priority || "Medium";
+            byId("requestReference").value = request.regulatoryReference || "";
+            byId("requestInstructions").value = request.instructions || "";
+            byId("requestStatus").value = request.status || "Draft";
+            byId("requestFormTitle").textContent = "Edit Report Request";
+            byId("saveRequestBtn").textContent = "Save Changes";
+            modal.dataset.requestId = String(request.id);
+        } else {
+            byId("requestFormTitle").textContent = "Create Report Request";
+            byId("saveRequestBtn").textContent = "Save Request";
+        }
+
+        modal.classList.add("show");
+        byId("requestName").focus();
+    }
+
+    function saveRequest(event) {
+        event.preventDefault();
+        const modal = byId("requestModal");
+        const select = byId("reportTemplateSelect");
+        const templateId = select.value;
+        const reportName = byId("requestName").value.trim();
+        const dueDate = byId("requestDueDate").value;
+        const periodStart = byId("requestPeriodStart").value;
+        const periodEnd = byId("requestPeriodEnd").value;
+        if (!reportName || !templateId || !dueDate) {
+            showRequestError("Report Name, an active Report Template and Due Date are required.");
+            return;
+        }
+        if (periodStart && periodEnd && periodStart > periodEnd) {
+            showRequestError("Reporting Period Start cannot be later than Reporting Period End.");
+            return;
+        }
+
+        const templates = loadActiveTemplates();
+        const selectedTemplate = templates.find(function (item) {
+            return String(item.id) === String(templateId);
+        });
+        const previous = loadReportRequests().find(function (item) {
+            return String(item.id) === String(modal.dataset.requestId || "");
+        });
+        const requestId = modal.dataset.requestId || String(Date.now());
+        const status = byId("requestStatus").value;
+        const now = new Date().toISOString();
+        const keepSnapshot = previous &&
+            String(previous.templateId) === String(templateId) &&
+            previous.templateSnapshot;
+        const templateSnapshot = keepSnapshot ? previous.templateSnapshot : {
+            id: templateId,
+            code: byId("requestTemplateCode").value.trim(),
+            title: byId("requestTemplateTitle").value.trim(),
+            description: selectedTemplate ? selectedTemplate.description || "" : "",
+            version: selectedTemplate ? selectedTemplate.version || "" : "",
+            template: selectedTemplate ? selectedTemplate.template || "" : ""
+        };
+        const request = {
+            id: requestId,
+            reportId: "RREQ-" + String(requestId).slice(-6),
+            reportName: reportName,
+            description: byId("requestDescription").value.trim(),
+            templateId: templateId,
+            templateCode: byId("requestTemplateCode").value.trim(),
+            templateTitle: byId("requestTemplateTitle").value.trim(),
+            templateSnapshot: templateSnapshot,
+            regulator: previous?.regulator || "RBI",
+            reportingPeriod: byId("requestReportingPeriod").value.trim() || "N/A",
+            reportingFrequency: byId("requestFrequency").value,
+            reportingPeriodStart: periodStart,
+            reportingPeriodEnd: periodEnd,
+            dueDate: dueDate,
+            priority: byId("requestPriority").value,
+            regulatoryReference: byId("requestReference").value.trim(),
+            instructions: byId("requestInstructions").value.trim(),
+            status: status,
+            owner: previous?.owner || "Regulatory Admin",
+            reviewer: previous?.reviewer || "Regulatory Team",
+            workflow: status === "Submitted"
+                ? ["Completed", "Completed", "Completed", "Completed", "Completed"]
+                : (previous?.workflow || ["Current", "Pending", "Pending", "Pending", "Pending"]),
+            createdBy: previous?.createdBy || "Regulatory Admin",
+            createdAt: previous?.createdAt || now,
+            modifiedBy: "Regulatory Admin",
+            modifiedAt: now,
+            submittedAt: status === "Submitted" ? (previous?.submittedAt || now) : null
+        };
+        const requests = loadReportRequests();
+        const nextRequests = previous
+            ? requests.map(function (item) {
+                return String(item.id) === String(requestId) ? request : item;
+            })
+            : requests.concat([request]);
+
+        if (!writeStorage(requestStorageKey, nextRequests)) {
+            showRequestError("Unable to save this report request in this browser.");
+            return;
+        }
+
+        if (status === "Submitted" && (!previous || previous.status !== "Submitted")) {
+            const notifications = readStorage(notificationStorageKey, []);
+            notifications.push({
+                id: "notification-" + Date.now(),
+                requestId: requestId,
+                reportName: reportName,
+                dueDate: dueDate,
+                createdAt: now
+            });
+            if (!writeStorage(notificationStorageKey, notifications)) {
+                window.showToast("Request submitted, but its notification could not be saved.");
+            }
+        }
+
+        closeOverlay("requestModal");
+        renderKpis();
+        renderCalendar();
+        renderTable();
+        renderAlerts();
+        if (typeof window.showToast === "function") {
+            window.showToast(status === "Submitted" ? "Report request submitted." : "Draft report request saved.");
+        }
+    }
+
+    function ensureRequestControls() {
+        const actionBar = root.querySelector(".page-actions");
+        if (canCreateRequests && actionBar && !byId("addReportRequestBtn")) {
+            const addButton = document.createElement("button");
+            addButton.id = "addReportRequestBtn";
+            addButton.type = "button";
+            addButton.className = "primary";
+            addButton.textContent = "+ Add Report Request";
+            addButton.addEventListener("click", function () {
+                openRequestForm(null);
+            });
+            actionBar.appendChild(addButton);
+        }
+
+        if (byId("requestModal")) {
+            return;
+        }
+
+        const modal = document.createElement("div");
+        modal.id = "requestModal";
+        modal.className = "modal-overlay";
+        modal.innerHTML = `
+            <form class="modal request-form" id="requestForm" role="dialog" aria-modal="true" aria-labelledby="requestFormTitle" novalidate>
+                <div class="report-head">
+                    <div class="report-mark">R</div>
+                    <div>
+                        <span class="eyebrow">REPORT REQUEST</span>
+                        <h2 id="requestFormTitle">Create Report Request</h2>
+                        <p>Create or update a regulatory reporting obligation.</p>
+                    </div>
+                    <button id="closeRequestModal" type="button" aria-label="Close dialog">✕</button>
+                </div>
+                <div class="request-form-grid">
+                    <label class="required-field">Report Name <span class="required-marker" aria-hidden="true">*</span><input id="requestName" type="text" maxlength="120" required></label>
+                    <label class="required-field">Report Template <span class="required-marker" aria-hidden="true">*</span><select id="reportTemplateSelect" required></select></label>
+                    <label>Template Code<input id="requestTemplateCode" type="text" readonly></label>
+                    <label>Template Title<input id="requestTemplateTitle" type="text" readonly></label>
+                    <label>Description<textarea id="requestDescription" rows="3"></textarea></label>
+                    <label>Reporting Period<input id="requestReportingPeriod" type="text" placeholder="e.g. Q4-2026"></label>
+                    <label>Reporting Frequency<select id="requestFrequency"><option>Daily</option><option>Weekly</option><option selected>Monthly</option><option>Quarterly</option><option>Half-Yearly</option><option>Annual</option><option>Ad-hoc</option></select></label>
+                    <label>Reporting Period Start<input id="requestPeriodStart" type="date"></label>
+                    <label>Reporting Period End<input id="requestPeriodEnd" type="date"></label>
+                    <label class="required-field">Due Date <span class="required-marker" aria-hidden="true">*</span><input id="requestDueDate" type="date" required></label>
+                    <label>Priority<select id="requestPriority"><option>Low</option><option selected>Medium</option><option>High</option><option>Critical</option></select></label>
+                    <label>Regulatory Reference<input id="requestReference" type="text" maxlength="120"></label>
+                    <label class="full">Instructions<textarea id="requestInstructions" rows="3"></textarea></label>
+                    <label>Status<select id="requestStatus"><option value="Draft">Draft</option><option value="Submitted">Submitted</option></select></label>
+                </div>
+                <p class="form-error" id="requestFormError" role="alert" hidden></p>
+                <div class="modal-actions">
+                    <button class="secondary" id="cancelRequest" type="button">Cancel</button>
+                    <button class="primary" id="saveRequestBtn" type="submit">Save Request</button>
+                </div>
+            </form>
+        `;
+        root.appendChild(modal);
+        byId("requestForm").addEventListener("submit", saveRequest);
+        byId("closeRequestModal").addEventListener("click", function () {
+            closeOverlay("requestModal");
+        });
+        byId("cancelRequest").addEventListener("click", function () {
+            closeOverlay("requestModal");
+        });
+        byId("reportTemplateSelect").addEventListener("change", function (event) {
+            const selectedId = event.target.value;
+            const selected = loadActiveTemplates().find(function (item) {
+                return String(item.id) === String(selectedId);
+            });
+            byId("requestTemplateCode").value = selected ? selected.code : "";
+            byId("requestTemplateTitle").value = selected ? selected.name : "";
+        });
+        byId("reportTableBody").addEventListener("click", function (event) {
+            const button = event.target.closest("[data-action='edit-request']");
+            if (!button) {
+                return;
+            }
+            const request = loadReportRequests().find(function (item) {
+                return "RREQ-" + String(item.id || "0").slice(-6) === button.dataset.id;
+            });
+            if (request) {
+                openRequestForm(request);
+            }
+        });
+        modal.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closeOverlay("requestModal");
+            }
+        });
+    }
+
     populatePeriods();
+    ensureRequestControls();
     renderKpis();
     renderCalendar();
     renderTable();
