@@ -1,0 +1,390 @@
+/* =========================================
+   BASELTRACK - VARIANCE ANALYSIS
+========================================= */
+
+.va-module {
+    padding: 24px;
+    color: var(--text-primary, #263247);
+}
+
+.va-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.va-breadcrumb {
+    color: #8490a3;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.va-breadcrumb span {
+    margin: 0 8px;
+}
+
+.va-header h2 {
+    margin: 0 0 7px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.va-header p {
+    margin: 0;
+    color: #8490a3;
+    font-size: 14px;
+}
+
+.va-header-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 13px;
+    background: #e8f2ed;
+    color: #23764d;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.va-card {
+    background: var(--panel-bg, #fff);
+    border: 1px solid var(--border-color, #e5e9ef);
+    border-radius: 13px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.va-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.va-section-heading h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.va-section-heading p {
+    margin: 5px 0 0;
+    color: #8994a5;
+    font-size: 13px;
+}
+
+.va-filter-grid {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) auto;
+    align-items: end;
+    gap: 16px;
+}
+
+.va-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.va-field input,
+.va-field select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid var(--border-color, #dce2e9);
+    border-radius: 8px;
+    background: var(--input-bg, #fff);
+    color: var(--text-primary, #263247);
+    font: inherit;
+    font-size: 14px;
+    outline: none;
+}
+
+.va-field input:focus,
+.va-field select:focus {
+    border-color: #27845b;
+    box-shadow: 0 0 0 3px rgba(39, 132, 91, 0.10);
+}
+
+.va-primary-btn {
+    height: 42px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 8px;
+    background: #23764d;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+}
+
+.va-primary-btn:hover {
+    background: #195d3b;
+    transform: translateY(-1px);
+}
+
+.va-primary-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.va-metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.va-metric-card {
+    min-height: 112px;
+    padding: 17px;
+    border: 1px solid var(--border-color, #e5e9ef);
+    border-radius: 12px;
+    background: var(--panel-bg, #fff);
+}
+
+.va-metric-label {
+    display: block;
+    color: #8490a3;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.va-metric-value {
+    display: block;
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.1;
+}
+
+.va-metric-card.high .va-metric-value {
+    color: #d94b4b;
+}
+
+.va-metric-card.medium .va-metric-value {
+    color: #d58a24;
+}
+
+.va-metric-card.low .va-metric-value {
+    color: #25875a;
+}
+
+.va-metric-card.breach .va-metric-value {
+    color: #c53e47;
+}
+
+.va-metric-card.threshold .va-metric-value {
+    color: #4267a8;
+}
+
+.va-table-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.va-table-toolbar h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.va-record-count {
+    color: #8490a3;
+    font-size: 12px;
+}
+
+.va-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.va-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.va-table th {
+    padding: 13px 14px;
+    background: var(--table-head-bg, #f6f8fa);
+    color: #778397;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.va-table td {
+    padding: 15px 14px;
+    border-bottom: 1px solid var(--border-color, #edf0f4);
+    color: var(--text-primary, #344054);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.va-table tbody tr:hover {
+    background: var(--table-hover-bg, #fafcfb);
+}
+
+.va-risk-id {
+    color: #287b55;
+    font-weight: 700;
+}
+
+.va-severity,
+.va-breach {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.va-severity.high {
+    color: #bd3535;
+    background: #fdeaea;
+}
+
+.va-severity.medium {
+    color: #9a650d;
+    background: #fff2d8;
+}
+
+.va-severity.low {
+    color: #23764d;
+    background: #e6f5ec;
+}
+
+.va-breach.yes {
+    color: #bd3535;
+    background: #fdeaea;
+}
+
+.va-breach.no {
+    color: #23764d;
+    background: #e6f5ec;
+}
+
+.va-empty {
+    padding: 42px 15px !important;
+    text-align: center;
+    color: #8b96a6 !important;
+}
+
+.va-empty-icon {
+    display: block;
+    font-size: 25px;
+    margin-bottom: 9px;
+}
+
+.va-footer-note {
+    margin-top: 15px;
+    color: #8994a5;
+    font-size: 12px;
+}
+
+.va-toast {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 9999;
+    padding: 13px 18px;
+    border-radius: 9px;
+    background: #1f704a;
+    color: #fff;
+    font-size: 13px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.va-toast[hidden] {
+    display: none;
+}
+
+/* Dark theme */
+
+html[data-theme="dark"] .va-module {
+    color: #e7edf5;
+}
+
+html[data-theme="dark"] .va-card,
+html[data-theme="dark"] .va-metric-card {
+    background: #182332;
+    border-color: #2b394b;
+}
+
+html[data-theme="dark"] .va-field input,
+html[data-theme="dark"] .va-field select {
+    background: #111c2a;
+    border-color: #354458;
+    color: #e7edf5;
+}
+
+html[data-theme="dark"] .va-table th {
+    background: #202d3d;
+    color: #aab6c6;
+}
+
+html[data-theme="dark"] .va-table td {
+    color: #dce5ef;
+    border-color: #2b394b;
+}
+
+html[data-theme="dark"] .va-table tbody tr:hover {
+    background: #202d3d;
+}
+
+html[data-theme="dark"] .va-header-icon {
+    background: #203d32;
+    color: #83d4a7;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+    .va-metrics-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .va-module {
+        padding: 16px;
+    }
+
+    .va-header {
+        flex-direction: column;
+    }
+
+    .va-filter-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .va-primary-btn {
+        width: 100%;
+    }
+
+    .va-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 380px) {
+    .va-metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}

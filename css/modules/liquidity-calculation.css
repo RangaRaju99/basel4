@@ -1,0 +1,396 @@
+/* =========================================================
+   BASELTRACK - LIQUIDITY CALCULATION
+   ========================================================= */
+
+.liq-module {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--text-primary, #1f2937);
+}
+
+.liq-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.liq-header h2 {
+    margin: 0 0 6px;
+    font-size: 24px;
+}
+
+.liq-header p,
+.liq-section-heading p {
+    margin: 0;
+    color: var(--text-secondary, #6b7280);
+    font-size: 13px;
+}
+
+.liq-eyebrow {
+    display: block;
+    margin-bottom: 7px;
+    color: #16845b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.liq-header-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    background: #e9f6ef;
+    color: #16845b;
+    font-size: 24px;
+}
+
+.liq-panel {
+    padding: 22px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+    background: var(--card-bg, #ffffff);
+}
+
+.liq-section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.liq-section-heading h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.liq-parameter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.liq-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.liq-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary, #6b7280);
+}
+
+.liq-field input,
+.liq-field select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid var(--border-color, #d1d5db);
+    border-radius: 7px;
+    background: var(--input-bg, #ffffff);
+    color: var(--text-primary, #1f2937);
+    font: inherit;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.liq-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.liq-btn {
+    min-height: 39px;
+    padding: 9px 16px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.liq-btn-primary {
+    background: #16845b;
+    color: #ffffff;
+}
+
+.liq-btn-primary:hover {
+    background: #116c49;
+}
+
+.liq-btn-secondary {
+    background: var(--secondary-button-bg, #f3f4f6);
+    color: var(--text-primary, #374151);
+    border-color: var(--border-color, #e5e7eb);
+}
+
+.liq-btn-outline {
+    background: transparent;
+    color: #16845b;
+    border-color: #16845b;
+}
+
+.liq-message {
+    margin-top: 14px;
+    padding: 10px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+.liq-message.error {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.liq-message.success {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.liq-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    background: #e9f6ef;
+    color: #16845b;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.liq-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.liq-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.liq-table th,
+.liq-table td {
+    padding: 13px 12px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    text-align: left;
+}
+
+.liq-table th {
+    background: var(--table-header-bg, #f8fafc);
+    color: var(--text-secondary, #6b7280);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.liq-table td:last-child {
+    font-weight: 600;
+}
+
+.liq-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.liq-summary-card {
+    padding: 18px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 11px;
+    background: var(--card-bg, #ffffff);
+}
+
+.liq-card-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--text-secondary, #6b7280);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.liq-summary-card strong {
+    display: block;
+    font-size: 23px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.liq-summary-card small {
+    display: block;
+    margin-top: 7px;
+    color: var(--text-secondary, #6b7280);
+    font-size: 11px;
+}
+
+.liq-total-card {
+    border-color: #a7dfc2;
+    background: #f2fbf6;
+}
+
+.liq-total-card strong {
+    color: #16845b;
+}
+
+.liq-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+.liq-chart-row {
+    display: grid;
+    grid-template-columns: 190px minmax(80px, 1fr) 90px;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+}
+
+.liq-chart-label {
+    color: var(--text-secondary, #6b7280);
+    font-weight: 600;
+}
+
+.liq-chart-track {
+    height: 12px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--border-color, #e5e7eb);
+}
+
+.liq-chart-bar {
+    height: 100%;
+    border-radius: 20px;
+    background: #24966a;
+}
+
+.liq-chart-value {
+    text-align: right;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.liq-summary-meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.liq-summary-meta div {
+    padding: 13px;
+    border-radius: 8px;
+    background: var(--table-header-bg, #f8fafc);
+}
+
+.liq-summary-meta span {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--text-secondary, #6b7280);
+    font-size: 11px;
+}
+
+.liq-summary-meta strong {
+    font-size: 13px;
+}
+
+.liq-formula-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.liq-formula-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.liq-formula-item span {
+    color: var(--text-secondary, #6b7280);
+}
+
+.liq-formula-item strong {
+    text-align: right;
+}
+
+.liq-grand-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 8px;
+    background: #e9f6ef;
+    color: #116c49;
+    font-weight: 700;
+}
+
+.liq-grand-total strong {
+    font-size: 20px;
+}
+
+@media (max-width: 900px) {
+    .liq-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .liq-parameter-grid,
+    .liq-summary-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .liq-chart-row {
+        grid-template-columns: 1fr 70px;
+        gap: 8px;
+    }
+
+    .liq-chart-label {
+        grid-column: 1 / -1;
+    }
+
+    .liq-header {
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 420px) {
+    .liq-panel {
+        padding: 15px;
+    }
+
+    .liq-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .liq-actions {
+        flex-direction: column;
+    }
+
+    .liq-btn {
+        width: 100%;
+    }
+
+    .liq-formula-item {
+        flex-direction: column;
+    }
+
+    .liq-formula-item strong {
+        text-align: left;
+    }
+}

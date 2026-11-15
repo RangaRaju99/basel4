@@ -1,0 +1,260 @@
+
+.lev-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: var(--text-primary, #24312b);
+}
+
+.lev-header h2 {
+    margin: 0 0 6px;
+    font-size: 23px;
+}
+
+.lev-header p,
+.lev-description {
+    margin: 0;
+    color: var(--text-secondary, #718078);
+    font-size: 13px;
+}
+
+.lev-card {
+    background: var(--surface, #ffffff);
+    border: 1px solid var(--border, #e4eae6);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.lev-card h3 {
+    margin: 0 0 18px;
+    font-size: 16px;
+}
+
+.lev-form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.lev-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lev-field label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.lev-field select,
+.lev-field input {
+    width: 100%;
+    min-height: 40px;
+    padding: 9px 11px;
+    border: 1px solid var(--border, #dce4df);
+    border-radius: 7px;
+    background: var(--surface, #fff);
+    color: var(--text-primary, #24312b);
+    font: inherit;
+    font-size: 13px;
+}
+
+.lev-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.lev-btn {
+    border: 0;
+    border-radius: 7px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.lev-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.lev-primary {
+    background: #176b4d;
+    color: #fff;
+}
+
+.lev-secondary {
+    background: #edf2ef;
+    color: #34483d;
+}
+
+.lev-export {
+    background: #e5f0ea;
+    color: #176b4d;
+}
+
+.lev-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.lev-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.lev-table th,
+.lev-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border, #e8eeea);
+    text-align: left;
+}
+
+.lev-table th {
+    background: var(--surface-muted, #f5f8f6);
+    font-weight: 600;
+}
+
+.lev-total-row {
+    font-weight: 700;
+    background: #f0f6f2;
+}
+
+.lev-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.lev-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.lev-metric-card {
+    padding: 18px;
+    border: 1px solid var(--border, #e4eae6);
+    border-radius: 10px;
+    background: var(--surface, #fff);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lev-metric-card span {
+    color: var(--text-secondary, #718078);
+    font-size: 12px;
+}
+
+.lev-metric-card strong {
+    font-size: 23px;
+    color: var(--text-primary, #24312b);
+}
+
+.lev-highlight {
+    border-color: #7caf91;
+    background: #f0f7f2;
+}
+
+.lev-highlight strong {
+    color: #176b4d;
+}
+
+.lev-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.lev-chart-row {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr) 100px;
+    gap: 12px;
+    align-items: center;
+    font-size: 13px;
+}
+
+.lev-chart-track {
+    height: 13px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #edf1ee;
+}
+
+.lev-chart-bar {
+    height: 100%;
+    border-radius: 20px;
+    background: #398563;
+}
+
+.lev-chart-value {
+    text-align: right;
+    font-weight: 600;
+}
+
+.lev-details,
+.lev-summary {
+    display: grid;
+    gap: 12px;
+    font-size: 13px;
+}
+
+.lev-detail-row,
+.lev-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border, #e8eeea);
+}
+
+.lev-detail-row strong,
+.lev-summary-row strong {
+    text-align: right;
+}
+
+.lev-summary-total {
+    color: #176b4d;
+    font-weight: 700;
+}
+
+@media (max-width: 850px) {
+    .lev-metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lev-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .lev-metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lev-chart-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .lev-chart-value {
+        text-align: left;
+    }
+
+    .lev-detail-row,
+    .lev-summary-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .lev-detail-row strong,
+    .lev-summary-row strong {
+        text-align: left;
+    }
+}

@@ -1,0 +1,879 @@
+#manageRolesApp .role-page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+#manageRolesApp .role-header-actions {
+    display: flex;
+    flex: 0 0 auto;
+}
+
+#manageRolesApp .role-header-actions .filter-btn {
+    height: 42px;
+    padding: 0 17px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#manageRolesApp .role-header-actions .filter-btn:hover {
+    background: var(--surface-alt);
+}
+
+#manageRolesApp .filter-overlay {
+    position: fixed;
+    z-index: 2600;
+    inset: 0;
+    display: none;
+    background: rgba(25, 20, 29, .46);
+}
+
+#manageRolesApp .filter-overlay.show {
+    display: block;
+}
+
+#manageRolesApp .filter-panel {
+    position: absolute;
+    top: 82px;
+    right: 24px;
+    width: min(420px, calc(100vw - 32px));
+    max-height: min(90vh, 760px);
+    overflow-y: auto;
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--card);
+    box-shadow: 0 18px 48px rgba(48, 34, 56, .16);
+}
+
+#manageRolesApp .filter-panel .panel-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+#manageRolesApp .filter-panel .panel-head h2 {
+    color: var(--primary);
+    font-size: 19px;
+}
+
+#manageRolesApp .filter-panel .panel-head p {
+    margin-top: 3px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+#manageRolesApp .filter-panel .panel-head button {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+#manageRolesApp .filter-panel > label {
+    display: block;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageRolesApp .filter-panel > label input {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-top: 7px;
+    padding: 0 11px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+}
+
+#manageRolesApp .filter-panel input:focus {
+    border-color: var(--primary);
+    outline: 2px solid color-mix(in srgb, var(--primary) 22%, transparent);
+    outline-offset: 1px;
+}
+
+#manageRolesApp .column-filter {
+    padding-top: 15px;
+    border-top: 1px solid var(--line);
+}
+
+#manageRolesApp .filter-label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageRolesApp .column-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+#manageRolesApp .column-options label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 38px;
+    margin: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--muted);
+    font-size: 10px;
+    cursor: pointer;
+}
+
+#manageRolesApp .column-options input {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    margin: 0;
+    accent-color: var(--primary);
+}
+
+#manageRolesApp .filter-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+}
+
+#manageUsersApp .modal-overlay,
+#manageUsersApp .filter-overlay,
+#manageRolesApp .modal-overlay {
+    background: rgba(25, 20, 29, .46);
+    backdrop-filter: none;
+}
+
+#manageUsersApp .modal-overlay,
+#manageRolesApp .modal-overlay {
+    align-items: center;
+    padding: 18px;
+}
+
+#manageUsersApp .modal,
+#manageRolesApp .modal {
+    max-height: min(90vh, 760px);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 18px 48px rgba(48, 34, 56, .16);
+}
+
+#manageUsersApp .filter-panel {
+    max-height: min(90vh, 760px);
+    padding: 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: 0 18px 48px rgba(48, 34, 56, .16);
+}
+
+#manageUsersApp .column-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+#manageUsersApp .required-marker,
+#manageRolesApp .required-marker {
+    display: inline-block;
+    margin-left: 3px;
+    color: var(--danger);
+    font-weight: 800;
+}
+
+#manageRolesApp .role-profile {
+    width: min(470px, 100%);
+    padding: 0;
+    overflow: auto;
+}
+
+#manageRolesApp .profile-title {
+    padding: 20px 22px 0;
+    border: 0;
+}
+
+#manageRolesApp .profile-title h2 {
+    color: var(--text);
+    font-size: 19px;
+}
+
+#manageRolesApp .role-identity {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px 0;
+}
+
+#manageRolesApp .role-identity .large-avatar {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    background: color-mix(in srgb, var(--primary) 12%, var(--card));
+    color: var(--primary);
+    font-size: 19px;
+}
+
+#manageRolesApp .role-identity-details {
+    min-width: 0;
+}
+
+#manageRolesApp .role-identity-details h3 {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.3;
+}
+
+#manageRolesApp .role-identity-details p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+#manageRolesApp .role-identity-details p strong {
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageRolesApp .role-identity-details .status-pill {
+    min-width: 0;
+    padding: 3px 8px;
+    font-size: 9px;
+}
+
+#manageRolesApp .profile-details {
+    grid-template-columns: minmax(0, 1.6fr) minmax(105px, .7fr);
+    gap: 12px;
+    padding: 17px 22px 20px;
+    border: 0;
+}
+
+#manageRolesApp .profile-details > div {
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+#manageRolesApp .profile-details span {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+#manageRolesApp .profile-details p {
+    margin-top: 5px;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+#manageRolesApp .profile-details strong {
+    margin-top: 5px;
+    color: var(--text);
+    font-size: 16px;
+}
+
+#manageRolesApp .view-footer {
+    justify-content: flex-end;
+    padding: 12px 22px 18px;
+    border-top: 1px solid var(--line);
+    background: var(--card);
+}
+
+#manageRolesApp .close-profile-btn {
+    min-width: 84px;
+    height: 36px;
+}
+
+#manageRolesApp .edit-layout {
+    width: min(540px, 100%);
+    padding: 22px;
+}
+
+#manageRolesApp .edit-layout .modal-title {
+    margin-bottom: 12px;
+}
+
+#manageRolesApp .edit-layout .modal-title h2 {
+    color: var(--text);
+    font-size: 19px;
+}
+
+#manageRolesApp .form-grid {
+    gap: 0 14px;
+}
+
+#manageRolesApp .form-grid label {
+    margin: 8px 0;
+    font-size: 11px;
+}
+
+#manageRolesApp .form-grid input,
+#manageRolesApp .form-grid textarea {
+    margin-top: 5px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 12px;
+}
+
+#manageRolesApp .form-grid input {
+    height: 38px;
+}
+
+#manageRolesApp .form-grid textarea {
+    min-height: 78px;
+    padding: 9px 11px;
+    line-height: 1.45;
+}
+
+#manageRolesApp .form-grid input:disabled {
+    opacity: 1;
+    color: var(--text);
+    background: var(--surface-alt);
+    cursor: not-allowed;
+}
+
+#manageRolesApp .role-status-field .field-label {
+    display: block;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageRolesApp .role-status-field .account-status {
+    min-height: 42px;
+    margin-top: 5px;
+    padding: 0 11px;
+    border-radius: 8px;
+}
+
+#manageRolesApp .role-status-field .account-status > span {
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#manageUsersApp .modal input:focus,
+#manageUsersApp .modal select:focus,
+#manageUsersApp .filter-panel input:focus,
+#manageUsersApp .filter-panel select:focus,
+#manageRolesApp .modal input:not(:disabled):focus,
+#manageRolesApp .modal textarea:focus {
+    border-color: var(--primary);
+    outline: 2px solid color-mix(in srgb, var(--primary) 22%, transparent);
+    outline-offset: 1px;
+}
+
+#manageRolesApp .edit-layout .modal-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+}
+
+#manageRolesApp .edit-layout .modal-footer button,
+#manageUsersApp .modal-footer button {
+    height: 38px;
+}
+
+#manageUsersApp .filter-panel label,
+#manageUsersApp .form-grid label {
+    margin: 10px 0;
+}
+
+#manageUsersApp .modal-title {
+    margin-bottom: 14px;
+}
+
+#manageUsersApp .form-grid input,
+#manageUsersApp .form-grid select {
+    height: 38px;
+    border-radius: 8px;
+}
+
+#manageUsersApp .modal-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+}
+
+#manageUsersApp .view-footer {
+    border-radius: 0 0 16px 16px;
+}
+
+#manageUsersApp .profile-card {
+    width: min(470px, 100%);
+    padding: 0;
+    overflow: hidden;
+}
+
+#manageUsersApp .profile-card .profile-title {
+    padding: 20px 22px 0;
+    border: 0;
+}
+
+#manageUsersApp .profile-card .profile-title h2 {
+    color: var(--text);
+    font-size: 19px;
+}
+
+#manageUsersApp .profile-card .profile-hero {
+    gap: 14px;
+    padding: 14px 22px 0;
+}
+
+#manageUsersApp .profile-card .large-avatar {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    background: color-mix(in srgb, var(--primary) 12%, var(--card));
+    color: var(--primary);
+    font-size: 19px;
+}
+
+#manageUsersApp .user-identity-details {
+    min-width: 0;
+}
+
+#manageUsersApp .user-identity-details h3 {
+    color: var(--text);
+    font-size: 17px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+#manageUsersApp .user-identity-details > p {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+    margin-top: 5px;
+}
+
+#manageUsersApp .user-identity-details > p span {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+#manageUsersApp .user-identity-details > p strong {
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+#manageUsersApp .profile-card .profile-badges {
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+#manageUsersApp .profile-card .user-role-badge {
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 12%, var(--card));
+    color: var(--primary);
+    font-size: 9px;
+    font-weight: 600;
+}
+
+#manageUsersApp .profile-card .status-pill {
+    min-width: 0;
+    padding: 3px 8px;
+    font-size: 9px;
+}
+
+#manageUsersApp .profile-card .user-profile-details {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 15px 22px 18px;
+    border: 0;
+}
+
+#manageUsersApp .profile-card .user-profile-details > div {
+    min-width: 0;
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+#manageUsersApp .profile-card .user-profile-details span {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+#manageUsersApp .profile-card .user-profile-details strong {
+    margin-top: 4px;
+    color: var(--text);
+    font-size: 13px;
+}
+
+#manageUsersApp .profile-card .view-footer {
+    justify-content: flex-end;
+    margin-top: 0;
+    padding: 12px 22px 18px;
+    border-top: 1px solid var(--line);
+    border-radius: 0 0 16px 16px;
+    background: var(--card);
+}
+
+#manageUsersApp .profile-card .close-profile-btn {
+    min-width: 84px;
+    height: 36px;
+}
+
+#manageUsersApp #addUserForm {
+    width: min(540px, 100%);
+    padding: 22px;
+    border-radius: 16px;
+}
+
+#manageUsersApp #addUserForm .modal-title {
+    margin-bottom: 12px;
+}
+
+#manageUsersApp #addUserForm .modal-title h2 {
+    color: var(--text);
+    font-size: 19px;
+}
+
+#manageUsersApp #addUserForm .form-grid {
+    gap: 0 14px;
+}
+
+#manageUsersApp #addUserForm .form-grid label {
+    margin: 8px 0;
+    font-size: 11px;
+}
+
+#manageUsersApp #addUserForm .form-grid input,
+#manageUsersApp #addUserForm .form-grid select {
+    height: 38px;
+    margin-top: 5px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 12px;
+}
+
+#manageUsersApp #addUserForm .account-status-field {
+    min-width: 0;
+}
+
+#manageUsersApp #addUserForm .field-label {
+    display: block;
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+#manageUsersApp #addUserForm .account-status {
+    min-height: 42px;
+    margin-top: 5px;
+    padding: 0 11px;
+    border-radius: 8px;
+}
+
+#manageUsersApp #addUserForm .account-status > span {
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+#manageUsersApp #addUserForm .modal-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+}
+
+#manageUsersApp #editUserForm {
+    width: min(540px, 100%);
+    padding: 22px;
+    border-radius: 16px;
+}
+
+#manageUsersApp #editUserForm .modal-title {
+    margin-bottom: 12px;
+}
+
+#manageUsersApp #editUserForm .modal-title h2 {
+    color: var(--text);
+    font-size: 19px;
+}
+
+#manageUsersApp #editUserForm .form-grid {
+    gap: 0 14px;
+}
+
+#manageUsersApp #editUserForm .form-grid label {
+    margin: 8px 0;
+    font-size: 11px;
+}
+
+#manageUsersApp #editUserForm .form-grid input,
+#manageUsersApp #editUserForm .form-grid select {
+    height: 38px;
+    margin-top: 5px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 12px;
+}
+
+#manageUsersApp #editUserForm .form-grid input:disabled,
+#manageUsersApp #editUserForm .form-grid select:disabled {
+    opacity: 1;
+    background: var(--surface-alt);
+    color: var(--text);
+    cursor: not-allowed;
+}
+
+#manageUsersApp #editUserForm .account-status {
+    min-height: 42px;
+    margin-top: 5px;
+    padding: 0 11px;
+    border-radius: 8px;
+}
+
+#manageUsersApp #editUserForm .account-status p {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+#manageUsersApp #editUserForm .modal-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+}
+
+#manageUsersApp #userPagination,
+#manageRolesApp #rolePagination {
+    margin-top: 12px;
+}
+
+#manageUsersApp .table-pagination,
+#manageRolesApp .table-pagination {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 9px 11px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--text);
+}
+
+#manageUsersApp .pagination-summary,
+#manageRolesApp .pagination-summary {
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#manageUsersApp .pagination-controls,
+#manageRolesApp .pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+#manageUsersApp .pagination-button,
+#manageRolesApp .pagination-button {
+    min-width: 36px;
+    height: 34px;
+    padding: 0 9px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+
+#manageUsersApp .pagination-button:hover:not(:disabled),
+#manageRolesApp .pagination-button:hover:not(:disabled) {
+    border-color: var(--primary);
+    background: var(--surface-alt);
+}
+
+#manageUsersApp .pagination-button:disabled,
+#manageRolesApp .pagination-button:disabled {
+    opacity: .48;
+    cursor: not-allowed;
+}
+
+#manageUsersApp .pagination-page-label,
+#manageRolesApp .pagination-page-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 3px;
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#manageUsersApp .pagination-current,
+#manageRolesApp .pagination-current {
+    display: inline-grid;
+    place-items: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 5px;
+    border-radius: 7px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#manageUsersApp .pagination-page-size,
+#manageRolesApp .pagination-page-size {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#manageUsersApp .pagination-size,
+#manageRolesApp .pagination-size {
+    width: 68px;
+    height: 34px;
+    padding: 0 7px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 11px;
+}
+
+#manageUsersApp .pagination-button:focus-visible,
+#manageUsersApp .pagination-size:focus-visible,
+#manageRolesApp .pagination-button:focus-visible,
+#manageRolesApp .pagination-size:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    outline-offset: 2px;
+}
+
+#toast {
+    z-index: 10000;
+    max-width: min(440px, calc(100vw - 32px));
+    padding: 13px 17px;
+    border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+    border-radius: 12px;
+    background: var(--brand);
+    color: #fff;
+    font-family: "DM Sans", "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.45;
+    letter-spacing: .01em;
+    box-shadow: 0 12px 32px rgba(25, 20, 29, .24);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+html[data-theme="dark"] #toast {
+    border-color: var(--line);
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+@media (max-width: 580px) {
+    #manageUsersApp .table-pagination,
+    #manageRolesApp .table-pagination {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        gap: 9px;
+        padding: 10px 8px;
+    }
+
+    #manageUsersApp .pagination-summary,
+    #manageRolesApp .pagination-summary {
+        white-space: normal;
+        text-align: center;
+    }
+
+    #manageUsersApp .pagination-controls,
+    #manageRolesApp .pagination-controls {
+        flex-wrap: wrap;
+    }
+
+    #manageUsersApp .pagination-page-size,
+    #manageRolesApp .pagination-page-size {
+        justify-content: center;
+    }
+
+    #manageUsersApp .pagination-button,
+    #manageRolesApp .pagination-button {
+        padding: 0 7px;
+        font-size: 10px;
+    }
+
+    #manageRolesApp .role-page-header {
+        flex-direction: column;
+    }
+
+    #manageRolesApp .role-header-actions,
+    #manageRolesApp .role-header-actions .filter-btn {
+        width: 100%;
+    }
+
+    #manageRolesApp .filter-panel {
+        top: auto;
+        right: 8px;
+        bottom: 8px;
+        left: 8px;
+        width: auto;
+        max-height: min(90vh, 760px);
+    }
+
+    #manageUsersApp .modal-overlay,
+    #manageRolesApp .modal-overlay {
+        align-items: center !important;
+        padding: 12px;
+    }
+
+    #manageUsersApp .modal,
+    #manageRolesApp .modal {
+        max-height: calc(100vh - 24px);
+        border-radius: 16px;
+    }
+
+    #manageRolesApp .profile-details {
+        grid-template-columns: 1fr;
+    }
+
+    #manageRolesApp .edit-layout {
+        padding: 18px;
+    }
+
+    #manageUsersApp .column-options {
+        grid-template-columns: 1fr 1fr;
+    }
+}
