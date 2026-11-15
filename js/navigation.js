@@ -125,8 +125,12 @@
         },
         "generate-report": {
             template: "generateReportsTemplate",
+<<<<<<< HEAD
           folder: "modules/report-generation/generate-report/generate-report",
           assetsInHead: true,
+=======
+            html: "modules/report-generation/generate-report/generate-report.html",
+>>>>>>> sathish
             init: "initGenerateReportsModule"
         },
         "manage-reports": {
